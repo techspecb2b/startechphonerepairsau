@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | Star Tech Phone Repairs</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --star-red: #FF3200;
+            --pure-black: #000000;
+            --pure-white: #FFFFFF;
+            --red-glow: rgba(255, 50, 0, 0.3);
+            --dark-gray: #1a1a1a;
+        }
+
+        body {
+            font-family: 'Work Sans', sans-serif;
+            background: var(--pure-black);
+            color: var(--pure-white);
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 2px solid var(--star-red);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1.2rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: var(--star-red);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 0 20px var(--red-glow);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--pure-white);
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--star-red);
+        }
+
+        .nav-links a.active {
+            color: var(--star-red);
+        }
+
+        /* Page Header */
+        .page-header {
+            margin-top: 80px;
+            padding: 6rem 2rem 4rem;
+            text-align: center;
+            background: linear-gradient(180deg, var(--dark-gray) 0%, var(--pure-black) 100%);
+        }
+
+        .page-header h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .page-header p {
+            font-size: 1.3rem;
+            color: #999;
+        }
+
+        /* Contact Container */
+        .contact-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 4rem;
+        }
+
+        .contact-info {
+            background: var(--dark-gray);
+            padding: 3rem;
+            border-left: 4px solid var(--star-red);
+        }
+
+        .contact-info h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: var(--star-red);
+            text-transform: uppercase;
+        }
+
+        .info-item {
+            margin-bottom: 2.5rem;
+        }
+
+        .info-item h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.2rem;
+            margin-bottom: 0.8rem;
+            color: var(--star-red);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .info-item p {
+            color: #ccc;
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+
+        .info-item a {
+            color: var(--pure-white);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .info-item a:hover {
+            color: var(--star-red);
+        }
+
+        .hours-table {
+            margin-top: 1rem;
+        }
+
+        .hours-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            padding: 0.8rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .hours-row:last-child {
+            border-bottom: none;
+        }
+
+        .day {
+            font-weight: 600;
+        }
+
+        .time {
+            text-align: right;
+            color: #999;
+        }
+
+        .time.open {
+            color: var(--star-red);
+        }
+
+        /* Quick Message */
+        .quick-message {
+            background: var(--dark-gray);
+            padding: 3rem;
+            border-left: 4px solid var(--star-red);
+        }
+
+        .quick-message h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: var(--star-red);
+            text-transform: uppercase;
+        }
+
+        .message-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            color: #ccc;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            padding: 1rem;
+            background: var(--pure-black);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            color: var(--pure-white);
+            font-family: 'Work Sans', sans-serif;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--star-red);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        .submit-btn {
+            padding: 1.2rem 2.5rem;
+            background: var(--star-red);
+            color: var(--pure-white);
+            border: 2px solid var(--star-red);
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background: transparent;
+            color: var(--star-red);
+            box-shadow: 0 0 20px var(--red-glow);
+        }
+
+        /* Map Section */
+        .map-section {
+            margin-top: 4rem;
+        }
+
+        .map-section h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: var(--star-red);
+            text-transform: uppercase;
+            text-align: center;
+        }
+
+        .map-container {
+            width: 100%;
+            height: 500px;
+            background: var(--dark-gray);
+            border: 2px solid var(--star-red);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .map-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .map-placeholder svg {
+            width: 80px;
+            height: 80px;
+            fill: var(--star-red);
+        }
+
+        .map-placeholder p {
+            font-size: 1.2rem;
+            color: #999;
+        }
+
+        .directions-link {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 1rem 2rem;
+            background: var(--star-red);
+            color: var(--pure-white);
+            text-decoration: none;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+
+        .directions-link:hover {
+            background: transparent;
+            border: 2px solid var(--star-red);
+            color: var(--star-red);
+        }
+
+        /* CTA Section */
+        .contact-cta {
+            text-align: center;
+            padding: 6rem 2rem;
+            background: var(--dark-gray);
+            margin-top: 4rem;
+        }
+
+        .contact-cta h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+        }
+
+        .contact-cta p {
+            font-size: 1.2rem;
+            color: #999;
+            margin-bottom: 2.5rem;
+        }
+
+        .btn {
+            padding: 1.2rem 2.5rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 2px solid var(--star-red);
+            background: var(--star-red);
+            color: var(--pure-white);
+            display: inline-block;
+        }
+
+        .btn:hover {
+            background: transparent;
+            color: var(--star-red);
+            box-shadow: 0 0 20px var(--red-glow);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--pure-black);
+            border-top: 2px solid var(--star-red);
+            padding: 3rem 2rem 1.5rem;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--star-red);
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: #999;
+            line-height: 2;
+            text-decoration: none;
+            display: block;
+        }
+
+        .footer-section a:hover {
+            color: var(--star-red);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 50, 0, 0.2);
+            color: #666;
+        }
+
+        @media (max-width: 968px) {
+            .page-header h1 {
+                font-size: 2.5rem;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="home.html" class="logo">STAR TECH</a>
+            <ul class="nav-links">
+                <li><a href="home.html">Home</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="prices.html">Prices</a></li>
+                <li><a href="contact.html" class="active">Contact</a></li>
+                <li><a href="book.html">Book Now</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="page-header">
+        <h1>Contact Us</h1>
+        <p>We're here to help with all your tech repair needs</p>
+    </div>
+
+    <div class="contact-container">
+        <div class="contact-grid">
+            <div class="contact-info">
+                <h2>Get in Touch</h2>
+                
+                <div class="info-item">
+                    <h3>📍 Location</h3>
+                    <p>
+                        33 Crimson Bvd<br>
+                        Forrestfield WA 6058<br>
+                        Australia
+                    </p>
+                </div>
+
+                <div class="info-item">
+                    <h3>📞 Phone</h3>
+                    <p><a href="tel:+61420994662">+61 420 994 662</a></p>
+                </div>
+
+                <div class="info-item">
+                    <h3>✉️ Email</h3>
+                    <p><a href="mailto:sales@startechphonerepairs.com.au">sales@startechphonerepairs.com.au</a></p>
+                </div>
+
+                <div class="info-item">
+                    <h3>🕐 Opening Hours</h3>
+                    <div class="hours-table">
+                        <div class="hours-row">
+                            <span class="day">Monday</span>
+                            <span class="time">Closed</span>
+                        </div>
+                        <div class="hours-row">
+                            <span class="day">Tuesday</span>
+                            <span class="time open">6:00 AM - 7:00 PM</span>
+                        </div>
+                        <div class="hours-row">
+                            <span class="day">Wednesday</span>
+                            <span class="time open">6:00 AM - 7:00 PM</span>
+                        </div>
+                        <div class="hours-row">
+                            <span class="day">Thursday</span>
+                            <span class="time open">6:00 AM - 7:00 PM</span>
+                        </div>
+                        <div class="hours-row">
+                            <span class="day">Friday</span>
+                            <span class="time open">6:00 AM - 7:00 PM</span>
+                        </div>
+                        <div class="hours-row">
+                            <span class="day">Saturday</span>
+                            <span class="time open">6:00 AM - 5:00 PM</span>
+                        </div>
+                        <div class="hours-row">
+                            <span class="day">Sunday</span>
+                            <span class="time open">6:00 AM - 12:00 PM</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="quick-message">
+                <h2>Send Us a Message</h2>
+                <form class="message-form" onsubmit="handleSubmit(event)">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Phone</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-btn">Send Message</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="map-section">
+            <h2>Find Us</h2>
+            <div class="map-container">
+                <div class="map-placeholder">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                    </svg>
+                    <p>33 Crimson Bvd, Forrestfield WA 6058</p>
+                    <a href="https://www.google.com/maps/search/?api=1&query=33+Crimson+Bvd+Forrestfield+WA+6058+Australia" target="_blank" class="directions-link">Get Directions</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="contact-cta">
+        <h2>Prefer to Book Online?</h2>
+        <p>Schedule your repair appointment in just a few clicks</p>
+        <a href="book.html" class="btn">Book Appointment</a>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Star Tech Phone Repairs</h4>
+                <p>Perth's premier tech repair specialists. Quality, speed, and trust in every repair.</p>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <a href="services.html">Services</a>
+                <a href="prices.html">Price List</a>
+                <a href="book.html">Book Appointment</a>
+                <a href="contact.html">Contact Us</a>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <p>33 Crimson Bvd<br>Forrestfield WA 6058<br>Australia</p>
+                <p>Phone: +61 420 994 662</p>
+                <p>Email: sales@startechphonerepairs.com.au</p>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Hours</h4>
+                <p>Monday: Closed</p>
+                <p>Tue-Fri: 6am - 7pm</p>
+                <p>Saturday: 6am - 5pm</p>
+                <p>Sunday: 6am - 12pm</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Star Tech Phone Repairs. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        function handleSubmit(event) {
+            event.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const message = document.getElementById('message').value;
+            
+            // Create mailto link
+            const subject = encodeURIComponent('Contact Form Submission from ' + name);
+            const body = encodeURIComponent(
+                'Name: ' + name + '\n' +
+                'Email: ' + email + '\n' +
+                'Phone: ' + phone + '\n\n' +
+                'Message:\n' + message
+            );
+            
+            window.location.href = 'mailto:sales@startechphonerepairs.com.au?subject=' + subject + '&body=' + body;
+            
+            // Reset form
+            event.target.reset();
+        }
+    </script>
+</body>
+</html>
