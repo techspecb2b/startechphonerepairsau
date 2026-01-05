@@ -1,0 +1,1060 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Appointment | Star Tech Phone Repairs</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --star-red: #FF3200;
+            --pure-black: #000000;
+            --pure-white: #FFFFFF;
+            --red-glow: rgba(255, 50, 0, 0.3);
+            --dark-gray: #1a1a1a;
+        }
+
+        body {
+            font-family: 'Work Sans', sans-serif;
+            background: var(--pure-black);
+            color: var(--pure-white);
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 2px solid var(--star-red);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1.2rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: var(--star-red);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 0 20px var(--red-glow);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--pure-white);
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--star-red);
+        }
+
+        .nav-links a.active {
+            color: var(--star-red);
+        }
+
+        /* Page Header */
+        .page-header {
+            margin-top: 80px;
+            padding: 6rem 2rem 4rem;
+            text-align: center;
+            background: linear-gradient(180deg, var(--dark-gray) 0%, var(--pure-black) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, var(--red-glow) 0%, transparent 70%);
+            opacity: 0.5;
+        }
+
+        .page-header h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .page-header p {
+            font-size: 1.3rem;
+            color: #999;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Booking Container */
+        .booking-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .progress-bar {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 4rem;
+            position: relative;
+        }
+
+        .progress-bar::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.1);
+            z-index: 0;
+        }
+
+        .progress-line {
+            position: absolute;
+            top: 20px;
+            left: 0;
+            height: 2px;
+            background: var(--star-red);
+            transition: width 0.3s ease;
+            z-index: 1;
+        }
+
+        .progress-step {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            flex: 1;
+        }
+
+        .step-circle {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--dark-gray);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 0.5rem;
+            transition: all 0.3s ease;
+            font-weight: 700;
+        }
+
+        .progress-step.active .step-circle {
+            background: var(--star-red);
+            border-color: var(--star-red);
+            box-shadow: 0 0 20px var(--red-glow);
+        }
+
+        .progress-step.completed .step-circle {
+            background: var(--star-red);
+            border-color: var(--star-red);
+        }
+
+        .step-label {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .progress-step.active .step-label {
+            color: var(--star-red);
+            font-weight: 600;
+        }
+
+        /* Form Sections */
+        .form-section {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .form-section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: var(--star-red);
+            text-transform: uppercase;
+            text-align: center;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            color: #ccc;
+            font-size: 0.95rem;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            padding: 1rem;
+            background: var(--dark-gray);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            color: var(--pure-white);
+            font-family: 'Work Sans', sans-serif;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--star-red);
+            box-shadow: 0 0 15px var(--red-glow);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        /* Device Type Selection */
+        .device-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .device-option {
+            background: var(--dark-gray);
+            padding: 2rem 1rem;
+            text-align: center;
+            border: 2px solid transparent;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .device-option:hover {
+            border-color: var(--star-red);
+            transform: translateY(-3px);
+        }
+
+        .device-option.selected {
+            border-color: var(--star-red);
+            background: rgba(255, 50, 0, 0.1);
+        }
+
+        .device-option input[type="radio"] {
+            display: none;
+        }
+
+        .device-icon {
+            font-size: 3rem;
+            display: block;
+            margin-bottom: 1rem;
+        }
+
+        .device-name {
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        /* Service Selection */
+        .service-checkboxes {
+            display: grid;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .checkbox-option {
+            background: var(--dark-gray);
+            padding: 1.5rem;
+            border: 2px solid transparent;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .checkbox-option:hover {
+            border-color: var(--star-red);
+        }
+
+        .checkbox-option.selected {
+            border-color: var(--star-red);
+            background: rgba(255, 50, 0, 0.1);
+        }
+
+        .checkbox-option input[type="checkbox"] {
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
+            accent-color: var(--star-red);
+        }
+
+        .checkbox-label {
+            flex: 1;
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        /* Date Time Selection */
+        .datetime-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        /* Review Section */
+        .review-card {
+            background: var(--dark-gray);
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid var(--star-red);
+        }
+
+        .review-card h3 {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--star-red);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+
+        .review-item {
+            display: grid;
+            grid-template-columns: 150px 1fr;
+            padding: 0.8rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .review-item:last-child {
+            border-bottom: none;
+        }
+
+        .review-label {
+            color: #999;
+            font-weight: 600;
+        }
+
+        .review-value {
+            color: var(--pure-white);
+        }
+
+        /* Navigation Buttons */
+        .form-navigation {
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-top: 3rem;
+        }
+
+        .nav-btn {
+            padding: 1.2rem 2.5rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid var(--star-red);
+            background: transparent;
+            color: var(--pure-white);
+        }
+
+        .nav-btn:hover {
+            background: var(--star-red);
+            box-shadow: 0 0 20px var(--red-glow);
+        }
+
+        .nav-btn.primary {
+            background: var(--star-red);
+            color: var(--pure-white);
+        }
+
+        .nav-btn.primary:hover {
+            background: transparent;
+            color: var(--star-red);
+        }
+
+        .nav-btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        /* Success Message */
+        .success-message {
+            display: none;
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+
+        .success-message.show {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .success-icon {
+            font-size: 5rem;
+            color: var(--star-red);
+            margin-bottom: 2rem;
+        }
+
+        .success-message h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--star-red);
+        }
+
+        .success-message p {
+            font-size: 1.2rem;
+            color: #ccc;
+            margin-bottom: 2rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--pure-black);
+            border-top: 2px solid var(--star-red);
+            padding: 3rem 2rem 1.5rem;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--star-red);
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: #999;
+            line-height: 2;
+            text-decoration: none;
+            display: block;
+        }
+
+        .footer-section a:hover {
+            color: var(--star-red);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 50, 0, 0.2);
+            color: #666;
+        }
+
+        @media (max-width: 968px) {
+            .page-header h1 {
+                font-size: 2.5rem;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .datetime-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .device-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .nav-links {
+                display: none;
+            }
+
+            .device-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-navigation {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="home.html" class="logo">STAR TECH</a>
+            <ul class="nav-links">
+                <li><a href="home.html">Home</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="prices.html">Prices</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="book.html" class="active">Book Now</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="page-header">
+        <h1>Book Your Repair</h1>
+        <p>Quick and easy online booking</p>
+    </div>
+
+    <div class="booking-container">
+        <div class="progress-bar">
+            <div class="progress-line" id="progressLine"></div>
+            <div class="progress-step active" data-step="1">
+                <div class="step-circle">1</div>
+                <div class="step-label">Device</div>
+            </div>
+            <div class="progress-step" data-step="2">
+                <div class="step-circle">2</div>
+                <div class="step-label">Service</div>
+            </div>
+            <div class="progress-step" data-step="3">
+                <div class="step-circle">3</div>
+                <div class="step-label">Date & Time</div>
+            </div>
+            <div class="progress-step" data-step="4">
+                <div class="step-circle">4</div>
+                <div class="step-label">Your Info</div>
+            </div>
+            <div class="progress-step" data-step="5">
+                <div class="step-circle">5</div>
+                <div class="step-label">Review</div>
+            </div>
+        </div>
+
+        <form id="bookingForm">
+            <!-- Step 1: Device Type -->
+            <div class="form-section active" data-section="1">
+                <h2 class="section-title">Select Your Device Type</h2>
+                <div class="device-grid">
+                    <label class="device-option">
+                        <input type="radio" name="deviceType" value="Phone" required>
+                        <span class="device-icon">📱</span>
+                        <span class="device-name">Phone</span>
+                    </label>
+                    <label class="device-option">
+                        <input type="radio" name="deviceType" value="Tablet/iPad">
+                        <span class="device-icon">📲</span>
+                        <span class="device-name">Tablet/iPad</span>
+                    </label>
+                    <label class="device-option">
+                        <input type="radio" name="deviceType" value="Gaming Console">
+                        <span class="device-icon">🎮</span>
+                        <span class="device-name">Gaming Console</span>
+                    </label>
+                    <label class="device-option">
+                        <input type="radio" name="deviceType" value="Computer">
+                        <span class="device-icon">💻</span>
+                        <span class="device-name">Computer</span>
+                    </label>
+                </div>
+                
+                <div class="form-grid">
+                    <div class="form-group full-width">
+                        <label for="deviceBrand">Brand</label>
+                        <input type="text" id="deviceBrand" name="deviceBrand" placeholder="e.g., Apple, Samsung, Sony" required>
+                    </div>
+                    <div class="form-group full-width">
+                        <label for="deviceModel">Model</label>
+                        <input type="text" id="deviceModel" name="deviceModel" placeholder="e.g., iPhone 15 Pro, Galaxy S24" required>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 2: Service Selection -->
+            <div class="form-section" data-section="2">
+                <h2 class="section-title">What Needs to be Repaired?</h2>
+                <div class="service-checkboxes">
+                    <label class="checkbox-option">
+                        <input type="checkbox" name="services" value="Screen Replacement">
+                        <span class="checkbox-label">Screen Replacement</span>
+                    </label>
+                    <label class="checkbox-option">
+                        <input type="checkbox" name="services" value="Battery Replacement">
+                        <span class="checkbox-label">Battery Replacement</span>
+                    </label>
+                    <label class="checkbox-option">
+                        <input type="checkbox" name="services" value="Charging Port Repair">
+                        <span class="checkbox-label">Charging Port Repair</span>
+                    </label>
+                    <label class="checkbox-option">
+                        <input type="checkbox" name="services" value="Camera Repair">
+                        <span class="checkbox-label">Camera Repair</span>
+                    </label>
+                    <label class="checkbox-option">
+                        <input type="checkbox" name="services" value="Speaker/Microphone Repair">
+                        <span class="checkbox-label">Speaker/Microphone Repair</span>
+                    </label>
+                    <label class="checkbox-option">
+                        <input type="checkbox" name="services" value="Water Damage Repair">
+                        <span class="checkbox-label">Water Damage Repair</span>
+                    </label>
+                    <label class="checkbox-option">
+                        <input type="checkbox" name="services" value="Other">
+                        <span class="checkbox-label">Other (Describe below)</span>
+                    </label>
+                </div>
+                
+                <div class="form-group full-width">
+                    <label for="problemDescription">Describe the Problem</label>
+                    <textarea id="problemDescription" name="problemDescription" placeholder="Please provide details about the issue..."></textarea>
+                </div>
+            </div>
+
+            <!-- Step 3: Date & Time -->
+            <div class="form-section" data-section="3">
+                <h2 class="section-title">Choose Date & Time</h2>
+                <div class="datetime-grid">
+                    <div class="form-group">
+                        <label for="appointmentDate">Preferred Date</label>
+                        <input type="date" id="appointmentDate" name="appointmentDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="appointmentTime">Preferred Time</label>
+                        <select id="appointmentTime" name="appointmentTime" required>
+                            <option value="">Select time...</option>
+                            <option value="6:00 AM">6:00 AM</option>
+                            <option value="7:00 AM">7:00 AM</option>
+                            <option value="8:00 AM">8:00 AM</option>
+                            <option value="9:00 AM">9:00 AM</option>
+                            <option value="10:00 AM">10:00 AM</option>
+                            <option value="11:00 AM">11:00 AM</option>
+                            <option value="12:00 PM">12:00 PM</option>
+                            <option value="1:00 PM">1:00 PM</option>
+                            <option value="2:00 PM">2:00 PM</option>
+                            <option value="3:00 PM">3:00 PM</option>
+                            <option value="4:00 PM">4:00 PM</option>
+                            <option value="5:00 PM">5:00 PM</option>
+                            <option value="6:00 PM">6:00 PM</option>
+                        </select>
+                    </div>
+                </div>
+                <p style="color: #999; margin-top: 1rem;">
+                    <strong>Note:</strong> Hours vary by day. Monday: Closed | Tue-Fri: 6am-7pm | Sat: 6am-5pm | Sun: 6am-12pm
+                </p>
+            </div>
+
+            <!-- Step 4: Personal Information -->
+            <div class="form-section" data-section="4">
+                <h2 class="section-title">Your Contact Information</h2>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="firstName">First Name</label>
+                        <input type="text" id="firstName" name="firstName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName">Last Name</label>
+                        <input type="text" id="lastName" name="lastName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+                    <div class="form-group full-width">
+                        <label for="notes">Additional Notes (Optional)</label>
+                        <textarea id="notes" name="notes" placeholder="Any special requests or information we should know..."></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 5: Review -->
+            <div class="form-section" data-section="5">
+                <h2 class="section-title">Review Your Booking</h2>
+                
+                <div class="review-card">
+                    <h3>Device Information</h3>
+                    <div class="review-item">
+                        <span class="review-label">Device Type:</span>
+                        <span class="review-value" id="reviewDeviceType">-</span>
+                    </div>
+                    <div class="review-item">
+                        <span class="review-label">Brand:</span>
+                        <span class="review-value" id="reviewBrand">-</span>
+                    </div>
+                    <div class="review-item">
+                        <span class="review-label">Model:</span>
+                        <span class="review-value" id="reviewModel">-</span>
+                    </div>
+                </div>
+
+                <div class="review-card">
+                    <h3>Service Details</h3>
+                    <div class="review-item">
+                        <span class="review-label">Services:</span>
+                        <span class="review-value" id="reviewServices">-</span>
+                    </div>
+                    <div class="review-item">
+                        <span class="review-label">Description:</span>
+                        <span class="review-value" id="reviewDescription">-</span>
+                    </div>
+                </div>
+
+                <div class="review-card">
+                    <h3>Appointment</h3>
+                    <div class="review-item">
+                        <span class="review-label">Date:</span>
+                        <span class="review-value" id="reviewDate">-</span>
+                    </div>
+                    <div class="review-item">
+                        <span class="review-label">Time:</span>
+                        <span class="review-value" id="reviewTime">-</span>
+                    </div>
+                </div>
+
+                <div class="review-card">
+                    <h3>Contact Information</h3>
+                    <div class="review-item">
+                        <span class="review-label">Name:</span>
+                        <span class="review-value" id="reviewName">-</span>
+                    </div>
+                    <div class="review-item">
+                        <span class="review-label">Email:</span>
+                        <span class="review-value" id="reviewEmail">-</span>
+                    </div>
+                    <div class="review-item">
+                        <span class="review-label">Phone:</span>
+                        <span class="review-value" id="reviewPhone">-</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-navigation">
+                <button type="button" class="nav-btn" id="prevBtn" onclick="changeStep(-1)">Previous</button>
+                <button type="button" class="nav-btn primary" id="nextBtn" onclick="changeStep(1)">Next</button>
+            </div>
+        </form>
+
+        <div class="success-message" id="successMessage">
+            <div class="success-icon">✓</div>
+            <h2>Booking Confirmed!</h2>
+            <p>Your appointment has been scheduled. We've sent a confirmation email to the address you provided.</p>
+            <p>We look forward to seeing you at Star Tech Phone Repairs!</p>
+            <a href="home.html" class="nav-btn primary" style="display: inline-block; margin-top: 2rem;">Return Home</a>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Star Tech Phone Repairs</h4>
+                <p>Perth's premier tech repair specialists. Quality, speed, and trust in every repair.</p>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <a href="services.html">Services</a>
+                <a href="prices.html">Price List</a>
+                <a href="book.html">Book Appointment</a>
+                <a href="contact.html">Contact Us</a>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <p>33 Crimson Bvd<br>Forrestfield WA 6058<br>Australia</p>
+                <p>Phone: +61 420 994 662</p>
+                <p>Email: sales@startechphonerepairs.com.au</p>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Hours</h4>
+                <p>Monday: Closed</p>
+                <p>Tue-Fri: 6am - 7pm</p>
+                <p>Saturday: 6am - 5pm</p>
+                <p>Sunday: 6am - 12pm</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Star Tech Phone Repairs. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        let currentStep = 1;
+        const totalSteps = 5;
+
+        // Set minimum date to today
+        document.getElementById('appointmentDate').min = new Date().toISOString().split('T')[0];
+
+        // Device type selection
+        document.querySelectorAll('.device-option input').forEach(input => {
+            input.addEventListener('change', function() {
+                document.querySelectorAll('.device-option').forEach(opt => opt.classList.remove('selected'));
+                if (this.checked) {
+                    this.closest('.device-option').classList.add('selected');
+                }
+            });
+        });
+
+        // Checkbox options
+        document.querySelectorAll('.checkbox-option input').forEach(input => {
+            input.addEventListener('change', function() {
+                if (this.checked) {
+                    this.closest('.checkbox-option').classList.add('selected');
+                } else {
+                    this.closest('.checkbox-option').classList.remove('selected');
+                }
+            });
+        });
+
+        function changeStep(direction) {
+            const currentSection = document.querySelector(`.form-section[data-section="${currentStep}"]`);
+            
+            if (direction === 1) {
+                // Validate current section
+                const inputs = currentSection.querySelectorAll('input[required], select[required], textarea[required]');
+                let valid = true;
+                
+                inputs.forEach(input => {
+                    if (input.type === 'radio') {
+                        const radioGroup = currentSection.querySelectorAll(`input[name="${input.name}"]`);
+                        const checked = Array.from(radioGroup).some(r => r.checked);
+                        if (!checked) {
+                            valid = false;
+                            alert('Please select a device type');
+                        }
+                    } else if (input.type === 'checkbox') {
+                        const checkboxGroup = currentSection.querySelectorAll('input[name="services"]:checked');
+                        if (checkboxGroup.length === 0 && input.name === 'services') {
+                            valid = false;
+                            alert('Please select at least one service');
+                        }
+                    } else if (!input.value) {
+                        valid = false;
+                        input.focus();
+                        alert('Please fill in all required fields');
+                    }
+                });
+                
+                if (!valid) return;
+            }
+            
+            const newStep = currentStep + direction;
+            
+            if (newStep >= 1 && newStep <= totalSteps) {
+                // Hide current section
+                currentSection.classList.remove('active');
+                
+                // Update step
+                currentStep = newStep;
+                
+                // Show new section
+                document.querySelector(`.form-section[data-section="${currentStep}"]`).classList.add('active');
+                
+                // Update progress
+                updateProgress();
+                
+                // Update buttons
+                updateButtons();
+                
+                // Update review if on final step
+                if (currentStep === 5) {
+                    updateReview();
+                }
+                
+                // Scroll to top
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+
+        function updateProgress() {
+            // Update progress steps
+            document.querySelectorAll('.progress-step').forEach(step => {
+                const stepNum = parseInt(step.dataset.step);
+                if (stepNum < currentStep) {
+                    step.classList.add('completed');
+                    step.classList.remove('active');
+                } else if (stepNum === currentStep) {
+                    step.classList.add('active');
+                    step.classList.remove('completed');
+                } else {
+                    step.classList.remove('active', 'completed');
+                }
+            });
+            
+            // Update progress line
+            const progressLine = document.getElementById('progressLine');
+            const progress = ((currentStep - 1) / (totalSteps - 1)) * 100;
+            progressLine.style.width = progress + '%';
+        }
+
+        function updateButtons() {
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            
+            prevBtn.style.display = currentStep === 1 ? 'none' : 'block';
+            
+            if (currentStep === totalSteps) {
+                nextBtn.textContent = 'Confirm Booking';
+                nextBtn.onclick = submitBooking;
+            } else {
+                nextBtn.textContent = 'Next';
+                nextBtn.onclick = () => changeStep(1);
+            }
+        }
+
+        function updateReview() {
+            // Device info
+            const deviceType = document.querySelector('input[name="deviceType"]:checked')?.value || '-';
+            const brand = document.getElementById('deviceBrand').value || '-';
+            const model = document.getElementById('deviceModel').value || '-';
+            
+            document.getElementById('reviewDeviceType').textContent = deviceType;
+            document.getElementById('reviewBrand').textContent = brand;
+            document.getElementById('reviewModel').textContent = model;
+            
+            // Services
+            const services = Array.from(document.querySelectorAll('input[name="services"]:checked'))
+                .map(cb => cb.value)
+                .join(', ') || '-';
+            const description = document.getElementById('problemDescription').value || '-';
+            
+            document.getElementById('reviewServices').textContent = services;
+            document.getElementById('reviewDescription').textContent = description;
+            
+            // Date & Time
+            const date = document.getElementById('appointmentDate').value || '-';
+            const time = document.getElementById('appointmentTime').value || '-';
+            
+            document.getElementById('reviewDate').textContent = date;
+            document.getElementById('reviewTime').textContent = time;
+            
+            // Contact
+            const name = document.getElementById('firstName').value + ' ' + document.getElementById('lastName').value;
+            const email = document.getElementById('email').value || '-';
+            const phone = document.getElementById('phone').value || '-';
+            
+            document.getElementById('reviewName').textContent = name;
+            document.getElementById('reviewEmail').textContent = email;
+            document.getElementById('reviewPhone').textContent = phone;
+        }
+
+        function submitBooking() {
+            // Gather all form data
+            const formData = new FormData(document.getElementById('bookingForm'));
+            const data = {};
+            
+            for (let [key, value] of formData.entries()) {
+                if (key === 'services') {
+                    if (!data.services) data.services = [];
+                    data.services.push(value);
+                } else {
+                    data[key] = value;
+                }
+            }
+            
+            // Create email body
+            const emailBody = `
+New Repair Booking Request
+
+DEVICE INFORMATION:
+- Device Type: ${data.deviceType}
+- Brand: ${data.deviceBrand}
+- Model: ${data.deviceModel}
+
+SERVICE DETAILS:
+- Services Requested: ${data.services ? data.services.join(', ') : 'None selected'}
+- Problem Description: ${data.problemDescription || 'N/A'}
+
+APPOINTMENT:
+- Date: ${data.appointmentDate}
+- Time: ${data.appointmentTime}
+
+CUSTOMER INFORMATION:
+- Name: ${data.firstName} ${data.lastName}
+- Email: ${data.email}
+- Phone: ${data.phone}
+- Additional Notes: ${data.notes || 'None'}
+            `;
+            
+            // Open email client
+            const subject = encodeURIComponent('New Repair Booking Request');
+            const body = encodeURIComponent(emailBody);
+            window.location.href = `mailto:sales@startechphonerepairs.com.au?subject=${subject}&body=${body}`;
+            
+            // Show success message
+            document.getElementById('bookingForm').style.display = 'none';
+            document.querySelector('.progress-bar').style.display = 'none';
+            document.getElementById('successMessage').classList.add('show');
+        }
+
+        // Initialize
+        updateProgress();
+        updateButtons();
+    </script>
+</body>
+</html>
