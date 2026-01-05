@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Star Tech Phone Repairs | Perth's Premier Tech Repair Service</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --star-red: #FF3200;
+            --pure-black: #000000;
+            --pure-white: #FFFFFF;
+            --red-glow: rgba(255, 50, 0, 0.3);
+            --dark-gray: #1a1a1a;
+        }
+
+        body {
+            font-family: 'Work Sans', sans-serif;
+            background: var(--pure-black);
+            color: var(--pure-white);
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 2px solid var(--star-red);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1.2rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: var(--star-red);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 0 20px var(--red-glow);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--pure-white);
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--star-red);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--star-red);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a.active {
+            color: var(--star-red);
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 80px;
+            height: 90vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .hero-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 50%, var(--red-glow) 0%, transparent 50%),
+                radial-gradient(circle at 80% 50%, var(--red-glow) 0%, transparent 50%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.6; }
+        }
+
+        .hero-grid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(var(--star-red) 1px, transparent 1px),
+                linear-gradient(90deg, var(--star-red) 1px, transparent 1px);
+            background-size: 50px 50px;
+            opacity: 0.05;
+            animation: gridMove 20s linear infinite;
+        }
+
+        @keyframes gridMove {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(50px); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 1200px;
+            padding: 2rem;
+        }
+
+        .hero h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 5rem;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .hero h1 .star {
+            color: var(--star-red);
+            text-shadow: 0 0 30px var(--red-glow), 0 0 60px var(--red-glow);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero p {
+            font-size: 1.4rem;
+            margin-bottom: 3rem;
+            color: #ccc;
+            animation: fadeInUp 0.8s ease-out 0.2s backwards;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            animation: fadeInUp 0.8s ease-out 0.4s backwards;
+        }
+
+        .btn {
+            padding: 1.2rem 2.5rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 0;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 2px solid var(--star-red);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary {
+            background: var(--star-red);
+            color: var(--pure-white);
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--pure-white);
+            transition: left 0.3s ease;
+            z-index: -1;
+        }
+
+        .btn-primary:hover::before {
+            left: 0;
+        }
+
+        .btn-primary:hover {
+            color: var(--star-red);
+            box-shadow: 0 0 20px var(--red-glow);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--pure-white);
+        }
+
+        .btn-secondary:hover {
+            background: var(--star-red);
+            box-shadow: 0 0 20px var(--red-glow);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 8rem 2rem;
+            background: var(--dark-gray);
+            position: relative;
+        }
+
+        .features::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--star-red), transparent);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #999;
+            margin-bottom: 5rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+        }
+
+        .feature-card {
+            background: var(--pure-black);
+            padding: 3rem 2rem;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--star-red);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .feature-card:hover {
+            border-color: var(--star-red);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255, 50, 0, 0.2);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--star-red);
+        }
+
+        .feature-card h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .feature-card p {
+            line-height: 1.8;
+            color: #ccc;
+        }
+
+        /* Why Choose Us Section */
+        .why-choose {
+            padding: 8rem 2rem;
+            background: var(--pure-black);
+        }
+
+        .why-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+            margin-top: 4rem;
+        }
+
+        .why-content h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: var(--star-red);
+            text-transform: uppercase;
+        }
+
+        .why-list {
+            list-style: none;
+        }
+
+        .why-list li {
+            padding: 1.5rem 0;
+            border-bottom: 1px solid rgba(255, 50, 0, 0.2);
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .why-list li::before {
+            content: '★';
+            color: var(--star-red);
+            font-size: 1.5rem;
+        }
+
+        .why-visual {
+            background: linear-gradient(135deg, var(--star-red) 0%, var(--pure-black) 100%);
+            height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .why-visual::before {
+            content: 'STAR TECH';
+            position: absolute;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 6rem;
+            font-weight: 900;
+            color: rgba(255, 255, 255, 0.05);
+            transform: rotate(-15deg);
+        }
+
+        /* Trust Section */
+        .trust {
+            padding: 8rem 2rem;
+            background: var(--dark-gray);
+            text-align: center;
+        }
+
+        .trust-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+        .stat {
+            padding: 2rem;
+        }
+
+        .stat-number {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 4rem;
+            font-weight: 900;
+            color: var(--star-red);
+            margin-bottom: 1rem;
+            text-shadow: 0 0 20px var(--red-glow);
+        }
+
+        .stat-label {
+            font-size: 1.2rem;
+            color: #999;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* CTA Section */
+        .final-cta {
+            padding: 6rem 2rem;
+            background: var(--pure-black);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .final-cta::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, var(--red-glow) 0%, transparent 70%);
+            transform: translate(-50%, -50%);
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        .final-cta-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .final-cta h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3.5rem;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+        }
+
+        .final-cta p {
+            font-size: 1.3rem;
+            color: #ccc;
+            margin-bottom: 3rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--pure-black);
+            border-top: 2px solid var(--star-red);
+            padding: 3rem 2rem 1.5rem;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--star-red);
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: #999;
+            line-height: 2;
+            text-decoration: none;
+            display: block;
+        }
+
+        .footer-section a:hover {
+            color: var(--star-red);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 50, 0, 0.2);
+            color: #666;
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .nav-links {
+                gap: 1.5rem;
+            }
+
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .why-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .logo {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <div class="logo">STAR TECH</div>
+            <ul class="nav-links">
+                <li><a href="home.html" class="active">Home</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="prices.html">Prices</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="book.html">Book Now</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-background"></div>
+        <div class="hero-grid"></div>
+        <div class="hero-content">
+            <h1><span class="star">STAR</span> TECH PHONE REPAIRS</h1>
+            <p>Perth's Most Trusted Tech Repair Specialists</p>
+            <div class="cta-buttons">
+                <a href="book.html" class="btn btn-primary">Book Repair Now</a>
+                <a href="services.html" class="btn btn-secondary">Our Services</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">Why <span style="color: var(--star-red);">Star Tech</span>?</h2>
+            <p class="section-subtitle">Excellence in every repair, trust in every interaction</p>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Lightning Fast</h3>
+                    <p>Most repairs completed within 30-60 minutes. We value your time and get you back to what matters most.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">✓</div>
+                    <h3>Quality Guaranteed</h3>
+                    <p>Premium parts, expert technicians, and comprehensive warranties on all repairs. Your satisfaction is our mission.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">★</div>
+                    <h3>Community Trusted</h3>
+                    <p>Proudly serving Perth with 5-star service. Join thousands of satisfied customers who trust Star Tech.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">💰</div>
+                    <h3>Fair Pricing</h3>
+                    <p>Transparent, competitive rates with no hidden fees. Quality repairs that won't break the bank.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🛠️</div>
+                    <h3>Expert Technicians</h3>
+                    <p>Certified professionals with years of experience repairing all major brands and models.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Convenient Location</h3>
+                    <p>Easy to find in Forrestfield with ample parking. Walk-ins welcome or book ahead online.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="why-choose">
+        <div class="container">
+            <h2 class="section-title">The <span style="color: var(--star-red);">Star Tech</span> Difference</h2>
+            <div class="why-grid">
+                <div class="why-content">
+                    <h3>Built on Trust & Quality</h3>
+                    <ul class="why-list">
+                        <li>Same-day repairs for most devices</li>
+                        <li>Premium OEM and aftermarket parts</li>
+                        <li>Comprehensive warranty coverage</li>
+                        <li>Free diagnostics and quotes</li>
+                        <li>Data protection and privacy assured</li>
+                        <li>Eco-friendly recycling program</li>
+                        <li>Extended hours for your convenience</li>
+                        <li>Local Perth business supporting locals</li>
+                    </ul>
+                </div>
+                <div class="why-visual"></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="trust">
+        <div class="container">
+            <h2 class="section-title">Trusted By <span style="color: var(--star-red);">Thousands</span></h2>
+            <p class="section-subtitle">Numbers that speak for themselves</p>
+            
+            <div class="trust-stats">
+                <div class="stat">
+                    <div class="stat-number">15K+</div>
+                    <div class="stat-label">Repairs Completed</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">98%</div>
+                    <div class="stat-label">Customer Satisfaction</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">45min</div>
+                    <div class="stat-label">Average Repair Time</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">5★</div>
+                    <div class="stat-label">Average Rating</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="final-cta">
+        <div class="final-cta-content">
+            <h2>Ready to Get Your Device Fixed?</h2>
+            <p>Book your repair online or visit us in Forrestfield today</p>
+            <a href="book.html" class="btn btn-primary">Schedule Repair</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Star Tech Phone Repairs</h4>
+                <p>Perth's premier tech repair specialists. Quality, speed, and trust in every repair.</p>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <a href="services.html">Services</a>
+                <a href="prices.html">Price List</a>
+                <a href="book.html">Book Appointment</a>
+                <a href="contact.html">Contact Us</a>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <p>33 Crimson Bvd<br>Forrestfield WA 6058<br>Australia</p>
+                <p>Phone: +61 420 994 662</p>
+                <p>Email: sales@startechphonerepairs.com.au</p>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Hours</h4>
+                <p>Monday: Closed</p>
+                <p>Tue-Fri: 6am - 7pm</p>
+                <p>Saturday: 6am - 5pm</p>
+                <p>Sunday: 6am - 12pm</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Star Tech Phone Repairs. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
