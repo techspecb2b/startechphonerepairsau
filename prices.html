@@ -1,0 +1,1171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Price List | Star Tech Phone Repairs</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --star-red: #FF3200;
+            --pure-black: #000000;
+            --pure-white: #FFFFFF;
+            --red-glow: rgba(255, 50, 0, 0.3);
+            --dark-gray: #1a1a1a;
+        }
+
+        body {
+            font-family: 'Work Sans', sans-serif;
+            background: var(--pure-black);
+            color: var(--pure-white);
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 2px solid var(--star-red);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1.2rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: var(--star-red);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 0 20px var(--red-glow);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--pure-white);
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--star-red);
+        }
+
+        .nav-links a.active {
+            color: var(--star-red);
+        }
+
+        /* Page Header */
+        .page-header {
+            margin-top: 80px;
+            padding: 6rem 2rem 4rem;
+            text-align: center;
+            background: linear-gradient(180deg, var(--dark-gray) 0%, var(--pure-black) 100%);
+        }
+
+        .page-header h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .page-header p {
+            font-size: 1.3rem;
+            color: #999;
+        }
+
+        /* Pricing Container */
+        .pricing-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .category-section {
+            margin-bottom: 5rem;
+        }
+
+        .category-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            color: var(--star-red);
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--star-red);
+        }
+
+        .devices-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .device-btn {
+            background: var(--dark-gray);
+            border: 2px solid transparent;
+            padding: 2rem 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .device-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--star-red);
+            transition: left 0.3s ease;
+            z-index: 0;
+        }
+
+        .device-btn:hover::before {
+            left: 0;
+        }
+
+        .device-btn:hover {
+            border-color: var(--star-red);
+            transform: translateY(-3px);
+        }
+
+        .device-btn.active {
+            border-color: var(--star-red);
+            background: rgba(255, 50, 0, 0.1);
+        }
+
+        .device-btn span {
+            position: relative;
+            z-index: 1;
+            font-size: 2.5rem;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .device-btn p {
+            position: relative;
+            z-index: 1;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .pricing-details {
+            background: var(--dark-gray);
+            padding: 2.5rem;
+            border-left: 4px solid var(--star-red);
+            display: none;
+            animation: slideDown 0.3s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .pricing-details.active {
+            display: block;
+        }
+
+        .pricing-details h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--star-red);
+        }
+
+        .price-table {
+            width: 100%;
+        }
+
+        .price-row {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            align-items: center;
+        }
+
+        .price-row:last-child {
+            border-bottom: none;
+        }
+
+        .repair-name {
+            font-weight: 500;
+            font-size: 1.1rem;
+        }
+
+        .repair-price {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.3rem;
+            color: var(--star-red);
+            font-weight: 700;
+        }
+
+        .price-note {
+            background: rgba(255, 50, 0, 0.1);
+            padding: 1.5rem;
+            margin-top: 2rem;
+            border-left: 3px solid var(--star-red);
+        }
+
+        .price-note p {
+            color: #ccc;
+            line-height: 1.6;
+        }
+
+        /* CTA */
+        .pricing-cta {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: var(--dark-gray);
+            margin-top: 4rem;
+        }
+
+        .pricing-cta h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .btn {
+            padding: 1.2rem 2.5rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 2px solid var(--star-red);
+            background: var(--star-red);
+            color: var(--pure-white);
+            display: inline-block;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: transparent;
+            color: var(--star-red);
+            box-shadow: 0 0 20px var(--red-glow);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--pure-black);
+            border-top: 2px solid var(--star-red);
+            padding: 3rem 2rem 1.5rem;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--star-red);
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: #999;
+            line-height: 2;
+            text-decoration: none;
+            display: block;
+        }
+
+        .footer-section a:hover {
+            color: var(--star-red);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 50, 0, 0.2);
+            color: #666;
+        }
+
+        @media (max-width: 968px) {
+            .page-header h1 {
+                font-size: 2.5rem;
+            }
+
+            .devices-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+        }
+
+        @media (max-width: 600px) {
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="home.html" class="logo">STAR TECH</a>
+            <ul class="nav-links">
+                <li><a href="home.html">Home</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="prices.html" class="active">Prices</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="book.html">Book Now</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="page-header">
+        <h1>Price List</h1>
+        <p>Transparent pricing for quality repairs</p>
+    </div>
+
+    <div class="pricing-container">
+        <!-- Phones -->
+        <div class="category-section">
+            <h2 class="category-title">📱 Phone Repairs</h2>
+            <div class="devices-grid">
+                <div class="device-btn" onclick="showPricing('iphone15')">
+                    <span>📱</span>
+                    <p>iPhone 15/15 Plus</p>
+                </div>
+                <div class="device-btn" onclick="showPricing('iphone15pro')">
+                    <span>📱</span>
+                    <p>iPhone 15 Pro/Max</p>
+                </div>
+                <div class="device-btn" onclick="showPricing('iphone14')">
+                    <span>📱</span>
+                    <p>iPhone 14 Series</p>
+                </div>
+                <div class="device-btn" onclick="showPricing('iphone13')">
+                    <span>📱</span>
+                    <p>iPhone 13 Series</p>
+                </div>
+                <div class="device-btn" onclick="showPricing('iphone12')">
+                    <span>📱</span>
+                    <p>iPhone 12 Series</p>
+                </div>
+                <div class="device-btn" onclick="showPricing('iphonex11')">
+                    <span>📱</span>
+                    <p>iPhone X/11 Series</p>
+                </div>
+                <div class="device-btn" onclick="showPricing('samsung-s24')">
+                    <span>📱</span>
+                    <p>Samsung S24 Series</p>
+                </div>
+                <div class="device-btn" onclick="showPricing('samsung-s23')">
+                    <span>📱</span>
+                    <p>Samsung S23 Series</p>
+                </div>
+                <div class="device-btn" onclick="showPricing('samsung-older')">
+                    <span>📱</span>
+                    <p>Samsung S21/S22</p>
+                </div>
+                <div class="device-btn" onclick="showPricing('pixel')">
+                    <span>📱</span>
+                    <p>Google Pixel</p>
+                </div>
+            </div>
+
+            <div id="iphone15" class="pricing-details">
+                <h3>iPhone 15 / iPhone 15 Plus</h3>
+                <div class="price-table">
+                    <div class="price-row">
+                        <span class="repair-name">Screen Replacement</span>
+                        <span class="repair-price">$299 - $349</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="repair-name">Battery Replacement</span>
+                        <span class="repair-price">$119</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="repair-name">Charging Port Repair</span>
+                        <span class="repair-price">$89</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="repair-name">Back Glass Replacement</span>
+                        <span class="repair-price">$189</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="repair-name">Camera Repair</span>
+                        <span class="repair-price">$149 - $199</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="repair-name">Speaker/Microphone</span>
+                        <span class="repair-price">$99</span>
+                    </div>
+                </div>
+            </div>
+
+            <div id="iphone15pro" class="pricing-details">
+                <h3>iPhone 15 Pro / Pro Max</h3>
+                <div class="price-table">
+                    <div class="price-row">
+                        <span class="repair-name">Screen Replacement</span>
+                        <span class="repair-price">$399 - $449</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="repair-name">Battery Replacement</span>
+                        <span class="repair-price">$129</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="repair-name">Charging Port Repair</span>
+                        <span class="repair-price">$99</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="repair-name">Back Glass Replacement</span>
+                        <span class="repair-price">$229</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="repair-name">Camera Repair</span>
+                        <span class="repair-price">$199 - $249</span>
+                    </div>
+                </div>
+            </div>
+
+            <div id="iphone14" class="pricing-details">
+                <h3>iPhone 14 Series</h3>
+                <div class="price-table">
+                    <div class="price-row">
+                        <span class="repair-name">Screen Replacement</span>
+                        <span class="repair-price">$249 - $329</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="repair-name">Battery Replacement</span>
+                        <span class="repair-price">$109</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="repair-name">Charging Port Repair</span>
+                        <span class="repair-price">$79</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="repair-name">Back Glass Replacement</span>
+                        <span class="repair-price">$169</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="repair-name">Camera Repair</span>
+                        <span class="repair-price">$139 - $189</span>
+                    </div>
+                </div>
+            </div>
+
+            <div id="iphone13" class="pricing-details">
+                <h3>iPhone 13 Series</h3>
+                <div class="price-table">
+                    <div class="price-row">
+                        <span class="repair-name">Screen Replacement</span>
+                        <span class="repair-price">$219 - $279</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="repair-name">Battery Replacement</span>
+                        <span class="repair-price">$99</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="repair-name">Charging Port Repair</span>
+                        <span class="repair-price">$75</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="repair-name">Back Glass Replacement</span>
+                        <span class="repair-price">$149</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="repair-name">Camera Repair</span>
+                        <span class="repair-price">$119 - $169</span>
+                    </div>
+                </div>
+            </div>
+
+            <div id="iphone12" class="pricing-details">
+                <h3>iPhone 12 Series</h3>
+                <div class="price-table">
+                    <div class="price-row">
+                        <span class="repair-name">Screen Replacement</span>
+                        <span class="repair-price">$189 - $239</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="repair-name">Battery Replacement</span>
+                        <span class="repair-price">$89</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="repair-name">Charging Port Repair</span>
+                        <span class="repair-price">$69</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="repair-name">Back Glass Replacement</span>
+                        <span class="repair-price">$129</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="repair-name">Camera Repair</span>
+                        <span class="repair-price">$99 - $149</span>
+                    </div>
+                </div>
+            </div>
+
+            <div id="iphonex11" class="pricing-details">
+                <h3>iPhone X / iPhone 11 Series</h3>
+                <div class="price-table">
+                    <div class="price-row">
+                        <span class="repair-name">Screen Replacement</span>
+                        <span class="repair-price">$159 - $199</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="repair-name">Battery Replacement</span>
+                        <span class="repair-price">$79</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="repair-name">Charging Port Repair</span>
+                        <span class="repair-price">$65</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="repair-name">Back Glass Replacement</span>
+                        <span class="repair-price">$109</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="repair-name">Camera Repair</span>
+                        <span class="repair-price">$89 - $129</span>
+                    </div>
+                </div>
+            </div>
+
+            <div id="samsung-s24" class="pricing-details">
+                <h3>Samsung Galaxy S24 Series</h3>
+                <div class="price-table">
+                    <div class="price-row">
+                        <span class="repair-name">Screen Replacement</span>
+                        <span class="repair-price">$279 - $369</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="repair-name">Battery Replacement</span>
+                        <span class="repair-price">$109</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="repair-name">Charging Port Repair</span>
+                        <span class="repair-price">$79</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="repair-name">Back Glass Replacement</span>
+                        <span class="repair-price">$149</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="repair-name">Camera Repair</span>
+                        <span class="repair-price">$129 - $179</span>
+                    </div>
+                </div>
+            </div>
+
+            <div id="samsung-s23" class="pricing-details">
+                <h3>Samsung Galaxy S23 Series</h3>
+                <div class="price-table">
+                    <div class="price-row">
+                        <span class="repair-name">Screen Replacement</span>
+                        <span class="repair-price">$249 - $329</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="repair-name">Battery Replacement</span>
+                        <span class="repair-price">$99</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="repair-name">Charging Port Repair</span>
+                        <span class="repair-price">$75</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="repair-name">Back Glass Replacement</span>
+                        <span class="repair-price">$129</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="repair-name">Camera Repair</span>
+                        <span class="repair-price">$119 - $159</span>
+                    </div>
+                </div>
+            </div>
+
+            <div id="samsung-older" class="pricing-details">
+                <h3>Samsung Galaxy S21 / S22 Series</h3>
+                <div class="price-table">
+                    <div class="price-row">
+                        <span class="repair-name">Screen Replacement</span>
+                        <span class="repair-price">$199 - $269</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="repair-name">Battery Replacement</span>
+                        <span class="repair-price">$89</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="repair-name">Charging Port Repair</span>
+                        <span class="repair-price">$69</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="repair-name">Back Glass Replacement</span>
+                        <span class="repair-price">$109</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="repair-name">Camera Repair</span>
+                        <span class="repair-price">$99 - $139</span>
+                    </div>
+                </div>
+            </div>
+
+            <div id="pixel" class="pricing-details">
+                <h3>Google Pixel</h3>
+                <div class="price-table">
+                    <div class="price-row">
+                        <span class="repair-name">Screen Replacement</span>
+                        <span class="repair-price">$179 - $259</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="repair-name">Battery Replacement</span>
+                        <span class="repair-price">$89</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="repair-name">Charging Port Repair</span>
+                        <span class="repair-price">$69</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="repair-name">Back Glass Replacement</span>
+                        <span class="repair-price">$99</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="repair-name">Camera Repair</span>
+                        <span class="repair-price">$99 - $139</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- iPads -->
+        <div class="category-section">
+            <h2 class="category-title">📲 iPad Repairs</h2>
+            <div class="devices-grid">
+                <div class="device-btn" onclick="showPricing('ipad-pro')">
+                    <span>📲</span>
+                    <p>iPad Pro</p>
+                </div>
+                <div class="device-btn" onclick="showPricing('ipad-air')">
+                    <span>📲</span>
+                    <p>iPad Air</p>
+                </div>
+                <div class="device-btn" onclick="showPricing('ipad-standard')">
+                    <span>📲</span>
+                    <p>iPad (Standard)</p>
+                </div>
+                <div class="device-btn" onclick="showPricing('ipad-mini')">
+                    <span>📲</span>
+                    <p>iPad Mini</p>
+                </div>
+            </div>
+
+            <div id="ipad-pro" class="pricing-details">
+                <h3>iPad Pro</h3>
+                <div class="price-table">
+                    <div class="price-row">
+                        <span class="repair-name">Screen Replacement (11")</span>
+                        <span class="repair-price">$449</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="repair-name">Screen Replacement (12.9")</span>
+                        <span class="repair-price">$599</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="repair-name">Battery Replacement</span>
+                        <span class="repair-price">$169</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="repair-name">Charging Port Repair</span>
+                        <span class="repair-price">$129</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="repair-name">Camera Repair</span>
+                        <span class="repair-price">$149</span>
+                    </div>
+                </div>
+            </div>
+
+            <div id="ipad-air" class="pricing-details">
+                <h3>iPad Air</h3>
+                <div class="price-table">
+                    <div class="price-row">
+                        <span class="repair-name">Screen Replacement</span>
+                        <span class="repair-price">$329</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="repair-name">Battery Replacement</span>
+                        <span class="repair-price">$149</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="repair-name">Charging Port Repair</span>
+                        <span class="repair-price">$109</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="repair-name">Camera Repair</span>
+                        <span class="repair-price">$129</span>
+                    </div>
+                </div>
+            </div>
+
+            <div id="ipad-standard" class="pricing-details">
+                <h3>iPad (Standard Models)</h3>
+                <div class="price-table">
+                    <div class="price-row">
+                        <span class="repair-name">Screen Replacement</span>
+                        <span class="repair-price">$249</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="repair-name">Battery Replacement</span>
+                        <span class="repair-price">$129</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="repair-name">Charging Port Repair</span>
+                        <span class="repair-price">$99</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="repair-name">Camera Repair</span>
+                        <span class="repair-price">$109</span>
+                    </div>
+                </div>
+            </div>
+
+            <div id="ipad-mini" class="pricing-details">
+                <h3>iPad Mini</h3>
+                <div class="price-table">
+                    <div class="price-row">
+                        <span class="repair-name">Screen Replacement</span>
+                        <span class="repair-price">$299</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="repair-name">Battery Replacement</span>
+                        <span class="repair-price">$119</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="repair-name">Charging Port Repair</span>
+                        <span class="repair-price">$89</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="repair-name">Camera Repair</span>
+                        <span class="repair-price">$99</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Gaming Consoles -->
+        <div class="category-section">
+            <h2 class="category-title">🎮 Gaming Console Repairs</h2>
+            <div class="devices-grid">
+                <div class="device-btn" onclick="showPricing('ps5')">
+                    <span>🎮</span>
+                    <p>PlayStation 5</p>
+                </div>
+                <div class="device-btn" onclick="showPricing('ps4')">
+                    <span>🎮</span>
+                    <p>PlayStation 4</p>
+                </div>
+                <div class="device-btn" onclick="showPricing('xbox-series')">
+                    <span>🎮</span>
+                    <p>Xbox Series X/S</p>
+                </div>
+                <div class="device-btn" onclick="showPricing('xbox-one')">
+                    <span>🎮</span>
+                    <p>Xbox One</p>
+                </div>
+                <div class="device-btn" onclick="showPricing('switch')">
+                    <span>🎮</span>
+                    <p>Nintendo Switch</p>
+                </div>
+            </div>
+
+            <div id="ps5" class="pricing-details">
+                <h3>PlayStation 5</h3>
+                <div class="price-table">
+                    <div class="price-row">
+                        <span class="repair-name">HDMI Port Repair</span>
+                        <span class="repair-price">$199</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="repair-name">Overheating / Fan Repair</span>
+                        <span class="repair-price">$129</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="repair-name">Disc Drive Repair</span>
+                        <span class="repair-price">$179</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="repair-name">Power Supply Replacement</span>
+                        <span class="repair-price">$159</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="repair-name">Deep Cleaning Service</span>
+                        <span class="repair-price">$79</span>
+                    </div>
+                </div>
+            </div>
+
+            <div id="ps4" class="pricing-details">
+                <h3>PlayStation 4 / PS4 Pro</h3>
+                <div class="price-table">
+                    <div class="price-row">
+                        <span class="repair-name">HDMI Port Repair</span>
+                        <span class="repair-price">$149</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="repair-name">Overheating / Fan Repair</span>
+                        <span class="repair-price">$99</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="repair-name">Disc Drive Repair</span>
+                        <span class="repair-price">$139</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="repair-name">Power Supply Replacement</span>
+                        <span class="repair-price">$119</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="repair-name">Deep Cleaning Service</span>
+                        <span class="repair-price">$69</span>
+                    </div>
+                </div>
+            </div>
+
+            <div id="xbox-series" class="pricing-details">
+                <h3>Xbox Series X / Series S</h3>
+                <div class="price-table">
+                    <div class="price-row">
+                        <span class="repair-name">HDMI Port Repair</span>
+                        <span class="repair-price">$189</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="repair-name">Overheating / Fan Repair</span>
+                        <span class="repair-price">$119</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="repair-name">Disc Drive Repair (Series X)</span>
+                        <span class="repair-price">$169</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="repair-name">Power Supply Replacement</span>
+                        <span class="repair-price">$149</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="repair-name">Deep Cleaning Service</span>
+                        <span class="repair-price">$79</span>
+                    </div>
+                </div>
+            </div>
+
+            <div id="xbox-one" class="pricing-details">
+                <h3>Xbox One / One X / One S</h3>
+                <div class="price-table">
+                    <div class="price-row">
+                        <span class="repair-name">HDMI Port Repair</span>
+                        <span class="repair-price">$139</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="repair-name">Overheating / Fan Repair</span>
+                        <span class="repair-price">$89</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="repair-name">Disc Drive Repair</span>
+                        <span class="repair-price">$129</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="repair-name">Power Supply Replacement</span>
+                        <span class="repair-price">$109</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="repair-name">Deep Cleaning Service</span>
+                        <span class="repair-price">$59</span>
+                    </div>
+                </div>
+            </div>
+
+            <div id="switch" class="pricing-details">
+                <h3>Nintendo Switch / Switch OLED</h3>
+                <div class="price-table">
+                    <div class="price-row">
+                        <span class="repair-name">Screen Replacement</span>
+                        <span class="repair-price">$149</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="repair-name">Joy-Con Repair (per controller)</span>
+                        <span class="repair-price">$49</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="repair-name">Charging Port Repair</span>
+                        <span class="repair-price">$99</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="repair-name">Battery Replacement</span>
+                        <span class="repair-price">$79</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="repair-name">Game Card Slot Repair</span>
+                        <span class="repair-price">$89</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Computer Repairs -->
+        <div class="category-section">
+            <h2 class="category-title">💻 Computer Repairs</h2>
+            <div class="devices-grid">
+                <div class="device-btn" onclick="showPricing('macbook')">
+                    <span>💻</span>
+                    <p>MacBook</p>
+                </div>
+                <div class="device-btn" onclick="showPricing('imac')">
+                    <span>🖥️</span>
+                    <p>iMac</p>
+                </div>
+                <div class="device-btn" onclick="showPricing('windows-laptop')">
+                    <span>💻</span>
+                    <p>Windows Laptop</p>
+                </div>
+                <div class="device-btn" onclick="showPricing('windows-desktop')">
+                    <span>🖥️</span>
+                    <p>Windows Desktop</p>
+                </div>
+            </div>
+
+            <div id="macbook" class="pricing-details">
+                <h3>MacBook Repairs</h3>
+                <div class="price-table">
+                    <div class="price-row">
+                        <span class="repair-name">Screen Replacement (13")</span>
+                        <span class="repair-price">$399 - $549</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="repair-name">Screen Replacement (15"/16")</span>
+                        <span class="repair-price">$549 - $699</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="repair-name">Battery Replacement</span>
+                        <span class="repair-price">$199 - $299</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="repair-name">Keyboard Replacement</span>
+                        <span class="repair-price">$249 - $349</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="repair-name">Trackpad Replacement</span>
+                        <span class="repair-price">$179</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="repair-name">Liquid Damage Repair</span>
+                        <span class="repair-price">From $149</span>
+                    </div>
+                </div>
+            </div>
+
+            <div id="imac" class="pricing-details">
+                <h3>iMac Repairs</h3>
+                <div class="price-table">
+                    <div class="price-row">
+                        <span class="repair-name">Screen Replacement</span>
+                        <span class="repair-price">From $499</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="repair-name">Hard Drive / SSD Upgrade</span>
+                        <span class="repair-price">$149 + parts</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="repair-name">RAM Upgrade</span>
+                        <span class="repair-price">$99 + parts</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="repair-name">Diagnostic & Repair</span>
+                        <span class="repair-price">From $99</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="repair-name">Data Recovery</span>
+                        <span class="repair-price">From $199</span>
+                    </div>
+                </div>
+            </div>
+
+            <div id="windows-laptop" class="pricing-details">
+                <h3>Windows Laptop Repairs</h3>
+                <div class="price-table">
+                    <div class="price-row">
+                        <span class="repair-name">Screen Replacement</span>
+                        <span class="repair-price">$199 - $399</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="repair-name">Battery Replacement</span>
+                        <span class="repair-price">$99 - $179</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="repair-name">Keyboard Replacement</span>
+                        <span class="repair-price">$129 - $199</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="repair-name">SSD/HDD Upgrade & Install</span>
+                        <span class="repair-price">$99 + parts</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="repair-name">RAM Upgrade</span>
+                        <span class="repair-price">$79 + parts</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="repair-name">Virus/Malware Removal</span>
+                        <span class="repair-price">$89</span>
+                    </div>
+                </div>
+            </div>
+
+            <div id="windows-desktop" class="pricing-details">
+                <h3>Windows Desktop Repairs</h3>
+                <div class="price-table">
+                    <div class="price-row">
+                        <span class="repair-name">Diagnostic Service</span>
+                        <span class="repair-price">$59</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="repair-name">SSD/HDD Upgrade & Install</span>
+                        <span class="repair-price">$79 + parts</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="repair-name">RAM Upgrade</span>
+                        <span class="repair-price">$59 + parts</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="repair-name">GPU Replacement</span>
+                        <span class="repair-price">$99 + parts</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="repair-name">Power Supply Replacement</span>
+                        <span class="repair-price">$79 + parts</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="repair-name">Virus/Malware Removal</span>
+                        <span class="repair-price">$79</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="repair-name">OS Reinstall & Setup</span>
+                        <span class="repair-price">$99</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="price-note">
+            <p><strong>Please Note:</strong> Prices are estimates and may vary based on device model and condition. All repairs include a free diagnostic. Contact us or book online for an accurate quote specific to your device.</p>
+        </div>
+    </div>
+
+    <div class="pricing-cta">
+        <h2>Ready to Book Your Repair?</h2>
+        <a href="book.html" class="btn">Schedule Now</a>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Star Tech Phone Repairs</h4>
+                <p>Perth's premier tech repair specialists. Quality, speed, and trust in every repair.</p>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <a href="services.html">Services</a>
+                <a href="prices.html">Price List</a>
+                <a href="book.html">Book Appointment</a>
+                <a href="contact.html">Contact Us</a>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <p>33 Crimson Bvd<br>Forrestfield WA 6058<br>Australia</p>
+                <p>Phone: +61 420 994 662</p>
+                <p>Email: sales@startechphonerepairs.com.au</p>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Hours</h4>
+                <p>Monday: Closed</p>
+                <p>Tue-Fri: 6am - 7pm</p>
+                <p>Saturday: 6am - 5pm</p>
+                <p>Sunday: 6am - 12pm</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Star Tech Phone Repairs. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        function showPricing(deviceId) {
+            // Hide all pricing details
+            const allDetails = document.querySelectorAll('.pricing-details');
+            allDetails.forEach(detail => {
+                detail.classList.remove('active');
+            });
+
+            // Remove active class from all buttons
+            const allButtons = document.querySelectorAll('.device-btn');
+            allButtons.forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            // Show selected pricing
+            const selectedPricing = document.getElementById(deviceId);
+            if (selectedPricing) {
+                selectedPricing.classList.add('active');
+                
+                // Add active class to clicked button
+                event.target.closest('.device-btn').classList.add('active');
+                
+                // Smooth scroll to pricing details
+                setTimeout(() => {
+                    selectedPricing.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                }, 100);
+            }
+        }
+    </script>
+</body>
+</html>
