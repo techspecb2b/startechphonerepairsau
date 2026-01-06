@@ -21,6 +21,10 @@
             --nav-bg: rgba(0, 0, 0, 0.95);
             --red-glow: rgba(255, 50, 0, 0.3);
             --circuit-opacity: 0.06;
+            --card-bg: #1a1a1a;
+            --card-text: #FFFFFF;
+            --card-desc: #cccccc;
+            --card-icon: #FF3200;
         }
         body.light-mode {
             --bg-primary: #FFFFFF;
@@ -31,6 +35,10 @@
             --text-muted: #666666;
             --nav-bg: rgba(255, 255, 255, 0.95);
             --circuit-opacity: 0.12;
+            --card-bg: #FF3200;
+            --card-text: #FFFFFF;
+            --card-desc: rgba(255,255,255,0.9);
+            --card-icon: #FFFFFF;
         }
         body { font-family: 'Work Sans', sans-serif; background: var(--bg-primary); color: var(--text-primary); overflow-x: hidden; transition: background 0.3s ease, color 0.3s ease; }
         .theme-toggle { position: fixed; bottom: 30px; right: 30px; width: 50px; height: 50px; border-radius: 50%; background: var(--star-red); border: none; cursor: pointer; z-index: 1001; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px var(--red-glow); transition: all 0.3s ease; }
@@ -39,7 +47,7 @@
         .theme-toggle .sun-icon { display: none; }
         body.light-mode .theme-toggle .sun-icon { display: block; }
         body.light-mode .theme-toggle .moon-icon { display: none; }
-        .circuit-background { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; opacity: var(--circuit-opacity); pointer-events: none; background-color: var(--bg-primary); background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400' viewBox='0 0 400 400'%3E%3Cstyle%3E.t%7Bfill:none;stroke:%23FF3200;stroke-width:1.5%7D.p%7Bfill:%23FF3200%7D%3C/style%3E%3Cpath class='t' d='M50 50h100M150 50v60M150 110h80M230 110v50'/%3E%3Ccircle class='p' cx='50' cy='50' r='3'/%3E%3Ccircle class='p' cx='150' cy='50' r='3'/%3E%3Ccircle class='p' cx='150' cy='110' r='3'/%3E%3Ccircle class='p' cx='230' cy='110' r='3'/%3E%3Ccircle class='p' cx='230' cy='160' r='3'/%3E%3Cpath class='t' d='M280 30h70M350 30v100M350 130h-60M290 130v40'/%3E%3Ccircle class='p' cx='280' cy='30' r='3'/%3E%3Ccircle class='p' cx='350' cy='30' r='3'/%3E%3Ccircle class='p' cx='350' cy='130' r='3'/%3E%3Ccircle class='p' cx='290' cy='130' r='3'/%3E%3Ccircle class='p' cx='290' cy='170' r='3'/%3E%3Cpath class='t' d='M30 200h90M120 200v70M120 270h100'/%3E%3Ccircle class='p' cx='30' cy='200' r='3'/%3E%3Ccircle class='p' cx='120' cy='200' r='3'/%3E%3Ccircle class='p' cx='120' cy='270' r='3'/%3E%3Ccircle class='p' cx='220' cy='270' r='3'/%3E%3Cpath class='t' d='M260 220h80M340 220v60M340 280h30'/%3E%3Ccircle class='p' cx='260' cy='220' r='3'/%3E%3Ccircle class='p' cx='340' cy='220' r='3'/%3E%3Ccircle class='p' cx='340' cy='280' r='3'/%3E%3Ccircle class='p' cx='370' cy='280' r='3'/%3E%3Cpath class='t' d='M60 320h70M130 320v50M130 370h90'/%3E%3Ccircle class='p' cx='60' cy='320' r='3'/%3E%3Ccircle class='p' cx='130' cy='320' r='3'/%3E%3Ccircle class='p' cx='130' cy='370' r='3'/%3E%3Ccircle class='p' cx='220' cy='370' r='3'/%3E%3Cpath class='t' d='M270 310h60M330 310v60'/%3E%3Ccircle class='p' cx='270' cy='310' r='3'/%3E%3Ccircle class='p' cx='330' cy='310' r='3'/%3E%3Ccircle class='p' cx='330' cy='370' r='3'/%3E%3C/svg%3E"); background-size: 400px 400px; transition: opacity 0.3s ease, background-color 0.3s ease; }
+        .circuit-background { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; opacity: var(--circuit-opacity); pointer-events: none; background-color: var(--bg-primary); background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400' viewBox='0 0 400 400'%3E%3Cstyle%3E.t%7Bfill:none;stroke:%23FF3200;stroke-width:1.5%7D.p%7Bfill:%23FF3200%7D%3C/style%3E%3Cpath class='t' d='M50 50h100M150 50v60M150 110h80M230 110v50'/%3E%3Ccircle class='p' cx='50' cy='50' r='3'/%3E%3Ccircle class='p' cx='150' cy='50' r='3'/%3E%3Ccircle class='p' cx='150' cy='110' r='3'/%3E%3Ccircle class='p' cx='230' cy='110' r='3'/%3E%3Ccircle class='p' cx='230' cy='160' r='3'/%3E%3Cpath class='t' d='M280 30h70M350 30v100M350 130h-60M290 130v40'/%3E%3Ccircle class='p' cx='280' cy='30' r='3'/%3E%3Ccircle class='p' cx='350' cy='30' r='3'/%3E%3Ccircle class='p' cx='350' cy='130' r='3'/%3E%3Ccircle class='p' cx='290' cy='130' r='3'/%3E%3Ccircle class='p' cx='290' cy='170' r='3'/%3E%3C/svg%3E"); background-size: 400px 400px; transition: opacity 0.3s ease, background-color 0.3s ease; }
         nav { position: fixed; top: 0; width: 100%; background: var(--nav-bg); backdrop-filter: blur(10px); z-index: 1000; border-bottom: 2px solid var(--star-red); transition: background 0.3s ease; }
         .nav-container { max-width: 1400px; margin: 0 auto; padding: 1.2rem 2rem; display: flex; justify-content: space-between; align-items: center; }
         .logo { font-family: 'Orbitron', sans-serif; font-size: 1.8rem; font-weight: 900; color: var(--star-red); text-transform: uppercase; letter-spacing: 2px; text-shadow: 0 0 20px var(--red-glow); text-decoration: none; }
@@ -79,14 +87,16 @@
         .section-title { font-family: 'Orbitron', sans-serif; font-size: 3rem; text-align: center; margin-bottom: 1rem; text-transform: uppercase; }
         .section-subtitle { text-align: center; font-size: 1.2rem; color: var(--text-secondary); margin-bottom: 5rem; }
         .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 3rem; }
-        .feature-card { background: var(--bg-primary); padding: 3rem 2rem; border: 2px solid transparent; transition: all 0.3s ease; position: relative; overflow: hidden; }
+        .feature-card { background: var(--card-bg); padding: 3rem 2rem; border: 2px solid transparent; transition: all 0.3s ease; position: relative; overflow: hidden; }
         .feature-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: var(--star-red); transform: scaleX(0); transition: transform 0.3s ease; }
+        body.light-mode .feature-card::before { background: #fff; }
         .feature-card:hover::before { transform: scaleX(1); }
         .feature-card:hover { border-color: var(--star-red); transform: translateY(-5px); box-shadow: 0 10px 30px rgba(255, 50, 0, 0.2); }
+        body.light-mode .feature-card:hover { border-color: #cc2800; }
         .feature-icon { width: 60px; height: 60px; margin-bottom: 1.5rem; }
-        .feature-icon svg { width: 100%; height: 100%; fill: var(--star-red); }
-        .feature-card h3 { font-family: 'Orbitron', sans-serif; font-size: 1.5rem; margin-bottom: 1rem; text-transform: uppercase; }
-        .feature-card p { line-height: 1.8; color: var(--text-secondary); }
+        .feature-icon svg { width: 100%; height: 100%; fill: var(--card-icon); }
+        .feature-card h3 { font-family: 'Orbitron', sans-serif; font-size: 1.5rem; margin-bottom: 1rem; text-transform: uppercase; color: var(--card-text); }
+        .feature-card p { line-height: 1.8; color: var(--card-desc); }
         .why-choose { padding: 8rem 2rem; background: var(--bg-primary); position: relative; z-index: 1; transition: background 0.3s ease; }
         .why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; margin-top: 4rem; }
         .why-content h3 { font-family: 'Orbitron', sans-serif; font-size: 2rem; margin-bottom: 2rem; color: var(--star-red); text-transform: uppercase; }
@@ -94,27 +104,29 @@
         .why-list li { padding: 1.5rem 0; border-bottom: 1px solid var(--border-color); font-size: 1.1rem; display: flex; align-items: center; gap: 1rem; }
         .why-list li svg { width: 24px; height: 24px; fill: var(--star-red); flex-shrink: 0; }
         .why-visual { background: linear-gradient(135deg, rgba(255, 50, 0, 0.15) 0%, var(--bg-tertiary) 100%); min-height: 600px; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; overflow: hidden; padding: 3rem 2rem; border: 2px solid var(--star-red); box-shadow: 0 0 30px var(--red-glow); transition: background 0.3s ease; }
-        body.light-mode .why-visual { background: linear-gradient(135deg, rgba(255, 50, 0, 0.1) 0%, var(--bg-secondary) 100%); }
-        .why-visual::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400' viewBox='0 0 400 400'%3E%3Cstyle%3E.t%7Bfill:none;stroke:%23FF3200;stroke-width:1.5%7D.p%7Bfill:%23FF3200%7D%3C/style%3E%3Cpath class='t' d='M50 50h100M150 50v60M150 110h80M230 110v50'/%3E%3Ccircle class='p' cx='50' cy='50' r='3'/%3E%3Ccircle class='p' cx='150' cy='50' r='3'/%3E%3Ccircle class='p' cx='150' cy='110' r='3'/%3E%3Ccircle class='p' cx='230' cy='110' r='3'/%3E%3C/svg%3E"); background-size: 200px 200px; opacity: 0.15; z-index: 0; }
+        body.light-mode .why-visual { background: linear-gradient(135deg, rgba(255, 50, 0, 0.3) 0%, rgba(255, 50, 0, 0.15) 100%); }
         .reviews-header { text-align: center; margin-bottom: 2rem; z-index: 2; position: relative; }
         .google-badge { display: flex; align-items: center; justify-content: center; gap: 1rem; margin-bottom: 1rem; }
         .google-icon { width: 50px; height: 50px; }
         .google-reviews-text { font-family: 'Orbitron', sans-serif; font-size: 2rem; font-weight: 700; color: var(--text-primary); }
+        body.light-mode .google-reviews-text { color: #000; }
         .overall-rating { display: flex; align-items: center; justify-content: center; gap: 0.8rem; background: rgba(0, 0, 0, 0.4); padding: 0.8rem 1.5rem; border-radius: 30px; border: 1px solid var(--border-color); }
-        body.light-mode .overall-rating { background: rgba(255, 255, 255, 0.6); }
+        body.light-mode .overall-rating { background: rgba(255, 255, 255, 0.8); }
         .stars { color: #FBBC04; font-size: 1.5rem; }
         .rating-number { color: var(--text-primary); font-weight: 700; font-size: 1.3rem; font-family: 'Orbitron', sans-serif; }
+        body.light-mode .rating-number { color: #000; }
         .slideshow-container { position: relative; max-width: 700px; margin: 0 auto; z-index: 2; background: rgba(0, 0, 0, 0.3); padding: 2rem; border-left: 3px solid var(--star-red); }
-        body.light-mode .slideshow-container { background: rgba(255, 255, 255, 0.5); }
+        body.light-mode .slideshow-container { background: rgba(255, 255, 255, 0.7); }
         .review-slide { display: none; text-align: center; animation: fadeIn 0.5s ease; }
         .review-slide.active { display: block; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         .review-stars { color: #FBBC04; font-size: 1.5rem; margin-bottom: 1.5rem; }
         .review-text { font-size: 1.2rem; line-height: 1.8; color: var(--text-primary); margin-bottom: 1.5rem; font-style: italic; }
+        body.light-mode .review-text { color: #000; }
         .reviewer-name { font-family: 'Orbitron', sans-serif; font-weight: 600; color: var(--star-red); font-size: 1rem; text-transform: uppercase; }
         .slideshow-dots { text-align: center; margin-top: 2rem; z-index: 2; position: relative; }
         .dot { height: 12px; width: 12px; margin: 0 6px; background-color: rgba(255, 255, 255, 0.2); border: 2px solid var(--star-red); border-radius: 50%; display: inline-block; cursor: pointer; transition: all 0.3s ease; }
-        body.light-mode .dot { background-color: rgba(0, 0, 0, 0.1); }
+        body.light-mode .dot { background-color: rgba(255, 50, 0, 0.2); }
         .dot.active, .dot:hover { background-color: var(--star-red); box-shadow: 0 0 15px var(--star-red); }
         footer { background: var(--bg-secondary); border-top: 2px solid var(--star-red); padding: 3rem 2rem 1.5rem; position: relative; z-index: 1; transition: background 0.3s ease; }
         .footer-content { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 3rem; margin-bottom: 2rem; }
@@ -274,46 +286,20 @@
     </section>
     <footer>
         <div class="footer-content">
-            <div class="footer-section">
-                <h4>Star Tech Phone Repairs</h4>
-                <p>Perth's premier tech repair specialists. Quality, speed, and trust in every repair.</p>
-            </div>
-            <div class="footer-section">
-                <h4>Quick Links</h4>
-                <a href="services.html">Services</a>
-                <a href="prices.html">Price List</a>
-                <a href="book.html">Book Appointment</a>
-                <a href="contact.html">Contact Us</a>
-            </div>
-            <div class="footer-section">
-                <h4>Contact</h4>
-                <p>33 Crimson Bvd<br>Forrestfield WA 6058<br>Australia</p>
-                <p>Phone: +61 420 994 662</p>
-                <p>Email: sales@startechphonerepairs.com.au</p>
-            </div>
-            <div class="footer-section">
-                <h4>Hours</h4>
-                <p>Monday: Closed</p>
-                <p>Tue-Fri: 6am - 7pm</p>
-                <p>Saturday: 6am - 5pm</p>
-                <p>Sunday: 6am - 12pm</p>
-            </div>
+            <div class="footer-section"><h4>Star Tech Phone Repairs</h4><p>Perth's premier tech repair specialists. Quality, speed, and trust in every repair.</p></div>
+            <div class="footer-section"><h4>Quick Links</h4><a href="services.html">Services</a><a href="prices.html">Price List</a><a href="book.html">Book Appointment</a><a href="contact.html">Contact Us</a></div>
+            <div class="footer-section"><h4>Contact</h4><p>33 Crimson Bvd<br>Forrestfield WA 6058<br>Australia</p><p>Phone: +61 420 994 662</p><p>Email: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="b3c0d2dfd6c0f3c0c7d2c1c7d6d0dbc3dbdcddd6c1d6c3d2dac1c09dd0dcde9dd2c6">[email&#160;protected]</a></p></div>
+            <div class="footer-section"><h4>Hours</h4><p>Monday: Closed</p><p>Tue-Fri: 6am - 7pm</p><p>Saturday: 6am - 5pm</p><p>Sunday: 6am - 12pm</p></div>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 Star Tech Phone Repairs. All rights reserved.</p>
-        </div>
+        <div class="footer-bottom"><p>&copy; 2026 Star Tech Phone Repairs. All rights reserved.</p></div>
     </footer>
-    <script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
         function toggleTheme() { document.body.classList.toggle('light-mode'); localStorage.setItem('startech-theme', document.body.classList.contains('light-mode') ? 'light' : 'dark'); }
-        function applySavedTheme() { if (localStorage.getItem('startech-theme') === 'light') document.body.classList.add('light-mode'); }
-        applySavedTheme();
+        (function() { if (localStorage.getItem('startech-theme') !== 'dark') document.body.classList.add('light-mode'); })();
         function toggleMenu() { document.querySelector('.hamburger').classList.toggle('active'); document.getElementById('mobileMenu').classList.toggle('active'); }
         let slideIndex = 1, slideTimer;
         showSlides(slideIndex);
         function autoSlides() { slideIndex++; showSlides(slideIndex); slideTimer = setTimeout(autoSlides, 5000); }
         slideTimer = setTimeout(autoSlides, 5000);
         function currentSlide(n) { clearTimeout(slideTimer); slideIndex = n; showSlides(slideIndex); slideTimer = setTimeout(autoSlides, 5000); }
-        function showSlides(n) { let slides = document.getElementsByClassName("review-slide"); let dots = document.getElementsByClassName("dot"); if (n > slides.length) slideIndex = 1; if (n < 1) slideIndex = slides.length; for (let i = 0; i < slides.length; i++) slides[i].classList.remove("active"); for (let i = 0; i < dots.length; i++) dots[i].classList.remove("active"); if (slides[slideIndex - 1]) slides[slideIndex - 1].classList.add("active"); if (dots[slideIndex - 1]) dots[slideIndex - 1].classList.add("active"); }
-    </script>
-</body>
-</html>
+        function showSlides(n) { let slides = document.getElementsByClassName("review-slide"); let dots = document.getElementsByClassName("dot"); if (n > slides.length) slideIndex = 1; if (n < 1) slideIndex = slides.length; for (let i = 0; i < slides.length; i++) slides[i].classList.remove("active"); for (let 
