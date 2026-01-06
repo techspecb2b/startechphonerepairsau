@@ -29,6 +29,102 @@
             overflow-x: hidden;
         }
 
+        /* Circuit Board Pattern Background */
+        .circuit-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            opacity: 0.03;
+            pointer-events: none;
+        }
+
+        .circuit-pattern {
+            width: 100%;
+            height: 100%;
+            background-color: var(--pure-black);
+            background-image: 
+                /* Circuit traces - horizontal */
+                linear-gradient(90deg, transparent 0%, transparent 45%, var(--star-red) 45%, var(--star-red) 55%, transparent 55%, transparent 100%),
+                linear-gradient(90deg, transparent 0%, transparent 48%, var(--star-red) 48%, var(--star-red) 52%, transparent 52%, transparent 100%),
+                /* Circuit traces - vertical */
+                linear-gradient(0deg, transparent 0%, transparent 45%, var(--star-red) 45%, var(--star-red) 55%, transparent 55%, transparent 100%),
+                linear-gradient(0deg, transparent 0%, transparent 48%, var(--star-red) 48%, var(--star-red) 52%, transparent 52%, transparent 100%),
+                /* Connection nodes */
+                radial-gradient(circle at center, var(--star-red) 0%, var(--star-red) 30%, transparent 30%),
+                radial-gradient(circle at center, var(--star-red) 0%, var(--star-red) 20%, transparent 20%),
+                /* Corner connections */
+                radial-gradient(circle at 0% 0%, transparent 0%, transparent 48%, var(--star-red) 48%, var(--star-red) 50%, transparent 50%),
+                radial-gradient(circle at 100% 0%, transparent 0%, transparent 48%, var(--star-red) 48%, var(--star-red) 50%, transparent 50%),
+                radial-gradient(circle at 0% 100%, transparent 0%, transparent 48%, var(--star-red) 48%, var(--star-red) 50%, transparent 50%),
+                radial-gradient(circle at 100% 100%, transparent 0%, transparent 48%, var(--star-red) 48%, var(--star-red) 50%, transparent 50%),
+                /* Diagonal traces */
+                repeating-linear-gradient(45deg, transparent, transparent 45px, var(--star-red) 45px, var(--star-red) 47px, transparent 47px, transparent 90px),
+                repeating-linear-gradient(-45deg, transparent, transparent 60px, var(--star-red) 60px, var(--star-red) 62px, transparent 62px, transparent 120px);
+            background-size: 
+                200px 100px,
+                300px 100px,
+                100px 200px,
+                100px 300px,
+                150px 150px,
+                250px 250px,
+                100px 100px,
+                100px 100px,
+                100px 100px,
+                100px 100px,
+                200px 200px,
+                300px 300px;
+            background-position: 
+                0 0,
+                50px 50px,
+                0 0,
+                50px 50px,
+                25px 25px,
+                75px 75px,
+                0 0,
+                100% 0,
+                0 100%,
+                100% 100%,
+                0 0,
+                0 0;
+            animation: circuitFlow 20s linear infinite;
+        }
+
+        @keyframes circuitFlow {
+            0% {
+                background-position: 
+                    0 0,
+                    50px 50px,
+                    0 0,
+                    50px 50px,
+                    25px 25px,
+                    75px 75px,
+                    0 0,
+                    100% 0,
+                    0 100%,
+                    100% 100%,
+                    0 0,
+                    0 0;
+            }
+            100% {
+                background-position: 
+                    200px 0,
+                    250px 50px,
+                    0 200px,
+                    50px 250px,
+                    175px 175px,
+                    325px 325px,
+                    0 0,
+                    100% 0,
+                    0 100%,
+                    100% 100%,
+                    200px 200px,
+                    300px 300px;
+            }
+        }
+
         /* Navigation */
         nav {
             position: fixed;
@@ -89,19 +185,7 @@
             text-align: center;
             background: linear-gradient(180deg, var(--dark-gray) 0%, var(--pure-black) 100%);
             position: relative;
-            overflow: hidden;
-        }
-
-        .page-header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at center, var(--red-glow) 0%, transparent 70%);
-            opacity: 0.5;
+            z-index: 1;
         }
 
         .page-header h1 {
@@ -110,15 +194,11 @@
             margin-bottom: 1rem;
             text-transform: uppercase;
             letter-spacing: 3px;
-            position: relative;
-            z-index: 2;
         }
 
         .page-header p {
             font-size: 1.3rem;
             color: #999;
-            position: relative;
-            z-index: 2;
         }
 
         /* Booking Container */
@@ -126,6 +206,8 @@
             max-width: 900px;
             margin: 0 auto;
             padding: 4rem 2rem;
+            position: relative;
+            z-index: 1;
         }
 
         .progress-bar {
@@ -276,50 +358,17 @@
             min-height: 120px;
         }
 
-        /* Device Type Selection */
-        .device-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-        }
-
-        .device-option {
-            background: var(--dark-gray);
-            padding: 2rem 1rem;
-            text-align: center;
-            border: 2px solid transparent;
+        .form-group select {
             cursor: pointer;
-            transition: all 0.3s ease;
-            position: relative;
+            appearance: none;
+            background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23FF3200"><path d="M7 10l5 5 5-5z"/></svg>');
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            background-size: 24px;
+            padding-right: 3rem;
         }
 
-        .device-option:hover {
-            border-color: var(--star-red);
-            transform: translateY(-3px);
-        }
-
-        .device-option.selected {
-            border-color: var(--star-red);
-            background: rgba(255, 50, 0, 0.1);
-        }
-
-        .device-option input[type="radio"] {
-            display: none;
-        }
-
-        .device-icon {
-            font-size: 3rem;
-            display: block;
-            margin-bottom: 1rem;
-        }
-
-        .device-name {
-            font-weight: 600;
-            font-size: 1rem;
-        }
-
-        /* Service Selection */
+        /* Service Checkboxes */
         .service-checkboxes {
             display: grid;
             gap: 1rem;
@@ -357,14 +406,6 @@
             flex: 1;
             font-size: 1.1rem;
             font-weight: 500;
-        }
-
-        /* Date Time Selection */
-        .datetime-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            margin-bottom: 2rem;
         }
 
         /* Review Section */
@@ -479,6 +520,8 @@
             background: var(--pure-black);
             border-top: 2px solid var(--star-red);
             padding: 3rem 2rem 1.5rem;
+            position: relative;
+            z-index: 1;
         }
 
         .footer-content {
@@ -525,12 +568,8 @@
                 grid-template-columns: 1fr;
             }
 
-            .datetime-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .device-grid {
-                grid-template-columns: repeat(2, 1fr);
+            .form-navigation {
+                flex-direction: column;
             }
         }
 
@@ -538,18 +577,14 @@
             .nav-links {
                 display: none;
             }
-
-            .device-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .form-navigation {
-                flex-direction: column;
-            }
         }
     </style>
 </head>
 <body>
+    <div class="circuit-background">
+        <div class="circuit-pattern"></div>
+    </div>
+
     <nav>
         <div class="nav-container">
             <a href="home.html" class="logo">STAR TECH</a>
@@ -594,40 +629,27 @@
         </div>
 
         <form id="bookingForm">
-            <!-- Step 1: Device Type -->
+            <!-- Step 1: Device Selection -->
             <div class="form-section active" data-section="1">
-                <h2 class="section-title">Select Your Device Type</h2>
-                <div class="device-grid">
-                    <label class="device-option">
-                        <input type="radio" name="deviceType" value="Phone" required>
-                        <span class="device-icon">📱</span>
-                        <span class="device-name">Phone</span>
-                    </label>
-                    <label class="device-option">
-                        <input type="radio" name="deviceType" value="Tablet/iPad">
-                        <span class="device-icon">📲</span>
-                        <span class="device-name">Tablet/iPad</span>
-                    </label>
-                    <label class="device-option">
-                        <input type="radio" name="deviceType" value="Gaming Console">
-                        <span class="device-icon">🎮</span>
-                        <span class="device-name">Gaming Console</span>
-                    </label>
-                    <label class="device-option">
-                        <input type="radio" name="deviceType" value="Computer">
-                        <span class="device-icon">💻</span>
-                        <span class="device-name">Computer</span>
-                    </label>
-                </div>
-                
+                <h2 class="section-title">Select Your Device</h2>
                 <div class="form-grid">
                     <div class="form-group full-width">
-                        <label for="deviceBrand">Brand</label>
-                        <input type="text" id="deviceBrand" name="deviceBrand" placeholder="e.g., Apple, Samsung, Sony" required>
+                        <label for="deviceType">Device Type *</label>
+                        <select id="deviceType" name="deviceType" required>
+                            <option value="">Choose device type...</option>
+                            <option value="iPhone">iPhone</option>
+                            <option value="Samsung">Samsung Galaxy</option>
+                            <option value="Android">Android / Google Pixel</option>
+                            <option value="iPad">iPad</option>
+                            <option value="Gaming Console">Gaming Console</option>
+                            <option value="Computer">Computer</option>
+                        </select>
                     </div>
                     <div class="form-group full-width">
-                        <label for="deviceModel">Model</label>
-                        <input type="text" id="deviceModel" name="deviceModel" placeholder="e.g., iPhone 15 Pro, Galaxy S24" required>
+                        <label for="deviceModel">Device Model *</label>
+                        <select id="deviceModel" name="deviceModel" required disabled>
+                            <option value="">First select device type...</option>
+                        </select>
                     </div>
                 </div>
             </div>
@@ -675,13 +697,13 @@
             <!-- Step 3: Date & Time -->
             <div class="form-section" data-section="3">
                 <h2 class="section-title">Choose Date & Time</h2>
-                <div class="datetime-grid">
+                <div class="form-grid">
                     <div class="form-group">
-                        <label for="appointmentDate">Preferred Date</label>
+                        <label for="appointmentDate">Preferred Date *</label>
                         <input type="date" id="appointmentDate" name="appointmentDate" required>
                     </div>
                     <div class="form-group">
-                        <label for="appointmentTime">Preferred Time</label>
+                        <label for="appointmentTime">Preferred Time *</label>
                         <select id="appointmentTime" name="appointmentTime" required>
                             <option value="">Select time...</option>
                             <option value="6:00 AM">6:00 AM</option>
@@ -710,19 +732,19 @@
                 <h2 class="section-title">Your Contact Information</h2>
                 <div class="form-grid">
                     <div class="form-group">
-                        <label for="firstName">First Name</label>
+                        <label for="firstName">First Name *</label>
                         <input type="text" id="firstName" name="firstName" required>
                     </div>
                     <div class="form-group">
-                        <label for="lastName">Last Name</label>
+                        <label for="lastName">Last Name *</label>
                         <input type="text" id="lastName" name="lastName" required>
                     </div>
                     <div class="form-group">
-                        <label for="email">Email</label>
+                        <label for="email">Email *</label>
                         <input type="email" id="email" name="email" required>
                     </div>
                     <div class="form-group">
-                        <label for="phone">Phone Number</label>
+                        <label for="phone">Phone Number *</label>
                         <input type="tel" id="phone" name="phone" required>
                     </div>
                     <div class="form-group full-width">
@@ -741,10 +763,6 @@
                     <div class="review-item">
                         <span class="review-label">Device Type:</span>
                         <span class="review-value" id="reviewDeviceType">-</span>
-                    </div>
-                    <div class="review-item">
-                        <span class="review-label">Brand:</span>
-                        <span class="review-value" id="reviewBrand">-</span>
                     </div>
                     <div class="review-item">
                         <span class="review-label">Model:</span>
@@ -847,17 +865,154 @@
         let currentStep = 1;
         const totalSteps = 5;
 
+        // Device models data
+        const deviceModels = {
+            'iPhone': [
+                'iPhone 16 Pro Max',
+                'iPhone 16 Pro',
+                'iPhone 16 Plus',
+                'iPhone 16',
+                'iPhone 15 Pro Max',
+                'iPhone 15 Pro',
+                'iPhone 15 Plus',
+                'iPhone 15',
+                'iPhone 14 Pro Max',
+                'iPhone 14 Pro',
+                'iPhone 14 Plus',
+                'iPhone 14',
+                'iPhone 13 Pro Max',
+                'iPhone 13 Pro',
+                'iPhone 13',
+                'iPhone 13 Mini',
+                'iPhone 12 Pro Max',
+                'iPhone 12 Pro',
+                'iPhone 12',
+                'iPhone 12 Mini',
+                'iPhone 11 Pro Max',
+                'iPhone 11 Pro',
+                'iPhone 11',
+                'iPhone XS Max',
+                'iPhone XS',
+                'iPhone XR',
+                'iPhone X',
+                'iPhone 8 Plus',
+                'iPhone 8'
+            ],
+            'Samsung': [
+                'Galaxy S24 Ultra',
+                'Galaxy S24+',
+                'Galaxy S24',
+                'Galaxy S23 Ultra',
+                'Galaxy S23+',
+                'Galaxy S23',
+                'Galaxy S23 FE',
+                'Galaxy S22 Ultra',
+                'Galaxy S22+',
+                'Galaxy S22',
+                'Galaxy S21 Ultra',
+                'Galaxy S21+',
+                'Galaxy S21',
+                'Galaxy S21 FE',
+                'Galaxy S20 Ultra',
+                'Galaxy S20+',
+                'Galaxy S20',
+                'Galaxy S20 FE',
+                'Galaxy S10+',
+                'Galaxy S10',
+                'Galaxy S10e',
+                'Galaxy S10 5G'
+            ],
+            'Android': [
+                'Google Pixel 8 Pro',
+                'Google Pixel 8',
+                'Google Pixel 7 Pro',
+                'Google Pixel 7',
+                'Google Pixel 6 Pro',
+                'Google Pixel 6',
+                'Google Pixel 5',
+                'Google Pixel 4',
+                'Google Pixel 3',
+                'OnePlus 11',
+                'OnePlus 10 Pro',
+                'OnePlus 9 Pro',
+                'Oppo Find X5 Pro',
+                'Oppo Reno Series',
+                'Other Android Device'
+            ],
+            'iPad': [
+                'iPad Pro 12.9" (Latest)',
+                'iPad Pro 11" (Latest)',
+                'iPad Pro (Older Models)',
+                'iPad Air 5',
+                'iPad Air 4',
+                'iPad Air 3',
+                'iPad Air 2',
+                'iPad (10th Gen)',
+                'iPad (9th Gen)',
+                'iPad (8th Gen)',
+                'iPad (7th Gen)',
+                'iPad (6th Gen)',
+                'iPad Mini 6',
+                'iPad Mini 5',
+                'iPad Mini 4',
+                'iPad Mini 3',
+                'iPad Mini 2'
+            ],
+            'Gaming Console': [
+                'PlayStation 5',
+                'PlayStation 5 Digital',
+                'PlayStation 4 Pro',
+                'PlayStation 4',
+                'PlayStation 4 Slim',
+                'Xbox Series X',
+                'Xbox Series S',
+                'Xbox One X',
+                'Xbox One S',
+                'Xbox One',
+                'Nintendo Switch OLED',
+                'Nintendo Switch',
+                'Nintendo Switch Lite'
+            ],
+            'Computer': [
+                'MacBook Pro (M3)',
+                'MacBook Pro (M2)',
+                'MacBook Pro (M1)',
+                'MacBook Pro (Intel)',
+                'MacBook Air (M2)',
+                'MacBook Air (M1)',
+                'MacBook Air (Intel)',
+                'iMac (M3)',
+                'iMac (M1)',
+                'iMac (Intel)',
+                'Mac Mini',
+                'Mac Studio',
+                'Windows Laptop',
+                'Windows Desktop'
+            ]
+        };
+
         // Set minimum date to today
         document.getElementById('appointmentDate').min = new Date().toISOString().split('T')[0];
 
-        // Device type selection
-        document.querySelectorAll('.device-option input').forEach(input => {
-            input.addEventListener('change', function() {
-                document.querySelectorAll('.device-option').forEach(opt => opt.classList.remove('selected'));
-                if (this.checked) {
-                    this.closest('.device-option').classList.add('selected');
-                }
-            });
+        // Device type change handler
+        document.getElementById('deviceType').addEventListener('change', function() {
+            const deviceModel = document.getElementById('deviceModel');
+            const selectedType = this.value;
+            
+            deviceModel.innerHTML = '<option value="">Select model...</option>';
+            
+            if (selectedType && deviceModels[selectedType]) {
+                deviceModel.disabled = false;
+                deviceModels[selectedType].forEach(model => {
+                    const option = document.createElement('option');
+                    option.value = model;
+                    option.textContent = model;
+                    deviceModel.appendChild(option);
+                });
+            } else {
+                deviceModel.disabled = true;
+                deviceModel.innerHTML = '<option value="">First select device type...</option>';
+            }
         });
 
         // Checkbox options
@@ -876,63 +1031,56 @@
             
             if (direction === 1) {
                 // Validate current section
-                const inputs = currentSection.querySelectorAll('input[required], select[required], textarea[required]');
-                let valid = true;
-                
-                inputs.forEach(input => {
-                    if (input.type === 'radio') {
-                        const radioGroup = currentSection.querySelectorAll(`input[name="${input.name}"]`);
-                        const checked = Array.from(radioGroup).some(r => r.checked);
-                        if (!checked) {
-                            valid = false;
-                            alert('Please select a device type');
-                        }
-                    } else if (input.type === 'checkbox') {
-                        const checkboxGroup = currentSection.querySelectorAll('input[name="services"]:checked');
-                        if (checkboxGroup.length === 0 && input.name === 'services') {
-                            valid = false;
-                            alert('Please select at least one service');
-                        }
-                    } else if (!input.value) {
-                        valid = false;
-                        input.focus();
-                        alert('Please fill in all required fields');
+                if (currentStep === 1) {
+                    const deviceType = document.getElementById('deviceType').value;
+                    const deviceModel = document.getElementById('deviceModel').value;
+                    if (!deviceType || !deviceModel) {
+                        alert('Please select both device type and model');
+                        return;
                     }
-                });
-                
-                if (!valid) return;
+                } else if (currentStep === 2) {
+                    const checkboxes = document.querySelectorAll('input[name="services"]:checked');
+                    if (checkboxes.length === 0) {
+                        alert('Please select at least one service');
+                        return;
+                    }
+                } else if (currentStep === 3) {
+                    const date = document.getElementById('appointmentDate').value;
+                    const time = document.getElementById('appointmentTime').value;
+                    if (!date || !time) {
+                        alert('Please select both date and time');
+                        return;
+                    }
+                } else if (currentStep === 4) {
+                    const firstName = document.getElementById('firstName').value;
+                    const lastName = document.getElementById('lastName').value;
+                    const email = document.getElementById('email').value;
+                    const phone = document.getElementById('phone').value;
+                    if (!firstName || !lastName || !email || !phone) {
+                        alert('Please fill in all required fields');
+                        return;
+                    }
+                }
             }
             
             const newStep = currentStep + direction;
             
             if (newStep >= 1 && newStep <= totalSteps) {
-                // Hide current section
                 currentSection.classList.remove('active');
-                
-                // Update step
                 currentStep = newStep;
-                
-                // Show new section
                 document.querySelector(`.form-section[data-section="${currentStep}"]`).classList.add('active');
-                
-                // Update progress
                 updateProgress();
-                
-                // Update buttons
                 updateButtons();
                 
-                // Update review if on final step
                 if (currentStep === 5) {
                     updateReview();
                 }
                 
-                // Scroll to top
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             }
         }
 
         function updateProgress() {
-            // Update progress steps
             document.querySelectorAll('.progress-step').forEach(step => {
                 const stepNum = parseInt(step.dataset.step);
                 if (stepNum < currentStep) {
@@ -946,7 +1094,6 @@
                 }
             });
             
-            // Update progress line
             const progressLine = document.getElementById('progressLine');
             const progress = ((currentStep - 1) / (totalSteps - 1)) * 100;
             progressLine.style.width = progress + '%';
@@ -969,13 +1116,11 @@
 
         function updateReview() {
             // Device info
-            const deviceType = document.querySelector('input[name="deviceType"]:checked')?.value || '-';
-            const brand = document.getElementById('deviceBrand').value || '-';
-            const model = document.getElementById('deviceModel').value || '-';
+            const deviceType = document.getElementById('deviceType').value || '-';
+            const deviceModel = document.getElementById('deviceModel').value || '-';
             
             document.getElementById('reviewDeviceType').textContent = deviceType;
-            document.getElementById('reviewBrand').textContent = brand;
-            document.getElementById('reviewModel').textContent = model;
+            document.getElementById('reviewModel').textContent = deviceModel;
             
             // Services
             const services = Array.from(document.querySelectorAll('input[name="services"]:checked'))
@@ -1004,7 +1149,6 @@
         }
 
         function submitBooking() {
-            // Gather all form data
             const formData = new FormData(document.getElementById('bookingForm'));
             const data = {};
             
@@ -1017,13 +1161,11 @@
                 }
             }
             
-            // Create email body
             const emailBody = `
 New Repair Booking Request
 
 DEVICE INFORMATION:
 - Device Type: ${data.deviceType}
-- Brand: ${data.deviceBrand}
 - Model: ${data.deviceModel}
 
 SERVICE DETAILS:
@@ -1041,12 +1183,10 @@ CUSTOMER INFORMATION:
 - Additional Notes: ${data.notes || 'None'}
             `;
             
-            // Open email client
             const subject = encodeURIComponent('New Repair Booking Request');
             const body = encodeURIComponent(emailBody);
             window.location.href = `mailto:sales@startechphonerepairs.com.au?subject=${subject}&body=${body}`;
             
-            // Show success message
             document.getElementById('bookingForm').style.display = 'none';
             document.querySelector('.progress-bar').style.display = 'none';
             document.getElementById('successMessage').classList.add('show');
