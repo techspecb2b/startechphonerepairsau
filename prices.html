@@ -176,7 +176,7 @@
     </footer>
     <script>
         function toggleTheme() { document.body.classList.toggle('light-mode'); localStorage.setItem('startech-theme', document.body.classList.contains('light-mode') ? 'light' : 'dark'); }
-        (function() { if (localStorage.getItem('startech-theme') === 'light') document.body.classList.add('light-mode'); })();
+        (function() { if (localStorage.getItem('startech-theme') !== 'dark') document.body.classList.add('light-mode'); })();
         function toggleMenu() { document.querySelector('.hamburger').classList.toggle('active'); document.getElementById('mobileMenu').classList.toggle('active'); }
         
         const pricingData = {
