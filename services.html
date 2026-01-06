@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our Services | Star Tech Phone Repairs</title>
+    <title>Services | Star Tech Phone Repairs</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -27,6 +27,22 @@
             background: var(--pure-black);
             color: var(--pure-white);
             overflow-x: hidden;
+        }
+
+        /* Circuit Board Pattern Background */
+        .circuit-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            opacity: 0.06;
+            pointer-events: none;
+            background-color: var(--pure-black);
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400' viewBox='0 0 400 400'%3E%3Cstyle%3E.t%7Bfill:none;stroke:%23FF3200;stroke-width:1.5%7D.p%7Bfill:%23FF3200%7D%3C/style%3E%3Cpath class='t' d='M50 50h100M150 50v60M150 110h80M230 110v50'/%3E%3Ccircle class='p' cx='50' cy='50' r='3'/%3E%3Ccircle class='p' cx='150' cy='50' r='3'/%3E%3Ccircle class='p' cx='150' cy='110' r='3'/%3E%3Ccircle class='p' cx='230' cy='110' r='3'/%3E%3Ccircle class='p' cx='230' cy='160' r='3'/%3E%3Cpath class='t' d='M280 30h70M350 30v100M350 130h-60M290 130v40'/%3E%3Ccircle class='p' cx='280' cy='30' r='3'/%3E%3Ccircle class='p' cx='350' cy='30' r='3'/%3E%3Ccircle class='p' cx='350' cy='130' r='3'/%3E%3Ccircle class='p' cx='290' cy='130' r='3'/%3E%3Ccircle class='p' cx='290' cy='170' r='3'/%3E%3Cpath class='t' d='M30 200h90M120 200v70M120 270h100'/%3E%3Ccircle class='p' cx='30' cy='200' r='3'/%3E%3Ccircle class='p' cx='120' cy='200' r='3'/%3E%3Ccircle class='p' cx='120' cy='270' r='3'/%3E%3Ccircle class='p' cx='220' cy='270' r='3'/%3E%3Cpath class='t' d='M260 220h80M340 220v60M340 280h30'/%3E%3Ccircle class='p' cx='260' cy='220' r='3'/%3E%3Ccircle class='p' cx='340' cy='220' r='3'/%3E%3Ccircle class='p' cx='340' cy='280' r='3'/%3E%3Ccircle class='p' cx='370' cy='280' r='3'/%3E%3Cpath class='t' d='M60 320h70M130 320v50M130 370h90'/%3E%3Ccircle class='p' cx='60' cy='320' r='3'/%3E%3Ccircle class='p' cx='130' cy='320' r='3'/%3E%3Ccircle class='p' cx='130' cy='370' r='3'/%3E%3Ccircle class='p' cx='220' cy='370' r='3'/%3E%3Cpath class='t' d='M270 310h60M330 310v60'/%3E%3Ccircle class='p' cx='270' cy='310' r='3'/%3E%3Ccircle class='p' cx='330' cy='310' r='3'/%3E%3Ccircle class='p' cx='330' cy='370' r='3'/%3E%3C/svg%3E");
+            background-size: 400px 400px;
+            background-repeat: repeat;
         }
 
         /* Navigation */
@@ -58,12 +74,18 @@
             letter-spacing: 2px;
             text-shadow: 0 0 20px var(--red-glow);
             text-decoration: none;
+            cursor: pointer;
+        }
+
+        .logo:hover {
+            text-shadow: 0 0 30px var(--star-red);
         }
 
         .nav-links {
             display: flex;
             gap: 2.5rem;
             list-style: none;
+            align-items: center;
         }
 
         .nav-links a {
@@ -78,23 +100,87 @@
             color: var(--star-red);
         }
 
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--star-red);
-            transition: width 0.3s ease;
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
         .nav-links a.active {
             color: var(--star-red);
+        }
+
+        .nav-links a.book-now-btn {
+            border: 2px solid var(--star-red);
+            padding: 0.6rem 1.2rem;
+            background: transparent;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a.book-now-btn:hover {
+            background: var(--star-red);
+            color: var(--pure-white);
+            box-shadow: 0 0 20px var(--red-glow);
+        }
+
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+            z-index: 1001;
+        }
+
+        .hamburger span {
+            width: 28px;
+            height: 3px;
+            background: var(--star-red);
+            transition: all 0.3s ease;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 6px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 70px;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.98);
+            border-bottom: 2px solid var(--star-red);
+            padding: 2rem;
+            z-index: 999;
+        }
+
+        .mobile-menu.active {
+            display: block;
+        }
+
+        .mobile-menu a {
+            display: block;
+            color: var(--pure-white);
+            text-decoration: none;
+            padding: 1rem;
+            font-size: 1.2rem;
+            border-bottom: 1px solid rgba(255, 50, 0, 0.2);
+            transition: color 0.3s ease;
+        }
+
+        .mobile-menu a:hover,
+        .mobile-menu a.active {
+            color: var(--star-red);
+        }
+
+        .mobile-menu a.book-now-btn {
+            border: 2px solid var(--star-red);
+            text-align: center;
+            margin-top: 1rem;
         }
 
         /* Page Header */
@@ -104,19 +190,7 @@
             text-align: center;
             background: linear-gradient(180deg, var(--dark-gray) 0%, var(--pure-black) 100%);
             position: relative;
-            overflow: hidden;
-        }
-
-        .page-header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at center, var(--red-glow) 0%, transparent 70%);
-            opacity: 0.5;
+            z-index: 1;
         }
 
         .page-header h1 {
@@ -125,57 +199,32 @@
             margin-bottom: 1rem;
             text-transform: uppercase;
             letter-spacing: 3px;
-            position: relative;
-            z-index: 2;
         }
 
         .page-header p {
             font-size: 1.3rem;
             color: #999;
-            position: relative;
-            z-index: 2;
         }
 
         /* Services Container */
         .services-container {
             max-width: 1400px;
             margin: 0 auto;
-            padding: 6rem 2rem;
-        }
-
-        .service-category {
-            margin-bottom: 6rem;
-        }
-
-        .category-header {
-            margin-bottom: 3rem;
-            padding-bottom: 1.5rem;
-            border-bottom: 2px solid var(--star-red);
-        }
-
-        .category-header h2 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 2.5rem;
-            color: var(--star-red);
-            margin-bottom: 0.5rem;
-            text-transform: uppercase;
-        }
-
-        .category-header p {
-            font-size: 1.1rem;
-            color: #999;
+            padding: 4rem 2rem;
+            position: relative;
+            z-index: 1;
         }
 
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 2rem;
         }
 
         .service-card {
             background: var(--dark-gray);
-            padding: 2.5rem;
             border: 2px solid transparent;
+            padding: 2.5rem;
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
@@ -185,33 +234,41 @@
             content: '';
             position: absolute;
             top: 0;
-            left: 0;
-            width: 4px;
-            height: 0;
-            background: var(--star-red);
-            transition: height 0.3s ease;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 50, 0, 0.1), transparent);
+            transition: left 0.5s ease;
         }
 
         .service-card:hover::before {
-            height: 100%;
+            left: 100%;
         }
 
         .service-card:hover {
             border-color: var(--star-red);
-            transform: translateX(5px);
-            box-shadow: -10px 10px 30px rgba(255, 50, 0, 0.2);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px var(--red-glow);
         }
 
         .service-icon {
-            font-size: 2.5rem;
+            width: 60px;
+            height: 60px;
             margin-bottom: 1.5rem;
+        }
+
+        .service-icon svg {
+            width: 100%;
+            height: 100%;
+            fill: var(--star-red);
         }
 
         .service-card h3 {
             font-family: 'Orbitron', sans-serif;
             font-size: 1.5rem;
+            color: var(--star-red);
             margin-bottom: 1rem;
-            color: var(--pure-white);
+            text-transform: uppercase;
         }
 
         .service-card p {
@@ -222,68 +279,50 @@
 
         .service-features {
             list-style: none;
-            margin-bottom: 1.5rem;
         }
 
         .service-features li {
             padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
             color: #999;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
         }
 
         .service-features li::before {
-            content: '✓';
+            content: '→';
+            position: absolute;
+            left: 0;
             color: var(--star-red);
-            font-weight: bold;
-        }
-
-        .service-time {
-            display: inline-block;
-            background: rgba(255, 50, 0, 0.1);
-            color: var(--star-red);
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: 600;
         }
 
         /* CTA Section */
         .services-cta {
             text-align: center;
-            padding: 6rem 2rem;
+            padding: 4rem 2rem;
             background: var(--dark-gray);
             margin-top: 4rem;
+            position: relative;
+            z-index: 1;
         }
 
         .services-cta h2 {
             font-family: 'Orbitron', sans-serif;
-            font-size: 3rem;
+            font-size: 2.5rem;
             margin-bottom: 1.5rem;
-            text-transform: uppercase;
-        }
-
-        .services-cta p {
-            font-size: 1.2rem;
-            color: #999;
-            margin-bottom: 2.5rem;
         }
 
         .btn {
+            display: inline-block;
             padding: 1.2rem 2.5rem;
             font-size: 1.1rem;
             font-weight: 600;
             text-decoration: none;
-            border-radius: 0;
-            transition: all 0.3s ease;
-            cursor: pointer;
             text-transform: uppercase;
             letter-spacing: 1px;
             border: 2px solid var(--star-red);
             background: var(--star-red);
             color: var(--pure-white);
-            display: inline-block;
+            transition: all 0.3s ease;
         }
 
         .btn:hover {
@@ -297,6 +336,8 @@
             background: var(--pure-black);
             border-top: 2px solid var(--star-red);
             padding: 3rem 2rem 1.5rem;
+            position: relative;
+            z-index: 1;
         }
 
         .footer-content {
@@ -313,7 +354,6 @@
             color: var(--star-red);
             margin-bottom: 1.5rem;
             text-transform: uppercase;
-            letter-spacing: 1px;
         }
 
         .footer-section p,
@@ -335,25 +375,30 @@
             color: #666;
         }
 
-        /* Responsive */
         @media (max-width: 968px) {
             .page-header h1 {
                 font-size: 2.5rem;
             }
 
-            .services-grid {
-                grid-template-columns: 1fr;
+            .nav-links {
+                display: none;
+            }
+
+            .hamburger {
+                display: flex;
             }
         }
 
         @media (max-width: 600px) {
-            .nav-links {
-                display: none;
+            .services-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 <body>
+    <div class="circuit-background"></div>
+
     <nav>
         <div class="nav-container">
             <a href="home.html" class="logo">STAR TECH</a>
@@ -362,10 +407,23 @@
                 <li><a href="services.html" class="active">Services</a></li>
                 <li><a href="prices.html">Prices</a></li>
                 <li><a href="contact.html">Contact</a></li>
-                <li><a href="book.html">Book Now</a></li>
+                <li><a href="book.html" class="book-now-btn">Book Now</a></li>
             </ul>
+            <div class="hamburger" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
         </div>
     </nav>
+
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="home.html">Home</a>
+        <a href="services.html" class="active">Services</a>
+        <a href="prices.html">Prices</a>
+        <a href="contact.html">Contact</a>
+        <a href="book.html" class="book-now-btn">Book Now</a>
+    </div>
 
     <div class="page-header">
         <h1>Our Services</h1>
@@ -373,294 +431,102 @@
     </div>
 
     <div class="services-container">
-        <!-- Phone Repairs -->
-        <div class="service-category">
-            <div class="category-header">
-                <h2>📱 Phone Repairs</h2>
-                <p>Professional repairs for all major smartphone brands</p>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">
+                    <svg viewBox="0 0 24 24"><path d="M17 1.01L7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM17 19H7V5h10v14z"/></svg>
+                </div>
+                <h3>iPhone Repairs</h3>
+                <p>Expert repairs for all iPhone models from iPhone 8 to the latest iPhone 16 series. We use high-quality parts and provide a 90-day warranty.</p>
+                <ul class="service-features">
+                    <li>Screen Replacement</li>
+                    <li>Battery Replacement</li>
+                    <li>Charging Port Repair</li>
+                    <li>Back Glass Replacement</li>
+                    <li>Camera Repair</li>
+                </ul>
             </div>
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-icon">📱</div>
-                    <h3>Screen Replacement</h3>
-                    <p>Cracked or shattered screen? We'll have it looking brand new with premium quality replacements.</p>
-                    <ul class="service-features">
-                        <li>OEM and aftermarket options</li>
-                        <li>LCD and OLED displays</li>
-                        <li>Touch functionality tested</li>
-                        <li>Warranty included</li>
-                    </ul>
-                    <span class="service-time">30-45 mins</span>
-                </div>
 
-                <div class="service-card">
-                    <div class="service-icon">🔋</div>
-                    <h3>Battery Replacement</h3>
-                    <p>Restore your phone's battery life with high-capacity, premium replacement batteries.</p>
-                    <ul class="service-features">
-                        <li>High-capacity batteries</li>
-                        <li>Same-day service</li>
-                        <li>Battery health check included</li>
-                        <li>90-day warranty</li>
-                    </ul>
-                    <span class="service-time">20-30 mins</span>
+            <div class="service-card">
+                <div class="service-icon">
+                    <svg viewBox="0 0 24 24"><path d="M17 1.01L7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM17 19H7V5h10v14z"/></svg>
                 </div>
-
-                <div class="service-card">
-                    <div class="service-icon">🔌</div>
-                    <h3>Charging Port Repair</h3>
-                    <p>Phone not charging? We'll fix or replace your charging port quickly and professionally.</p>
-                    <ul class="service-features">
-                        <li>Lightning & USB-C ports</li>
-                        <li>Cleaning and repair options</li>
-                        <li>Complete replacement if needed</li>
-                        <li>Tested with multiple cables</li>
-                    </ul>
-                    <span class="service-time">30-60 mins</span>
-                </div>
-
-                <div class="service-card">
-                    <div class="service-icon">📷</div>
-                    <h3>Camera Repair</h3>
-                    <p>Front or back camera issues? We'll restore your phone's photography capabilities.</p>
-                    <ul class="service-features">
-                        <li>Front and rear cameras</li>
-                        <li>Focus and lens issues</li>
-                        <li>Camera glass replacement</li>
-                        <li>Image quality testing</li>
-                    </ul>
-                    <span class="service-time">45-60 mins</span>
-                </div>
-
-                <div class="service-card">
-                    <div class="service-icon">🔊</div>
-                    <h3>Speaker & Microphone</h3>
-                    <p>Audio problems solved. Clear sound restored for calls, music, and videos.</p>
-                    <ul class="service-features">
-                        <li>Earpiece and loudspeaker</li>
-                        <li>Microphone replacement</li>
-                        <li>Audio quality testing</li>
-                        <li>Water damage assessment</li>
-                    </ul>
-                    <span class="service-time">30-45 mins</span>
-                </div>
-
-                <div class="service-card">
-                    <div class="service-icon">💧</div>
-                    <h3>Water Damage Repair</h3>
-                    <p>Dropped in water? Our specialized cleaning process can save your device.</p>
-                    <ul class="service-features">
-                        <li>Ultrasonic cleaning</li>
-                        <li>Component-level repair</li>
-                        <li>Corrosion removal</li>
-                        <li>Full diagnostic testing</li>
-                    </ul>
-                    <span class="service-time">1-2 hours</span>
-                </div>
+                <h3>Samsung Galaxy Repairs</h3>
+                <p>Professional repairs for Samsung Galaxy S series, Note series, and A series devices. Same-day service available for most repairs.</p>
+                <ul class="service-features">
+                    <li>Screen Replacement</li>
+                    <li>Battery Replacement</li>
+                    <li>Charging Port Repair</li>
+                    <li>Back Glass Replacement</li>
+                    <li>Water Damage Repair</li>
+                </ul>
             </div>
-        </div>
 
-        <!-- Tablet Repairs -->
-        <div class="service-category">
-            <div class="category-header">
-                <h2>📲 Tablet/iPad Repairs</h2>
-                <p>Expert service for iPads and Android tablets</p>
+            <div class="service-card">
+                <div class="service-icon">
+                    <svg viewBox="0 0 24 24"><path d="M21 4H3c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H3V6h18v12z"/></svg>
+                </div>
+                <h3>iPad Repairs</h3>
+                <p>Complete repair services for all iPad models including iPad Pro, iPad Air, iPad Mini, and standard iPads.</p>
+                <ul class="service-features">
+                    <li>Screen Replacement</li>
+                    <li>Battery Replacement</li>
+                    <li>Charging Port Repair</li>
+                    <li>Home Button Repair</li>
+                    <li>Camera Repair</li>
+                </ul>
             </div>
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-icon">📲</div>
-                    <h3>iPad Screen Replacement</h3>
-                    <p>Shattered iPad screen? We'll replace it with precision and care for all iPad models.</p>
-                    <ul class="service-features">
-                        <li>All iPad models supported</li>
-                        <li>Digitizer and LCD combos</li>
-                        <li>Touch ID preserved when possible</li>
-                        <li>Premium adhesive used</li>
-                    </ul>
-                    <span class="service-time">1-2 hours</span>
-                </div>
 
-                <div class="service-card">
-                    <div class="service-icon">🔋</div>
-                    <h3>Tablet Battery Service</h3>
-                    <p>Bring back hours of usage time with a fresh, high-quality tablet battery.</p>
-                    <ul class="service-features">
-                        <li>iPads and Android tablets</li>
-                        <li>Extended battery life</li>
-                        <li>Safe removal process</li>
-                        <li>Performance testing</li>
-                    </ul>
-                    <span class="service-time">1-1.5 hours</span>
+            <div class="service-card">
+                <div class="service-icon">
+                    <svg viewBox="0 0 24 24"><path d="M21.58 16.09l-1.09-7.66C20.21 6.46 18.52 5 16.53 5H7.47C5.48 5 3.79 6.46 3.51 8.43l-1.09 7.66C2.2 17.63 3.39 19 4.94 19h.68c.67 0 1.31-.33 1.71-.88L9 16h6l1.67 2.12c.4.55 1.04.88 1.71.88h.68c1.55 0 2.74-1.37 2.52-2.91z"/></svg>
                 </div>
-
-                <div class="service-card">
-                    <div class="service-icon">🔌</div>
-                    <h3>Charging & Port Issues</h3>
-                    <p>Tablet won't charge? We'll diagnose and repair charging problems quickly.</p>
-                    <ul class="service-features">
-                        <li>Lightning and USB-C repairs</li>
-                        <li>Charging circuit diagnostics</li>
-                        <li>Dock connector replacement</li>
-                        <li>Power management fixes</li>
-                    </ul>
-                    <span class="service-time">1-2 hours</span>
-                </div>
+                <h3>Gaming Console Repairs</h3>
+                <p>Expert repairs for PlayStation, Xbox, and Nintendo Switch consoles. Get back to gaming faster with our quick turnaround times.</p>
+                <ul class="service-features">
+                    <li>HDMI Port Repair</li>
+                    <li>Overheating / Fan Repair</li>
+                    <li>Disc Drive Repair</li>
+                    <li>Power Supply Replacement</li>
+                    <li>Deep Cleaning Service</li>
+                </ul>
             </div>
-        </div>
 
-        <!-- Gaming Console Repairs -->
-        <div class="service-category">
-            <div class="category-header">
-                <h2>🎮 Gaming Console Repairs</h2>
-                <p>PlayStation, Xbox, and Nintendo Switch repairs</p>
+            <div class="service-card">
+                <div class="service-icon">
+                    <svg viewBox="0 0 24 24"><path d="M20 18c1.1 0 1.99-.9 1.99-2L22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2H0v2h24v-2h-4zM4 6h16v10H4V6z"/></svg>
+                </div>
+                <h3>Computer Repairs</h3>
+                <p>MacBook, iMac, and Windows computer repairs. From hardware issues to software problems, we've got you covered.</p>
+                <ul class="service-features">
+                    <li>Screen Replacement</li>
+                    <li>Battery Replacement</li>
+                    <li>Keyboard Replacement</li>
+                    <li>SSD/HDD Upgrades</li>
+                    <li>Data Recovery</li>
+                </ul>
             </div>
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-icon">🎮</div>
-                    <h3>Console HDMI Repair</h3>
-                    <p>No video output? We'll repair or replace your console's HDMI port.</p>
-                    <ul class="service-features">
-                        <li>PS4, PS5, Xbox One, Series X/S</li>
-                        <li>Micro-soldering expertise</li>
-                        <li>Signal testing included</li>
-                        <li>90-day warranty</li>
-                    </ul>
-                    <span class="service-time">2-4 hours</span>
-                </div>
 
-                <div class="service-card">
-                    <div class="service-icon">💨</div>
-                    <h3>Overheating / Fan Repair</h3>
-                    <p>Console overheating? We'll clean, repair fans, and apply fresh thermal paste.</p>
-                    <ul class="service-features">
-                        <li>Deep cleaning service</li>
-                        <li>Fan replacement</li>
-                        <li>Thermal paste application</li>
-                        <li>Airflow optimization</li>
-                    </ul>
-                    <span class="service-time">1-2 hours</span>
+            <div class="service-card">
+                <div class="service-icon">
+                    <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
                 </div>
-
-                <div class="service-card">
-                    <div class="service-icon">💿</div>
-                    <h3>Disc Drive Repair</h3>
-                    <p>Can't read discs? We'll get your physical games working again.</p>
-                    <ul class="service-features">
-                        <li>Laser lens cleaning</li>
-                        <li>Drive mechanism repair</li>
-                        <li>Motor replacement</li>
-                        <li>All disc formats tested</li>
-                    </ul>
-                    <span class="service-time">1-3 hours</span>
-                </div>
-
-                <div class="service-card">
-                    <div class="service-icon">🕹️</div>
-                    <h3>Controller Repairs</h3>
-                    <p>Stick drift, broken buttons, or charging issues? We'll fix it.</p>
-                    <ul class="service-features">
-                        <li>Analog stick replacement</li>
-                        <li>Button repairs</li>
-                        <li>Battery replacement</li>
-                        <li>Charging port fixes</li>
-                    </ul>
-                    <span class="service-time">30-60 mins</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- Computer Repairs -->
-        <div class="service-category">
-            <div class="category-header">
-                <h2>💻 Computer Repairs</h2>
-                <p>Windows PC and Mac/MacBook service and repairs</p>
-            </div>
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-icon">🖥️</div>
-                    <h3>MacBook Screen Repair</h3>
-                    <p>Cracked MacBook screen? We'll replace it with genuine quality displays.</p>
-                    <ul class="service-features">
-                        <li>All MacBook models</li>
-                        <li>Retina display specialists</li>
-                        <li>LCD and assembly options</li>
-                        <li>Color calibration included</li>
-                    </ul>
-                    <span class="service-time">2-4 hours</span>
-                </div>
-
-                <div class="service-card">
-                    <div class="service-icon">⚙️</div>
-                    <h3>Hardware Upgrades</h3>
-                    <p>Boost your computer's performance with RAM, SSD, and component upgrades.</p>
-                    <ul class="service-features">
-                        <li>RAM upgrades</li>
-                        <li>SSD installation & cloning</li>
-                        <li>GPU replacement</li>
-                        <li>Performance optimization</li>
-                    </ul>
-                    <span class="service-time">1-3 hours</span>
-                </div>
-
-                <div class="service-card">
-                    <div class="service-icon">🔧</div>
-                    <h3>Virus Removal & Cleanup</h3>
-                    <p>Malware slowing you down? We'll clean and protect your system.</p>
-                    <ul class="service-features">
-                        <li>Complete malware removal</li>
-                        <li>System optimization</li>
-                        <li>Security software setup</li>
-                        <li>Data backup included</li>
-                    </ul>
-                    <span class="service-time">2-4 hours</span>
-                </div>
-
-                <div class="service-card">
-                    <div class="service-icon">💾</div>
-                    <h3>Data Recovery</h3>
-                    <p>Lost important files? We'll do our best to recover your precious data.</p>
-                    <ul class="service-features">
-                        <li>Failed drive recovery</li>
-                        <li>Deleted file restoration</li>
-                        <li>Formatted drive recovery</li>
-                        <li>Free assessment</li>
-                    </ul>
-                    <span class="service-time">Varies</span>
-                </div>
-
-                <div class="service-card">
-                    <div class="service-icon">⌨️</div>
-                    <h3>Keyboard & Trackpad</h3>
-                    <p>Keys not working? Trackpad acting up? We'll get you typing again.</p>
-                    <ul class="service-features">
-                        <li>Individual key replacement</li>
-                        <li>Full keyboard replacement</li>
-                        <li>Trackpad repair/replacement</li>
-                        <li>Butterfly and Magic keyboards</li>
-                    </ul>
-                    <span class="service-time">1-3 hours</span>
-                </div>
-
-                <div class="service-card">
-                    <div class="service-icon">💻</div>
-                    <h3>Software Troubleshooting</h3>
-                    <p>OS issues, boot problems, or software conflicts? We'll diagnose and fix it.</p>
-                    <ul class="service-features">
-                        <li>Windows & macOS experts</li>
-                        <li>OS reinstallation</li>
-                        <li>Driver updates</li>
-                        <li>System optimization</li>
-                    </ul>
-                    <span class="service-time">1-3 hours</span>
-                </div>
+                <h3>Diagnostic Services</h3>
+                <p>Not sure what's wrong with your device? Our free diagnostic service will identify the issue and provide you with a no-obligation quote.</p>
+                <ul class="service-features">
+                    <li>Free Device Assessment</li>
+                    <li>Detailed Problem Report</li>
+                    <li>Transparent Pricing</li>
+                    <li>No Fix, No Fee Policy</li>
+                    <li>Expert Recommendations</li>
+                </ul>
             </div>
         </div>
     </div>
 
     <div class="services-cta">
-        <h2>Ready to Fix Your Device?</h2>
-        <p>Get a free quote and book your repair online today</p>
-        <a href="book.html" class="btn">Book Appointment</a>
+        <h2>Ready to Get Your Device Fixed?</h2>
+        <a href="book.html" class="btn">Book Your Repair</a>
     </div>
 
     <footer>
@@ -669,7 +535,6 @@
                 <h4>Star Tech Phone Repairs</h4>
                 <p>Perth's premier tech repair specialists. Quality, speed, and trust in every repair.</p>
             </div>
-            
             <div class="footer-section">
                 <h4>Quick Links</h4>
                 <a href="services.html">Services</a>
@@ -677,14 +542,12 @@
                 <a href="book.html">Book Appointment</a>
                 <a href="contact.html">Contact Us</a>
             </div>
-            
             <div class="footer-section">
                 <h4>Contact</h4>
-                <p>33 Crimson Bvd<br>Forrestfield WA 6058<br>Australia</p>
+                <p>33 Crimson Bvd<br>Forrestfield WA 6058</p>
                 <p>Phone: +61 420 994 662</p>
                 <p>Email: sales@startechphonerepairs.com.au</p>
             </div>
-            
             <div class="footer-section">
                 <h4>Hours</h4>
                 <p>Monday: Closed</p>
@@ -697,5 +560,12 @@
             <p>&copy; 2026 Star Tech Phone Repairs. All rights reserved.</p>
         </div>
     </footer>
+
+    <script>
+        function toggleMenu() {
+            document.querySelector('.hamburger').classList.toggle('active');
+            document.getElementById('mobileMenu').classList.toggle('active');
+        }
+    </script>
 </body>
 </html>
