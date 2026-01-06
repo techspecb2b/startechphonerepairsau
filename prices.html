@@ -9,10 +9,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        :root { --star-red: #FF3200; --star-red-hover: #e62e00; --bg-primary: #000000; --bg-secondary: #1a1a1a; --text-primary: #f5f5f7; --text-secondary: #a1a1a6; --text-muted: #6e6e73; --border-color: rgba(255,50,0,0.2); --nav-bg: rgba(0,0,0,0.8); --card-bg: #1a1a1a; --card-text: #f5f5f7; --card-icon: #FF3200; }
-        body.light-mode { --bg-primary: #FFFFFF; --bg-secondary: #f5f5f7; --text-primary: #1d1d1f; --text-secondary: #6e6e73; --nav-bg: rgba(255,255,255,0.8); --card-bg: #FF3200; --card-text: #FFFFFF; --card-icon: #FFFFFF; }
+        :root { --star-blue: #0084FF; --star-blue-hover: #0073e6; --bg-primary: #000000; --bg-secondary: #1a1a1a; --text-primary: #f5f5f7; --text-secondary: #a1a1a6; --text-muted: #6e6e73; --border-color: rgba(0,132,255,0.2); --nav-bg: rgba(0,0,0,0.8); --card-bg: #1a1a1a; --card-text: #f5f5f7; --card-icon: #0084FF; }
+        body.light-mode { --bg-primary: #FFFFFF; --bg-secondary: #f5f5f7; --text-primary: #1d1d1f; --text-secondary: #6e6e73; --nav-bg: rgba(255,255,255,0.8); --card-bg: #0084FF; --card-text: #FFFFFF; --card-icon: #FFFFFF; }
         body { font-family: 'Inter', -apple-system, sans-serif; background: var(--bg-primary); color: var(--text-primary); -webkit-font-smoothing: antialiased; }
-        .theme-toggle { position: fixed; bottom: 30px; right: 30px; width: 44px; height: 44px; border-radius: 50%; background: var(--star-red); border: none; cursor: pointer; z-index: 1001; display: flex; align-items: center; justify-content: center; }
+        .theme-toggle { position: fixed; bottom: 30px; right: 30px; width: 44px; height: 44px; border-radius: 50%; background: var(--star-blue); border: none; cursor: pointer; z-index: 1001; display: flex; align-items: center; justify-content: center; }
         .theme-toggle:hover { transform: scale(1.05); }
         .theme-toggle svg { width: 20px; height: 20px; fill: #FFF; }
         .theme-toggle .sun-icon { display: none; }
@@ -21,54 +21,54 @@
         nav { position: fixed; top: 0; width: 100%; background: var(--nav-bg); backdrop-filter: saturate(180%) blur(20px); z-index: 1000; border-bottom: 1px solid rgba(255,255,255,0.1); }
         body.light-mode nav { border-bottom-color: rgba(0,0,0,0.1); }
         .nav-container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; height: 48px; display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-family: 'Orbitron', sans-serif; font-size: 1.3rem; font-weight: 900; color: var(--star-red); text-decoration: none; }
+        .logo { font-family: 'Orbitron', sans-serif; font-size: 1.3rem; font-weight: 900; color: var(--star-blue); text-decoration: none; }
         .nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
         .nav-links a { color: var(--text-primary); text-decoration: none; font-size: 0.85rem; opacity: 0.8; }
         .nav-links a:hover, .nav-links a.active { opacity: 1; }
-        .nav-links a.book-now-btn { background: var(--star-red); color: #FFF; padding: 8px 18px; border-radius: 980px; font-weight: 500; opacity: 1; }
+        .nav-links a.book-now-btn { background: var(--star-blue); color: #FFF; padding: 8px 18px; border-radius: 980px; font-weight: 500; opacity: 1; }
         .hamburger { display: none; flex-direction: column; cursor: pointer; gap: 5px; }
         .hamburger span { width: 20px; height: 2px; background: var(--text-primary); }
         .mobile-menu { display: none; position: fixed; top: 48px; left: 0; right: 0; background: var(--nav-bg); backdrop-filter: blur(20px); padding: 1.5rem 2rem; z-index: 999; }
         .mobile-menu.active { display: block; }
         .mobile-menu a { display: block; color: var(--text-primary); padding: 0.8rem 0; border-bottom: 1px solid var(--border-color); text-decoration: none; }
-        .mobile-menu a.book-now-btn { background: var(--star-red); color: #FFF; text-align: center; margin-top: 1rem; border-radius: 980px; }
+        .mobile-menu a.book-now-btn { background: var(--star-blue); color: #FFF; text-align: center; margin-top: 1rem; border-radius: 980px; }
         .page-header { margin-top: 48px; padding: 5rem 2rem 3rem; text-align: center; background: var(--bg-secondary); }
         .page-header h1 { font-size: clamp(2rem, 5vw, 3rem); font-weight: 700; letter-spacing: -0.02em; }
         .page-header p { color: var(--text-secondary); margin-top: 0.5rem; }
         .pricing-container { max-width: 1200px; margin: 0 auto; padding: 4rem 2rem; }
         .category-section { margin-bottom: 4rem; }
-        .category-title { font-size: 1.5rem; color: var(--star-red); margin-bottom: 1.5rem; padding-bottom: 0.75rem; border-bottom: 1px solid var(--border-color); display: flex; align-items: center; gap: 0.75rem; font-weight: 600; }
-        .category-icon svg { width: 28px; height: 28px; fill: var(--star-red); }
+        .category-title { font-size: 1.5rem; color: var(--star-blue); margin-bottom: 1.5rem; padding-bottom: 0.75rem; border-bottom: 1px solid var(--border-color); display: flex; align-items: center; gap: 0.75rem; font-weight: 600; }
+        .category-icon svg { width: 28px; height: 28px; fill: var(--star-blue); }
         .devices-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1rem; }
         .device-btn { background: var(--card-bg); border: none; padding: 1.25rem 1rem; cursor: pointer; text-align: center; border-radius: 16px; transition: all 0.3s; }
         .device-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.12); }
-        .device-btn.active { box-shadow: 0 0 0 2px var(--star-red); }
+        .device-btn.active { box-shadow: 0 0 0 2px var(--star-blue); }
         body.light-mode .device-btn.active { box-shadow: 0 0 0 2px #FFF; }
         .device-icon svg { width: 32px; height: 32px; fill: var(--card-icon); margin-bottom: 0.5rem; }
         .device-name { font-weight: 500; font-size: 0.8rem; color: var(--card-text); }
         .pricing-details { grid-column: 1 / -1; background: var(--bg-secondary); padding: 2rem; border-radius: 16px; border: 1px solid var(--border-color); animation: fadeIn 0.3s; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         .pricing-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
-        .pricing-details h3 { font-size: 1.25rem; color: var(--star-red); }
+        .pricing-details h3 { font-size: 1.25rem; color: var(--star-blue); }
         .close-pricing { background: none; border: 1px solid var(--border-color); color: var(--text-secondary); width: 32px; height: 32px; border-radius: 50%; cursor: pointer; font-size: 1.2rem; }
-        .close-pricing:hover { border-color: var(--star-red); color: var(--star-red); }
+        .close-pricing:hover { border-color: var(--star-blue); color: var(--star-blue); }
         .price-row { display: flex; justify-content: space-between; padding: 0.75rem 0; border-bottom: 1px solid var(--border-color); }
         .repair-name { color: var(--text-primary); }
-        .repair-price { color: var(--star-red); font-weight: 600; }
+        .repair-price { color: var(--star-blue); font-weight: 600; }
         .pricing-actions { display: flex; gap: 0.75rem; margin-top: 1.5rem; }
         .btn { padding: 12px 24px; font-size: 0.95rem; font-weight: 500; border-radius: 980px; cursor: pointer; text-decoration: none; border: none; }
-        .btn-primary { background: var(--star-red); color: #FFF; }
+        .btn-primary { background: var(--star-blue); color: #FFF; }
         .btn-secondary { background: transparent; color: var(--text-primary); border: 1px solid var(--border-color); }
         .price-note { background: var(--bg-secondary); padding: 1.5rem; margin-top: 2rem; border-radius: 12px; }
         .price-note p { color: var(--text-secondary); font-size: 0.9rem; }
         .pricing-cta { text-align: center; padding: 5rem 2rem; background: var(--card-bg); margin-top: 3rem; border-radius: 20px; }
         .pricing-cta h2 { font-size: 2rem; color: var(--card-text); margin-bottom: 1rem; }
-        body.light-mode .pricing-cta .btn-primary { background: #FFF; color: var(--star-red); }
+        body.light-mode .pricing-cta .btn-primary { background: #FFF; color: var(--star-blue); }
         footer { background: var(--bg-secondary); padding: 3rem 2rem 1.5rem; border-top: 1px solid var(--border-color); }
         .footer-content { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; margin-bottom: 2rem; }
         .footer-section h4 { margin-bottom: 1rem; font-size: 0.85rem; }
         .footer-section p, .footer-section a { color: var(--text-secondary); line-height: 1.8; font-size: 0.85rem; display: block; text-decoration: none; }
-        .footer-section a:hover { color: var(--star-red); }
+        .footer-section a:hover { color: var(--star-blue); }
         .footer-bottom { text-align: center; padding-top: 1.5rem; border-top: 1px solid var(--border-color); color: var(--text-muted); font-size: 0.8rem; }
         @media (max-width: 968px) { .nav-links { display: none; } .hamburger { display: flex; } .devices-grid { grid-template-columns: repeat(4, 1fr); } }
         @media (max-width: 600px) { .devices-grid { grid-template-columns: repeat(2, 1fr); } .pricing-actions { flex-direction: column; } }
