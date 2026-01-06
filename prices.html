@@ -29,8 +29,8 @@
             overflow-x: hidden;
         }
 
-        /* Hexagonal Pattern Background */
-        .hex-background {
+        /* Circuit Board Pattern Background */
+        .circuit-background {
             position: fixed;
             top: 0;
             left: 0;
@@ -41,22 +41,88 @@
             pointer-events: none;
         }
 
-        .hex-pattern {
+        .circuit-pattern {
             width: 100%;
             height: 100%;
+            background-color: var(--pure-black);
             background-image: 
-                linear-gradient(30deg, transparent 73%, var(--star-red) 75%, var(--star-red) 76%, transparent 77%, transparent),
-                linear-gradient(150deg, transparent 73%, var(--star-red) 75%, var(--star-red) 76%, transparent 77%, transparent),
-                linear-gradient(30deg, transparent 73%, var(--star-red) 75%, var(--star-red) 76%, transparent 77%, transparent),
-                linear-gradient(150deg, transparent 73%, var(--star-red) 75%, var(--star-red) 76%, transparent 77%, transparent);
-            background-size: 100px 174px;
-            background-position: 0 0, 0 0, 50px 87px, 50px 87px;
-            animation: hexMove 20s linear infinite;
+                /* Circuit traces - horizontal */
+                linear-gradient(90deg, transparent 0%, transparent 45%, var(--star-red) 45%, var(--star-red) 55%, transparent 55%, transparent 100%),
+                linear-gradient(90deg, transparent 0%, transparent 48%, var(--star-red) 48%, var(--star-red) 52%, transparent 52%, transparent 100%),
+                /* Circuit traces - vertical */
+                linear-gradient(0deg, transparent 0%, transparent 45%, var(--star-red) 45%, var(--star-red) 55%, transparent 55%, transparent 100%),
+                linear-gradient(0deg, transparent 0%, transparent 48%, var(--star-red) 48%, var(--star-red) 52%, transparent 52%, transparent 100%),
+                /* Connection nodes */
+                radial-gradient(circle at center, var(--star-red) 0%, var(--star-red) 30%, transparent 30%),
+                radial-gradient(circle at center, var(--star-red) 0%, var(--star-red) 20%, transparent 20%),
+                /* Corner connections */
+                radial-gradient(circle at 0% 0%, transparent 0%, transparent 48%, var(--star-red) 48%, var(--star-red) 50%, transparent 50%),
+                radial-gradient(circle at 100% 0%, transparent 0%, transparent 48%, var(--star-red) 48%, var(--star-red) 50%, transparent 50%),
+                radial-gradient(circle at 0% 100%, transparent 0%, transparent 48%, var(--star-red) 48%, var(--star-red) 50%, transparent 50%),
+                radial-gradient(circle at 100% 100%, transparent 0%, transparent 48%, var(--star-red) 48%, var(--star-red) 50%, transparent 50%),
+                /* Diagonal traces */
+                repeating-linear-gradient(45deg, transparent, transparent 45px, var(--star-red) 45px, var(--star-red) 47px, transparent 47px, transparent 90px),
+                repeating-linear-gradient(-45deg, transparent, transparent 60px, var(--star-red) 60px, var(--star-red) 62px, transparent 62px, transparent 120px);
+            background-size: 
+                200px 100px,
+                300px 100px,
+                100px 200px,
+                100px 300px,
+                150px 150px,
+                250px 250px,
+                100px 100px,
+                100px 100px,
+                100px 100px,
+                100px 100px,
+                200px 200px,
+                300px 300px;
+            background-position: 
+                0 0,
+                50px 50px,
+                0 0,
+                50px 50px,
+                25px 25px,
+                75px 75px,
+                0 0,
+                100% 0,
+                0 100%,
+                100% 100%,
+                0 0,
+                0 0;
+            animation: circuitFlow 20s linear infinite;
         }
 
-        @keyframes hexMove {
-            0% { transform: translateY(0); }
-            100% { transform: translateY(174px); }
+        @keyframes circuitFlow {
+            0% {
+                background-position: 
+                    0 0,
+                    50px 50px,
+                    0 0,
+                    50px 50px,
+                    25px 25px,
+                    75px 75px,
+                    0 0,
+                    100% 0,
+                    0 100%,
+                    100% 100%,
+                    0 0,
+                    0 0;
+            }
+            100% {
+                background-position: 
+                    200px 0,
+                    250px 50px,
+                    0 200px,
+                    50px 250px,
+                    175px 175px,
+                    325px 325px,
+                    0 0,
+                    100% 0,
+                    0 100%,
+                    100% 100%,
+                    200px 200px,
+                    300px 300px;
+            }
         }
 
         /* Navigation */
@@ -413,8 +479,8 @@
     </style>
 </head>
 <body>
-    <div class="hex-background">
-        <div class="hex-pattern"></div>
+    <div class="circuit-background">
+        <div class="circuit-pattern"></div>
     </div>
 
     <nav>
