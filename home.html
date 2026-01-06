@@ -380,4 +380,10 @@
             if (n > slides.length) slideIndex = 1;
             if (n < 1) slideIndex = slides.length;
             for (let i = 0; i < slides.length; i++) slides[i].classList.remove("active");
-            for (let i = 0; i < dots.length; i++) dots
+            for (let i = 0; i < dots.length; i++) dots[i].classList.remove("active");
+            if (slides[slideIndex - 1]) slides[slideIndex - 1].classList.add("active");
+            if (dots[slideIndex - 1]) dots[slideIndex - 1].classList.add("active");
+        }
+    </script>
+</body>
+</html>
