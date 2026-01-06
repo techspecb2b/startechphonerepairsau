@@ -10,7 +10,7 @@
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         :root { --star-red: #FF3200; --bg-primary: #000000; --bg-secondary: #1a1a1a; --text-primary: #FFFFFF; --text-secondary: #cccccc; --text-muted: #666666; --border-color: rgba(255, 50, 0, 0.3); --nav-bg: rgba(0, 0, 0, 0.95); --red-glow: rgba(255, 50, 0, 0.3); --circuit-opacity: 0.06; }
-        body.light-mode { --bg-primary: #FFFFFF; --bg-secondary: #f5f5f5; --text-primary: #000000; --text-secondary: #333333; --text-muted: #666666; --nav-bg: rgba(255, 255, 255, 0.95); --circuit-opacity: 0.12; }
+        body.light-mode { --bg-primary: #FFFFFF; --bg-secondary: #f5f5f5; --text-primary: #000000; --text-secondary: #333333; --text-muted: #666666; --nav-bg: rgba(255, 255, 255, 0.95); --circuit-opacity: 0.12; --card-bg: #FF3200; --card-text: #FFFFFF; --card-desc: rgba(255,255,255,0.9); --card-icon: #FFFFFF; }
         body { font-family: 'Work Sans', sans-serif; background: var(--bg-primary); color: var(--text-primary); overflow-x: hidden; transition: background 0.3s ease, color 0.3s ease; }
         .theme-toggle { position: fixed; bottom: 30px; right: 30px; width: 50px; height: 50px; border-radius: 50%; background: var(--star-red); border: none; cursor: pointer; z-index: 1001; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px var(--red-glow); }
         .theme-toggle:hover { transform: scale(1.1); }
@@ -78,7 +78,7 @@
         @media (max-width: 600px) { .contact-form { grid-template-columns: 1fr; } .form-group.full-width { grid-column: span 1; } }
     </style>
 </head>
-<body>
+<body class="light-mode">
     <div class="circuit-background"></div>
     <button class="theme-toggle" onclick="toggleTheme()">
         <svg class="moon-icon" viewBox="0 0 24 24"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-2.98 0-5.4-2.42-5.4-5.4 0-1.81.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z"/></svg>
