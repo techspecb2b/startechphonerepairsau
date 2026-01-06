@@ -37,152 +37,21 @@
             width: 100%;
             height: 100%;
             z-index: 0;
-            opacity: 0.03;
+            opacity: 0.08;
             pointer-events: none;
-        }
-
-        .circuit-pattern {
-            width: 100%;
-            height: 100%;
             background-color: var(--pure-black);
-            background-image: 
-                /* Main horizontal traces */
-                repeating-linear-gradient(
-                    0deg,
-                    transparent,
-                    transparent 45px,
-                    var(--star-red) 45px,
-                    var(--star-red) 46px,
-                    transparent 46px,
-                    transparent 90px
-                ),
-                repeating-linear-gradient(
-                    0deg,
-                    transparent,
-                    transparent 68px,
-                    var(--star-red) 68px,
-                    var(--star-red) 69px,
-                    transparent 69px,
-                    transparent 136px
-                ),
-                /* Main vertical traces */
-                repeating-linear-gradient(
-                    90deg,
-                    transparent,
-                    transparent 50px,
-                    var(--star-red) 50px,
-                    var(--star-red) 51px,
-                    transparent 51px,
-                    transparent 100px
-                ),
-                repeating-linear-gradient(
-                    90deg,
-                    transparent,
-                    transparent 75px,
-                    var(--star-red) 75px,
-                    var(--star-red) 76px,
-                    transparent 76px,
-                    transparent 150px
-                ),
-                /* Connection nodes */
-                radial-gradient(
-                    circle at 50px 45px,
-                    var(--star-red) 0px,
-                    var(--star-red) 2px,
-                    transparent 2px
-                ),
-                radial-gradient(
-                    circle at 100px 90px,
-                    var(--star-red) 0px,
-                    var(--star-red) 2.5px,
-                    transparent 2.5px
-                ),
-                radial-gradient(
-                    circle at 75px 68px,
-                    var(--star-red) 0px,
-                    var(--star-red) 1.5px,
-                    transparent 1.5px
-                ),
-                /* Diagonal connecting traces */
-                repeating-linear-gradient(
-                    45deg,
-                    transparent,
-                    transparent 48px,
-                    var(--star-red) 48px,
-                    var(--star-red) 49px,
-                    transparent 49px,
-                    transparent 98px
-                ),
-                repeating-linear-gradient(
-                    -45deg,
-                    transparent,
-                    transparent 63px,
-                    var(--star-red) 63px,
-                    var(--star-red) 64px,
-                    transparent 64px,
-                    transparent 128px
-                ),
-                /* Short horizontal branches */
-                repeating-linear-gradient(
-                    0deg,
-                    transparent,
-                    transparent 30px,
-                    var(--star-red) 30px,
-                    var(--star-red) 31px,
-                    transparent 31px,
-                    transparent 60px
-                );
-            background-size: 
-                100% 100%,
-                100% 100%,
-                100% 100%,
-                100% 100%,
-                100px 90px,
-                200px 180px,
-                150px 136px,
-                100% 100%,
-                100% 100%,
-                100% 100%;
-            background-position: 
-                0 0,
-                25px 0,
-                0 0,
-                37px 0,
-                0 0,
-                50px 45px,
-                25px 34px,
-                0 0,
-                0 0,
-                50px 0;
-            animation: circuitFlow 25s linear infinite;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="800" height="800" viewBox="0 0 800 800"><defs><style>.trace{fill:none;stroke:%23FF3200;stroke-width:2;}.pad{fill:%23FF3200;}</style></defs><path class="trace" d="M100,100 L300,100"/><path class="trace" d="M300,100 L300,200"/><path class="trace" d="M300,200 L500,200"/><circle class="pad" cx="100" cy="100" r="4"/><circle class="pad" cx="300" cy="100" r="4"/><circle class="pad" cx="300" cy="200" r="4"/><circle class="pad" cx="500" cy="200" r="4"/><path class="trace" d="M150,150 L250,150"/><path class="trace" d="M250,150 L250,250"/><circle class="pad" cx="150" cy="150" r="3"/><circle class="pad" cx="250" cy="150" r="3"/><circle class="pad" cx="250" cy="250" r="3"/><path class="trace" d="M400,120 L600,120"/><path class="trace" d="M600,120 L600,280"/><path class="trace" d="M600,280 L700,280"/><circle class="pad" cx="400" cy="120" r="4"/><circle class="pad" cx="600" cy="120" r="4"/><circle class="pad" cx="600" cy="280" r="4"/><circle class="pad" cx="700" cy="280" r="4"/><path class="trace" d="M50,300 L150,300"/><path class="trace" d="M150,300 L150,400"/><path class="trace" d="M150,400 L350,400"/><circle class="pad" cx="50" cy="300" r="3"/><circle class="pad" cx="150" cy="300" r="4"/><circle class="pad" cx="150" cy="400" r="4"/><circle class="pad" cx="350" cy="400" r="4"/><path class="trace" d="M450,350 L550,350"/><path class="trace" d="M550,350 L550,450"/><circle class="pad" cx="450" cy="350" r="3"/><circle class="pad" cx="550" cy="350" r="4"/><circle class="pad" cx="550" cy="450" r="3"/><path class="trace" d="M200,500 L400,500"/><path class="trace" d="M400,500 L400,600"/><path class="trace" d="M400,600 L600,600"/><circle class="pad" cx="200" cy="500" r="4"/><circle class="pad" cx="400" cy="500" r="4"/><circle class="pad" cx="400" cy="600" r="4"/><circle class="pad" cx="600" cy="600" r="4"/><path class="trace" d="M100,550 L200,550"/><path class="trace" d="M200,550 L200,650"/><circle class="pad" cx="100" cy="550" r="3"/><circle class="pad" cx="200" cy="550" r="3"/><circle class="pad" cx="200" cy="650" r="3"/><path class="trace" d="M500,520 L650,520"/><path class="trace" d="M650,520 L650,680"/><circle class="pad" cx="500" cy="520" r="4"/><circle class="pad" cx="650" cy="520" r="4"/><circle class="pad" cx="650" cy="680" r="3"/><path class="trace" d="M50,700 L250,700"/><path class="trace" d="M250,700 L250,750"/><circle class="pad" cx="50" cy="700" r="3"/><circle class="pad" cx="250" cy="700" r="4"/><circle class="pad" cx="250" cy="750" r="3"/><path class="trace" d="M350,650 L500,650"/><path class="trace" d="M500,650 L500,750"/><circle class="pad" cx="350" cy="650" r="3"/><circle class="pad" cx="500" cy="650" r="4"/><circle class="pad" cx="500" cy="750" r="3"/><path class="trace" d="M120,220 L320,220"/><circle class="pad" cx="120" cy="220" r="3"/><circle class="pad" cx="320" cy="220" r="3"/><path class="trace" d="M420,450 L520,550"/><circle class="pad" cx="420" cy="450" r="3"/><circle class="pad" cx="520" cy="550" r="3"/><path class="trace" d="M680,150 L750,150"/><path class="trace" d="M750,150 L750,350"/><circle class="pad" cx="680" cy="150" r="3"/><circle class="pad" cx="750" cy="150" r="4"/><circle class="pad" cx="750" cy="350" r="3"/><rect class="pad" x="295" y="95" width="10" height="10" rx="1"/><rect class="pad" x="595" y="115" width="10" height="10" rx="1"/><rect class="pad" x="395" y="495" width="10" height="10" rx="1"/><rect class="pad" x="645" y="515" width="10" height="10" rx="1"/></svg>');
+            background-size: 400px 400px;
+            background-repeat: repeat;
+            animation: circuitScroll 30s linear infinite;
         }
 
-        @keyframes circuitFlow {
+        @keyframes circuitScroll {
             0% {
-                background-position: 
-                    0 0,
-                    25px 0,
-                    0 0,
-                    37px 0,
-                    0 0,
-                    50px 45px,
-                    25px 34px,
-                    0 0,
-                    0 0,
-                    50px 0;
+                background-position: 0 0;
             }
             100% {
-                background-position: 
-                    0 90px,
-                    25px 136px,
-                    100px 0,
-                    137px 0,
-                    100px 90px,
-                    250px 225px,
-                    175px 170px,
-                    98px 98px,
-                    -128px -128px,
-                    50px 60px;
+                background-position: 400px 400px;
             }
         }
 
@@ -538,53 +407,110 @@
             justify-content: center;
             position: relative;
             overflow: hidden;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
+            padding: 3rem 2rem;
         }
 
-        .why-visual:hover {
-            border-color: var(--star-red);
-            box-shadow: 0 0 30px var(--red-glow);
-            transform: scale(1.02);
-        }
-
-        .google-reviews-content {
+        .reviews-header {
             text-align: center;
+            margin-bottom: 2rem;
             z-index: 2;
-            position: relative;
+        }
+
+        .google-badge {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
         }
 
         .google-icon {
-            width: 100px;
-            height: 100px;
-            margin-bottom: 2rem;
+            width: 40px;
+            height: 40px;
         }
 
-        .google-icon svg {
-            width: 100%;
-            height: 100%;
-        }
-
-        .reviews-text {
+        .google-reviews-text {
             font-family: 'Orbitron', sans-serif;
-            font-size: 2.5rem;
-            font-weight: 900;
+            font-size: 1.5rem;
+            font-weight: 700;
             color: var(--pure-white);
-            margin-bottom: 1rem;
-            text-transform: uppercase;
         }
 
-        .reviews-stars {
-            font-size: 3rem;
+        .overall-rating {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .stars {
             color: #FBBC04;
-            margin-bottom: 1rem;
+            font-size: 1.5rem;
         }
 
-        .reviews-cta {
+        .rating-number {
+            color: var(--pure-white);
+            font-weight: 600;
             font-size: 1.2rem;
+        }
+
+        .slideshow-container {
+            position: relative;
+            max-width: 700px;
+            margin: 0 auto;
+            z-index: 2;
+        }
+
+        .review-slide {
+            display: none;
+            text-align: center;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .review-slide.active {
+            display: block;
+        }
+
+        .review-stars {
+            color: #FBBC04;
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .review-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--pure-white);
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+
+        .reviewer-name {
+            font-weight: 600;
             color: #ccc;
-            margin-top: 1rem;
+            font-size: 1rem;
+        }
+
+        .slideshow-dots {
+            text-align: center;
+            margin-top: 2rem;
+            z-index: 2;
+        }
+
+        .dot {
+            height: 12px;
+            width: 12px;
+            margin: 0 5px;
+            background-color: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            display: inline-block;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .dot.active,
+        .dot:hover {
+            background-color: var(--star-red);
         }
 
         .why-visual::before {
@@ -767,9 +693,7 @@
     </style>
 </head>
 <body>
-    <div class="circuit-background">
-        <div class="circuit-pattern"></div>
-    </div>
+    <div class="circuit-background"></div>
 
     <nav>
         <div class="nav-container">
@@ -922,21 +846,70 @@
                         </li>
                     </ul>
                 </div>
-                <a href="https://g.page/r/CdfnlvbxSOvyEBM/review" target="_blank" rel="noopener noreferrer" class="why-visual">
-                    <div class="google-reviews-content">
-                        <div class="google-icon">
-                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <div class="why-visual reviews-slideshow">
+                    <div class="reviews-header">
+                        <div class="google-badge">
+                            <svg class="google-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
                                 <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
                                 <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
                                 <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
                             </svg>
+                            <span class="google-reviews-text">Google Reviews</span>
                         </div>
-                        <div class="reviews-text">Leave Us A Review</div>
-                        <div class="reviews-stars">★★★★★</div>
-                        <div class="reviews-cta">Share your experience →</div>
+                        <div class="overall-rating">
+                            <div class="stars">★★★★★</div>
+                            <div class="rating-number">4.9/5.0</div>
+                        </div>
                     </div>
-                </a>
+                    
+                    <div class="slideshow-container">
+                        <div class="review-slide active">
+                            <div class="review-stars">★★★★★</div>
+                            <p class="review-text">"Very impressed with the service from Star Tech today. I called just after 9am with a non-charging iPhone6 and after dropping the phone off for only half an hour at 11am the charging port had been diagnosed as faulty, been replaced and my phone was fully charged again!"</p>
+                            <p class="reviewer-name">— Carmela R.</p>
+                        </div>
+                        
+                        <div class="review-slide">
+                            <div class="review-stars">★★★★★</div>
+                            <p class="review-text">"Great quality repairs at super affordable prices. Had a minor issue after getting my back glass replaced and they were very quick to resolve it!"</p>
+                            <p class="reviewer-name">— Customer Review</p>
+                        </div>
+                        
+                        <div class="review-slide">
+                            <div class="review-stars">★★★★★</div>
+                            <p class="review-text">"Amazing service and super nice dude! Went above and beyond to get my phone fixed ASAP in difficult circumstances. High quality repairs and great prices, wouldn't go anywhere else."</p>
+                            <p class="reviewer-name">— Customer Review</p>
+                        </div>
+                        
+                        <div class="review-slide">
+                            <div class="review-stars">★★★★★</div>
+                            <p class="review-text">"Very quick efficient service, fixed my phone in 15 minutes and for an affordable price. Highly recommend Star Tech."</p>
+                            <p class="reviewer-name">— Customer Review</p>
+                        </div>
+                        
+                        <div class="review-slide">
+                            <div class="review-stars">★★★★★</div>
+                            <p class="review-text">"Honesty the best at what they do, I've had 2 iPhone X screens replaced here. Quality work, quick turn around, nice people and affordable prices! 10/10"</p>
+                            <p class="reviewer-name">— Customer Review</p>
+                        </div>
+                        
+                        <div class="review-slide">
+                            <div class="review-stars">★★★★★</div>
+                            <p class="review-text">"Very quick and friendly. Said it'd be done in 30 minutes and had it done in under 20! The screen looks great, thank you!"</p>
+                            <p class="reviewer-name">— Customer Review</p>
+                        </div>
+                    </div>
+                    
+                    <div class="slideshow-dots">
+                        <span class="dot active" onclick="currentSlide(1)"></span>
+                        <span class="dot" onclick="currentSlide(2)"></span>
+                        <span class="dot" onclick="currentSlide(3)"></span>
+                        <span class="dot" onclick="currentSlide(4)"></span>
+                        <span class="dot" onclick="currentSlide(5)"></span>
+                        <span class="dot" onclick="currentSlide(6)"></span>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -1009,5 +982,53 @@
             <p>&copy; 2026 Star Tech Phone Repairs. All rights reserved.</p>
         </div>
     </footer>
+
+    <script>
+        let slideIndex = 1;
+        let slideTimer;
+
+        // Show first slide
+        showSlides(slideIndex);
+        
+        // Auto-advance slides every 5 seconds
+        function autoSlides() {
+            slideIndex++;
+            showSlides(slideIndex);
+            slideTimer = setTimeout(autoSlides, 5000);
+        }
+        
+        // Start auto-sliding
+        slideTimer = setTimeout(autoSlides, 5000);
+
+        function currentSlide(n) {
+            clearTimeout(slideTimer);
+            slideIndex = n;
+            showSlides(slideIndex);
+            slideTimer = setTimeout(autoSlides, 5000);
+        }
+
+        function showSlides(n) {
+            let slides = document.getElementsByClassName("review-slide");
+            let dots = document.getElementsByClassName("dot");
+            
+            if (n > slides.length) { slideIndex = 1 }
+            if (n < 1) { slideIndex = slides.length }
+            
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].classList.remove("active");
+            }
+            
+            for (let i = 0; i < dots.length; i++) {
+                dots[i].classList.remove("active");
+            }
+            
+            if (slides[slideIndex - 1]) {
+                slides[slideIndex - 1].classList.add("active");
+            }
+            if (dots[slideIndex - 1]) {
+                dots[slideIndex - 1].classList.add("active");
+            }
+        }
+    </script>
 </body>
 </html>
