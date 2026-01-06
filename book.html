@@ -37,153 +37,12 @@
             width: 100%;
             height: 100%;
             z-index: 0;
-            opacity: 0.03;
+            opacity: 0.06;
             pointer-events: none;
-        }
-
-        .circuit-pattern {
-            width: 100%;
-            height: 100%;
             background-color: var(--pure-black);
-            background-image: 
-                /* Main horizontal traces */
-                repeating-linear-gradient(
-                    0deg,
-                    transparent,
-                    transparent 45px,
-                    var(--star-red) 45px,
-                    var(--star-red) 46px,
-                    transparent 46px,
-                    transparent 90px
-                ),
-                repeating-linear-gradient(
-                    0deg,
-                    transparent,
-                    transparent 68px,
-                    var(--star-red) 68px,
-                    var(--star-red) 69px,
-                    transparent 69px,
-                    transparent 136px
-                ),
-                /* Main vertical traces */
-                repeating-linear-gradient(
-                    90deg,
-                    transparent,
-                    transparent 50px,
-                    var(--star-red) 50px,
-                    var(--star-red) 51px,
-                    transparent 51px,
-                    transparent 100px
-                ),
-                repeating-linear-gradient(
-                    90deg,
-                    transparent,
-                    transparent 75px,
-                    var(--star-red) 75px,
-                    var(--star-red) 76px,
-                    transparent 76px,
-                    transparent 150px
-                ),
-                /* Connection nodes */
-                radial-gradient(
-                    circle at 50px 45px,
-                    var(--star-red) 0px,
-                    var(--star-red) 2px,
-                    transparent 2px
-                ),
-                radial-gradient(
-                    circle at 100px 90px,
-                    var(--star-red) 0px,
-                    var(--star-red) 2.5px,
-                    transparent 2.5px
-                ),
-                radial-gradient(
-                    circle at 75px 68px,
-                    var(--star-red) 0px,
-                    var(--star-red) 1.5px,
-                    transparent 1.5px
-                ),
-                /* Diagonal connecting traces */
-                repeating-linear-gradient(
-                    45deg,
-                    transparent,
-                    transparent 48px,
-                    var(--star-red) 48px,
-                    var(--star-red) 49px,
-                    transparent 49px,
-                    transparent 98px
-                ),
-                repeating-linear-gradient(
-                    -45deg,
-                    transparent,
-                    transparent 63px,
-                    var(--star-red) 63px,
-                    var(--star-red) 64px,
-                    transparent 64px,
-                    transparent 128px
-                ),
-                /* Short horizontal branches */
-                repeating-linear-gradient(
-                    0deg,
-                    transparent,
-                    transparent 30px,
-                    var(--star-red) 30px,
-                    var(--star-red) 31px,
-                    transparent 31px,
-                    transparent 60px
-                );
-            background-size: 
-                100% 100%,
-                100% 100%,
-                100% 100%,
-                100% 100%,
-                100px 90px,
-                200px 180px,
-                150px 136px,
-                100% 100%,
-                100% 100%,
-                100% 100%;
-            background-position: 
-                0 0,
-                25px 0,
-                0 0,
-                37px 0,
-                0 0,
-                50px 45px,
-                25px 34px,
-                0 0,
-                0 0,
-                50px 0;
-            animation: circuitFlow 25s linear infinite;
-        }
-
-        @keyframes circuitFlow {
-            0% {
-                background-position: 
-                    0 0,
-                    25px 0,
-                    0 0,
-                    37px 0,
-                    0 0,
-                    50px 45px,
-                    25px 34px,
-                    0 0,
-                    0 0,
-                    50px 0;
-            }
-            100% {
-                background-position: 
-                    0 90px,
-                    25px 136px,
-                    100px 0,
-                    137px 0,
-                    100px 90px,
-                    250px 225px,
-                    175px 170px,
-                    98px 98px,
-                    -128px -128px,
-                    50px 60px;
-            }
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400' viewBox='0 0 400 400'%3E%3Cstyle%3E.t%7Bfill:none;stroke:%23FF3200;stroke-width:1.5%7D.p%7Bfill:%23FF3200%7D%3C/style%3E%3Cpath class='t' d='M50 50h100M150 50v60M150 110h80M230 110v50'/%3E%3Ccircle class='p' cx='50' cy='50' r='3'/%3E%3Ccircle class='p' cx='150' cy='50' r='3'/%3E%3Ccircle class='p' cx='150' cy='110' r='3'/%3E%3Ccircle class='p' cx='230' cy='110' r='3'/%3E%3Ccircle class='p' cx='230' cy='160' r='3'/%3E%3Cpath class='t' d='M280 30h70M350 30v100M350 130h-60M290 130v40'/%3E%3Ccircle class='p' cx='280' cy='30' r='3'/%3E%3Ccircle class='p' cx='350' cy='30' r='3'/%3E%3Ccircle class='p' cx='350' cy='130' r='3'/%3E%3Ccircle class='p' cx='290' cy='130' r='3'/%3E%3Ccircle class='p' cx='290' cy='170' r='3'/%3E%3Cpath class='t' d='M30 200h90M120 200v70M120 270h100'/%3E%3Ccircle class='p' cx='30' cy='200' r='3'/%3E%3Ccircle class='p' cx='120' cy='200' r='3'/%3E%3Ccircle class='p' cx='120' cy='270' r='3'/%3E%3Ccircle class='p' cx='220' cy='270' r='3'/%3E%3Cpath class='t' d='M260 220h80M340 220v60M340 280h30'/%3E%3Ccircle class='p' cx='260' cy='220' r='3'/%3E%3Ccircle class='p' cx='340' cy='220' r='3'/%3E%3Ccircle class='p' cx='340' cy='280' r='3'/%3E%3Ccircle class='p' cx='370' cy='280' r='3'/%3E%3Cpath class='t' d='M60 320h70M130 320v50M130 370h90'/%3E%3Ccircle class='p' cx='60' cy='320' r='3'/%3E%3Ccircle class='p' cx='130' cy='320' r='3'/%3E%3Ccircle class='p' cx='130' cy='370' r='3'/%3E%3Ccircle class='p' cx='220' cy='370' r='3'/%3E%3Cpath class='t' d='M270 310h60M330 310v60'/%3E%3Ccircle class='p' cx='270' cy='310' r='3'/%3E%3Ccircle class='p' cx='330' cy='310' r='3'/%3E%3Ccircle class='p' cx='330' cy='370' r='3'/%3E%3Cpath class='t' d='M180 140l40 40M220 180v40'/%3E%3Ccircle class='p' cx='180' cy='140' r='2'/%3E%3Ccircle class='p' cx='220' cy='180' r='2'/%3E%3Ccircle class='p' cx='220' cy='220' r='2'/%3E%3Crect class='p' x='147' y='47' width='6' height='6' rx='1'/%3E%3Crect class='p' x='347' y='127' width='6' height='6' rx='1'/%3E%3Crect class='p' x='117' y='267' width='6' height='6' rx='1'/%3E%3Crect class='p' x='327' y='307' width='6' height='6' rx='1'/%3E%3C/svg%3E");
+            background-size: 400px 400px;
+            background-repeat: repeat;
         }
 
         /* Navigation */
@@ -215,12 +74,18 @@
             letter-spacing: 2px;
             text-shadow: 0 0 20px var(--red-glow);
             text-decoration: none;
+            cursor: pointer;
+        }
+
+        .logo:hover {
+            text-shadow: 0 0 30px var(--star-red);
         }
 
         .nav-links {
             display: flex;
             gap: 2.5rem;
             list-style: none;
+            align-items: center;
         }
 
         .nav-links a {
@@ -237,6 +102,97 @@
 
         .nav-links a.active {
             color: var(--star-red);
+        }
+
+        .nav-links a.book-now-btn {
+            border: 2px solid var(--star-red);
+            padding: 0.6rem 1.2rem;
+            background: var(--star-red);
+            color: var(--pure-white);
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a.book-now-btn:hover {
+            background: transparent;
+            color: var(--star-red);
+            box-shadow: 0 0 20px var(--red-glow);
+        }
+
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+            z-index: 1001;
+        }
+
+        .hamburger span {
+            width: 28px;
+            height: 3px;
+            background: var(--star-red);
+            transition: all 0.3s ease;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 6px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 70px;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.98);
+            border-bottom: 2px solid var(--star-red);
+            padding: 2rem;
+            z-index: 999;
+        }
+
+        .mobile-menu.active {
+            display: block;
+        }
+
+        .mobile-menu a {
+            display: block;
+            color: var(--pure-white);
+            text-decoration: none;
+            padding: 1rem;
+            font-size: 1.2rem;
+            border-bottom: 1px solid rgba(255, 50, 0, 0.2);
+            transition: color 0.3s ease;
+        }
+
+        .mobile-menu a:hover,
+        .mobile-menu a.active {
+            color: var(--star-red);
+        }
+
+        .mobile-menu a.book-now-btn {
+            border: 2px solid var(--star-red);
+            background: var(--star-red);
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+        @media (max-width: 968px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hamburger {
+                display: flex;
+            }
         }
 
         /* Page Header */
@@ -642,9 +598,7 @@
     </style>
 </head>
 <body>
-    <div class="circuit-background">
-        <div class="circuit-pattern"></div>
-    </div>
+    <div class="circuit-background"></div>
 
     <nav>
         <div class="nav-container">
@@ -654,10 +608,23 @@
                 <li><a href="services.html">Services</a></li>
                 <li><a href="prices.html">Prices</a></li>
                 <li><a href="contact.html">Contact</a></li>
-                <li><a href="book.html" class="active">Book Now</a></li>
+                <li><a href="book.html" class="book-now-btn active">Book Now</a></li>
             </ul>
+            <div class="hamburger" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
         </div>
     </nav>
+
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="home.html">Home</a>
+        <a href="services.html">Services</a>
+        <a href="prices.html">Prices</a>
+        <a href="contact.html">Contact</a>
+        <a href="book.html" class="book-now-btn active">Book Now</a>
+    </div>
 
     <div class="page-header">
         <h1>Book Your Repair</h1>
@@ -923,6 +890,11 @@
     </footer>
 
     <script>
+        function toggleMenu() {
+            document.querySelector('.hamburger').classList.toggle('active');
+            document.getElementById('mobileMenu').classList.toggle('active');
+        }
+
         let currentStep = 1;
         const totalSteps = 5;
 
