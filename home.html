@@ -29,6 +29,36 @@
             overflow-x: hidden;
         }
 
+        /* Hexagonal Pattern Background */
+        .hex-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            opacity: 0.03;
+            pointer-events: none;
+        }
+
+        .hex-pattern {
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(30deg, transparent 73%, var(--star-red) 75%, var(--star-red) 76%, transparent 77%, transparent),
+                linear-gradient(150deg, transparent 73%, var(--star-red) 75%, var(--star-red) 76%, transparent 77%, transparent),
+                linear-gradient(30deg, transparent 73%, var(--star-red) 75%, var(--star-red) 76%, transparent 77%, transparent),
+                linear-gradient(150deg, transparent 73%, var(--star-red) 75%, var(--star-red) 76%, transparent 77%, transparent);
+            background-size: 100px 174px;
+            background-position: 0 0, 0 0, 50px 87px, 50px 87px;
+            animation: hexMove 20s linear infinite;
+        }
+
+        @keyframes hexMove {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(174px); }
+        }
+
         /* Navigation */
         nav {
             position: fixed;
@@ -99,7 +129,7 @@
         /* Hero Section */
         .hero {
             margin-top: 80px;
-            height: 90vh;
+            min-height: 90vh;
             position: relative;
             display: flex;
             align-items: center;
@@ -124,25 +154,6 @@
             50% { opacity: 0.6; }
         }
 
-        .hero-grid {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                linear-gradient(var(--star-red) 1px, transparent 1px),
-                linear-gradient(90deg, var(--star-red) 1px, transparent 1px);
-            background-size: 50px 50px;
-            opacity: 0.05;
-            animation: gridMove 20s linear infinite;
-        }
-
-        @keyframes gridMove {
-            0% { transform: translateY(0); }
-            100% { transform: translateY(50px); }
-        }
-
         .hero-content {
             position: relative;
             z-index: 2;
@@ -159,7 +170,8 @@
             margin-bottom: 1.5rem;
             text-transform: uppercase;
             letter-spacing: 3px;
-            animation: fadeInUp 0.8s ease-out;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease-out 0.3s forwards;
         }
 
         .hero h1 .star {
@@ -182,14 +194,16 @@
             font-size: 1.4rem;
             margin-bottom: 3rem;
             color: #ccc;
-            animation: fadeInUp 0.8s ease-out 0.2s backwards;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease-out 0.5s forwards;
         }
 
         .cta-buttons {
             display: flex;
             gap: 1.5rem;
             justify-content: center;
-            animation: fadeInUp 0.8s ease-out 0.4s backwards;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease-out 0.7s forwards;
         }
 
         .btn {
@@ -197,7 +211,6 @@
             font-size: 1.1rem;
             font-weight: 600;
             text-decoration: none;
-            border-radius: 0;
             transition: all 0.3s ease;
             cursor: pointer;
             text-transform: uppercase;
@@ -205,6 +218,7 @@
             border: 2px solid var(--star-red);
             position: relative;
             overflow: hidden;
+            display: inline-block;
         }
 
         .btn-primary {
@@ -248,6 +262,7 @@
             padding: 8rem 2rem;
             background: var(--dark-gray);
             position: relative;
+            z-index: 1;
         }
 
         .features::before {
@@ -319,9 +334,15 @@
         }
 
         .feature-icon {
-            font-size: 3rem;
+            width: 60px;
+            height: 60px;
             margin-bottom: 1.5rem;
-            color: var(--star-red);
+        }
+
+        .feature-icon svg {
+            width: 100%;
+            height: 100%;
+            fill: var(--star-red);
         }
 
         .feature-card h3 {
@@ -341,6 +362,8 @@
         .why-choose {
             padding: 8rem 2rem;
             background: var(--pure-black);
+            position: relative;
+            z-index: 1;
         }
 
         .why-grid {
@@ -372,10 +395,11 @@
             gap: 1rem;
         }
 
-        .why-list li::before {
-            content: '★';
-            color: var(--star-red);
-            font-size: 1.5rem;
+        .why-list li svg {
+            width: 24px;
+            height: 24px;
+            fill: var(--star-red);
+            flex-shrink: 0;
         }
 
         .why-visual {
@@ -403,6 +427,8 @@
             padding: 8rem 2rem;
             background: var(--dark-gray);
             text-align: center;
+            position: relative;
+            z-index: 1;
         }
 
         .trust-stats {
@@ -439,6 +465,7 @@
             text-align: center;
             position: relative;
             overflow: hidden;
+            z-index: 1;
         }
 
         .final-cta::before {
@@ -476,6 +503,8 @@
             background: var(--pure-black);
             border-top: 2px solid var(--star-red);
             padding: 3rem 2rem 1.5rem;
+            position: relative;
+            z-index: 1;
         }
 
         .footer-content {
@@ -558,6 +587,10 @@
     </style>
 </head>
 <body>
+    <div class="hex-background">
+        <div class="hex-pattern"></div>
+    </div>
+
     <nav>
         <div class="nav-container">
             <div class="logo">STAR TECH</div>
@@ -573,7 +606,6 @@
 
     <section class="hero">
         <div class="hero-background"></div>
-        <div class="hero-grid"></div>
         <div class="hero-content">
             <h1><span class="star">STAR</span> TECH PHONE REPAIRS</h1>
             <p>Perth's Most Trusted Tech Repair Specialists</p>
@@ -591,37 +623,61 @@
             
             <div class="features-grid">
                 <div class="feature-card">
-                    <div class="feature-icon">⚡</div>
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M13 2L3 14h8l-1 8 10-12h-8l1-8z"/>
+                        </svg>
+                    </div>
                     <h3>Lightning Fast</h3>
                     <p>Most repairs completed within 30-60 minutes. We value your time and get you back to what matters most.</p>
                 </div>
                 
                 <div class="feature-card">
-                    <div class="feature-icon">✓</div>
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/>
+                        </svg>
+                    </div>
                     <h3>Quality Guaranteed</h3>
                     <p>Premium parts, expert technicians, and comprehensive warranties on all repairs. Your satisfaction is our mission.</p>
                 </div>
                 
                 <div class="feature-card">
-                    <div class="feature-icon">★</div>
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27z"/>
+                        </svg>
+                    </div>
                     <h3>Community Trusted</h3>
                     <p>Proudly serving Perth with 5-star service. Join thousands of satisfied customers who trust Star Tech.</p>
                 </div>
                 
                 <div class="feature-card">
-                    <div class="feature-icon">💰</div>
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/>
+                        </svg>
+                    </div>
                     <h3>Fair Pricing</h3>
                     <p>Transparent, competitive rates with no hidden fees. Quality repairs that won't break the bank.</p>
                 </div>
                 
                 <div class="feature-card">
-                    <div class="feature-icon">🛠️</div>
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M20 6h-2.18c.11-.31.18-.65.18-1 0-1.66-1.34-3-3-3-1.05 0-1.96.54-2.5 1.35l-.5.67-.5-.68C10.96 2.54 10.05 2 9 2 7.34 2 6 3.34 6 5c0 .35.07.69.18 1H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-5-2c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zM9 4c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm11 15H4v-2h16v2zm0-5H4V8h5.08L7 10.83 8.62 12 11 8.76l1-1.36 1 1.36L15.38 12 17 10.83 14.92 8H20v6z"/>
+                        </svg>
+                    </div>
                     <h3>Expert Technicians</h3>
                     <p>Certified professionals with years of experience repairing all major brands and models.</p>
                 </div>
                 
                 <div class="feature-card">
-                    <div class="feature-icon">🎯</div>
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                        </svg>
+                    </div>
                     <h3>Convenient Location</h3>
                     <p>Easy to find in Forrestfield with ample parking. Walk-ins welcome or book ahead online.</p>
                 </div>
@@ -636,14 +692,54 @@
                 <div class="why-content">
                     <h3>Built on Trust & Quality</h3>
                     <ul class="why-list">
-                        <li>Same-day repairs for most devices</li>
-                        <li>Premium OEM and aftermarket parts</li>
-                        <li>Comprehensive warranty coverage</li>
-                        <li>Free diagnostics and quotes</li>
-                        <li>Data protection and privacy assured</li>
-                        <li>Eco-friendly recycling program</li>
-                        <li>Extended hours for your convenience</li>
-                        <li>Local Perth business supporting locals</li>
+                        <li>
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/>
+                            </svg>
+                            Same-day repairs for most devices
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/>
+                            </svg>
+                            Premium OEM and aftermarket parts
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/>
+                            </svg>
+                            Comprehensive warranty coverage
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/>
+                            </svg>
+                            Free diagnostics and quotes
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/>
+                            </svg>
+                            Data protection and privacy assured
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/>
+                            </svg>
+                            Eco-friendly recycling program
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/>
+                            </svg>
+                            Extended hours for your convenience
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/>
+                            </svg>
+                            Local Perth business supporting locals
+                        </li>
                     </ul>
                 </div>
                 <div class="why-visual"></div>
