@@ -110,7 +110,7 @@
                 <li><a href="home.html">Home</a></li>
                 <li><a href="services.html">Services</a></li>
                 <li><a href="prices.html">Prices</a></li>
-                <li><a href="blog.html" class="active">Blog</a></li>
+                <li><a href="needhelp.html" class="active">Need Help?</a></li>
                 <li><a href="contact.html">Contact</a></li>
                 <li><a href="book.html" class="book-now-btn">Book Now</a></li>
             </ul>
@@ -124,14 +124,14 @@
         <a href="home.html">Home</a>
         <a href="services.html">Services</a>
         <a href="prices.html">Prices</a>
-        <a href="blog.html" class="active">Blog</a>
+        <a href="needhelp.html" class="active">Need Help?</a>
         <a href="contact.html">Contact</a>
         <a href="book.html" class="book-now-btn">Book Now</a>
     </div>
 
     <header class="post-header">
         <div class="post-header-content">
-            <a href="blog.html" class="back-link">← Back to Blog</a>
+            <a href="needhelp.html" class="back-link">← Back to Need Help?</a>
             <span class="post-category" id="postCategory">Loading...</span>
             <h1 id="postTitle">Loading...</h1>
             <div class="post-meta">
@@ -174,7 +174,7 @@
             <div class="footer-section">
                 <h4>Quick Links</h4>
                 <a href="prices.html">Pricing</a>
-                <a href="blog.html">Blog</a>
+                <a href="needhelp.html">Need Help?</a>
                 <a href="contact.html">Contact</a>
                 <a href="book.html">Book Repair</a>
             </div>
@@ -199,7 +199,7 @@
             const postId = urlParams.get('id');
 
             if (!postId) {
-                window.location.href = 'blog.html';
+                window.location.href = 'needhelp.html';
                 return;
             }
 
@@ -209,7 +209,7 @@
                 const post = data.posts.find(p => p.id === postId);
 
                 if (!post) {
-                    window.location.href = 'blog.html';
+                    window.location.href = 'needhelp.html';
                     return;
                 }
 
