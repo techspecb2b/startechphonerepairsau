@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog | Star Tech Phone Repairs Perth</title>
+    <meta name="description" content="Tech repair tips, guides, and advice from Perth's trusted phone and device repair specialists.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --star-blue: #0084FF;
+            --star-blue-hover: #0073e6;
+            --bg-primary: #000000;
+            --bg-secondary: #1a1a1a;
+            --bg-tertiary: #0d0d0d;
+            --text-primary: #f5f5f7;
+            --text-secondary: #a1a1a6;
+            --text-muted: #6e6e73;
+            --border-color: rgba(0, 132, 255, 0.2);
+            --nav-bg: rgba(0, 0, 0, 0.8);
+            --blue-glow: rgba(0, 132, 255, 0.15);
+            --card-bg: #1a1a1a;
+            --card-text: #f5f5f7;
+            --card-desc: #a1a1a6;
+            --card-icon: #0084FF;
+        }
+        body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; background: var(--bg-primary); color: var(--text-primary); -webkit-font-smoothing: antialiased; }
+        
+        .messenger-btn { position: fixed; bottom: 30px; right: 30px; width: 44px; height: 44px; border-radius: 50%; background: var(--star-blue); border: none; cursor: pointer; z-index: 1001; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px var(--blue-glow); transition: all 0.3s ease; text-decoration: none; }
+        .messenger-btn:hover { transform: scale(1.05); background: var(--star-blue-hover); }
+        .messenger-btn svg { width: 20px; height: 20px; fill: #FFFFFF; }
+
+        nav { position: fixed; top: 0; width: 100%; background: var(--nav-bg); backdrop-filter: saturate(180%) blur(20px); -webkit-backdrop-filter: saturate(180%) blur(20px); z-index: 1000; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .nav-container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; height: 48px; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-family: 'Orbitron', sans-serif; font-size: 1.3rem; font-weight: 900; color: var(--star-blue); text-decoration: none; }
+        .nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
+        .nav-links a { color: var(--text-primary); text-decoration: none; font-size: 0.85rem; font-weight: 400; opacity: 0.8; transition: opacity 0.3s; }
+        .nav-links a:hover, .nav-links a.active { opacity: 1; }
+        .nav-links a.book-now-btn { background: var(--star-blue); color: #FFFFFF; padding: 8px 18px; border-radius: 980px; font-weight: 500; opacity: 1; box-shadow: 0 4px 20px rgba(0, 132, 255, 0.4); }
+        .nav-links a.book-now-btn:hover { background: var(--star-blue-hover); }
+
+        .hamburger { display: none; flex-direction: column; cursor: pointer; gap: 5px; z-index: 1001; }
+        .hamburger span { width: 20px; height: 2px; background: var(--text-primary); transition: all 0.3s ease; }
+        .mobile-menu { display: none; position: fixed; top: 48px; left: 0; right: 0; background: var(--bg-primary); padding: 1rem 2rem; border-bottom: 1px solid var(--border-color); }
+        .mobile-menu.active { display: block; }
+        .mobile-menu a { display: block; color: var(--text-primary); text-decoration: none; padding: 0.8rem 0; font-size: 1rem; border-bottom: 1px solid var(--border-color); }
+        .mobile-menu a:hover, .mobile-menu a.active { color: var(--star-blue); }
+        .mobile-menu a.book-now-btn { background: var(--star-blue); color: #FFFFFF; text-align: center; margin-top: 1rem; border-radius: 980px; border: none; box-shadow: 0 4px 20px rgba(0, 132, 255, 0.4); }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hamburger { display: flex; }
+        }
+
+        .blog-header { padding: 120px 2rem 60px; text-align: center; background: var(--bg-tertiary); }
+        .blog-header h1 { font-family: 'Inter', sans-serif; font-size: clamp(2rem, 5vw, 3rem); font-weight: 700; margin-bottom: 1rem; }
+        .blog-header p { color: var(--text-secondary); font-size: 1.1rem; max-width: 600px; margin: 0 auto; }
+
+        .blog-container { max-width: 1200px; margin: 0 auto; padding: 3rem 2rem; }
+
+        .filter-bar { display: flex; gap: 1rem; margin-bottom: 2rem; flex-wrap: wrap; }
+        .filter-btn { background: var(--bg-secondary); border: 1px solid var(--border-color); color: var(--text-primary); padding: 0.5rem 1rem; border-radius: 980px; cursor: pointer; font-size: 0.85rem; transition: all 0.3s; }
+        .filter-btn:hover, .filter-btn.active { background: var(--star-blue); border-color: var(--star-blue); }
+
+        .posts-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 2rem; }
+
+        .post-card { background: var(--bg-secondary); border-radius: 16px; overflow: hidden; transition: transform 0.3s, box-shadow 0.3s; cursor: pointer; text-decoration: none; color: inherit; display: block; }
+        .post-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0, 132, 255, 0.15); }
+        .post-card-content { padding: 1.5rem; }
+        .post-category { display: inline-block; background: var(--star-blue); color: #fff; padding: 0.25rem 0.75rem; border-radius: 980px; font-size: 0.75rem; font-weight: 500; margin-bottom: 1rem; }
+        .post-card h2 { font-size: 1.25rem; font-weight: 600; margin-bottom: 0.75rem; line-height: 1.4; color: var(--text-primary); }
+        .post-card p { color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6; margin-bottom: 1rem; }
+        .post-meta { display: flex; justify-content: space-between; color: var(--text-muted); font-size: 0.8rem; }
+
+        footer { background: var(--bg-secondary); padding: 3rem 2rem; margin-top: 4rem; border-top: 1px solid var(--border-color); }
+        .footer-content { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; }
+        .footer-section h4 { color: var(--text-primary); margin-bottom: 1rem; font-weight: 600; font-size: 0.85rem; }
+        .footer-section p, .footer-section a { color: var(--text-secondary); line-height: 1.8; text-decoration: none; display: block; font-size: 0.85rem; }
+        .footer-section a:hover { color: var(--star-blue); }
+        .footer-bottom { max-width: 1200px; margin: 2rem auto 0; padding-top: 2rem; border-top: 1px solid var(--border-color); text-align: center; color: var(--text-muted); font-size: 0.8rem; }
+    </style>
+</head>
+<body>
+    <a href="https://m.me/startechphonerepairs" target="_blank" class="messenger-btn" aria-label="Contact on Messenger">
+        <svg viewBox="0 0 24 24" fill="#FFFFFF"><path d="M12 2C6.36 2 2 6.13 2 11.7c0 2.91 1.19 5.44 3.14 7.17.16.14.26.35.27.57l.05 1.78c.02.62.63 1.03 1.19.8l1.99-.83c.17-.07.36-.09.55-.05.91.25 1.87.38 2.81.38 5.64 0 10-4.13 10-9.7S17.64 2 12 2zm6 7.46l-2.93 4.67c-.47.73-1.47.92-2.17.37l-2.34-1.76a.6.6 0 00-.72 0l-3.16 2.4c-.42.32-.97-.17-.68-.6l2.93-4.67c.47-.73 1.47-.92 2.17-.37l2.34 1.76a.6.6 0 00.72 0l3.16-2.4c.42-.32.97.17.68.6z"/></svg>
+    </a>
+
+    <nav>
+        <div class="nav-container">
+            <a href="home.html" class="logo">Star Tech</a>
+            <ul class="nav-links">
+                <li><a href="home.html">Home</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="prices.html">Prices</a></li>
+                <li><a href="blog.html" class="active">Blog</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="book.html" class="book-now-btn">Book Now</a></li>
+            </ul>
+            <div class="hamburger" onclick="toggleMenu()">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="home.html">Home</a>
+        <a href="services.html">Services</a>
+        <a href="prices.html">Prices</a>
+        <a href="blog.html" class="active">Blog</a>
+        <a href="contact.html">Contact</a>
+        <a href="book.html" class="book-now-btn">Book Now</a>
+    </div>
+
+    <header class="blog-header">
+        <h1>Tech Tips & Repair Guides</h1>
+        <p>Expert advice from Perth's trusted device repair specialists</p>
+    </header>
+
+    <main class="blog-container">
+        <div class="filter-bar">
+            <button class="filter-btn active" data-filter="all">All Posts</button>
+            <button class="filter-btn" data-filter="iPhone">iPhone</button>
+            <button class="filter-btn" data-filter="Samsung">Samsung</button>
+            <button class="filter-btn" data-filter="iPad">iPad</button>
+            <button class="filter-btn" data-filter="Computer">Computer</button>
+            <button class="filter-btn" data-filter="Console">Console</button>
+        </div>
+
+        <div class="posts-grid" id="postsGrid">
+            <!-- Posts loaded dynamically -->
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Star Tech</h4>
+                <p>Perth's most trusted tech repair specialists. Quality repairs at affordable prices.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Services</h4>
+                <a href="services.html">iPhone Repairs</a>
+                <a href="services.html">Samsung Repairs</a>
+                <a href="services.html">iPad & Tablets</a>
+                <a href="services.html">Computers</a>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <a href="prices.html">Pricing</a>
+                <a href="blog.html">Blog</a>
+                <a href="contact.html">Contact</a>
+                <a href="book.html">Book Repair</a>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <p>Perth, Western Australia</p>
+                <p>Open 7 Days</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Star Tech Phone Repairs. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            document.getElementById('mobileMenu').classList.toggle('active');
+        }
+
+        // Load and display posts
+        async function loadPosts() {
+            try {
+                const response = await fetch('posts.json');
+                const data = await response.json();
+                displayPosts(data.posts);
+                setupFilters(data.posts);
+            } catch (error) {
+                console.error('Error loading posts:', error);
+                document.getElementById('postsGrid').innerHTML = '<p style="color: var(--text-secondary);">Unable to load posts. Please try again later.</p>';
+            }
+        }
+
+        function displayPosts(posts, filter = 'all') {
+            const grid = document.getElementById('postsGrid');
+            const filteredPosts = filter === 'all' ? posts : posts.filter(p => p.category === filter);
+            
+            grid.innerHTML = filteredPosts.map(post => `
+                <a href="post.html?id=${post.id}" class="post-card">
+                    <div class="post-card-content">
+                        <span class="post-category">${post.category}</span>
+                        <h2>${post.title}</h2>
+                        <p>${post.excerpt}</p>
+                        <div class="post-meta">
+                            <span>${formatDate(post.date)}</span>
+                            <span>${post.readTime}</span>
+                        </div>
+                    </div>
+                </a>
+            `).join('');
+        }
+
+        function setupFilters(posts) {
+            const buttons = document.querySelectorAll('.filter-btn');
+            buttons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    buttons.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    displayPosts(posts, btn.dataset.filter);
+                });
+            });
+        }
+
+        function formatDate(dateStr) {
+            const date = new Date(dateStr);
+            return date.toLocaleDateString('en-AU', { day: 'numeric', month: 'short', year: 'numeric' });
+        }
+
+        loadPosts();
+    </script>
+</body>
+</html>
