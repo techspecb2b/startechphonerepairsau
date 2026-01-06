@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us | Star Tech Phone Repairs</title>
+    <title>Contact | Star Tech Phone Repairs</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -27,6 +27,22 @@
             background: var(--pure-black);
             color: var(--pure-white);
             overflow-x: hidden;
+        }
+
+        /* Circuit Board Pattern Background */
+        .circuit-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            opacity: 0.06;
+            pointer-events: none;
+            background-color: var(--pure-black);
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400' viewBox='0 0 400 400'%3E%3Cstyle%3E.t%7Bfill:none;stroke:%23FF3200;stroke-width:1.5%7D.p%7Bfill:%23FF3200%7D%3C/style%3E%3Cpath class='t' d='M50 50h100M150 50v60M150 110h80M230 110v50'/%3E%3Ccircle class='p' cx='50' cy='50' r='3'/%3E%3Ccircle class='p' cx='150' cy='50' r='3'/%3E%3Ccircle class='p' cx='150' cy='110' r='3'/%3E%3Ccircle class='p' cx='230' cy='110' r='3'/%3E%3Ccircle class='p' cx='230' cy='160' r='3'/%3E%3Cpath class='t' d='M280 30h70M350 30v100M350 130h-60M290 130v40'/%3E%3Ccircle class='p' cx='280' cy='30' r='3'/%3E%3Ccircle class='p' cx='350' cy='30' r='3'/%3E%3Ccircle class='p' cx='350' cy='130' r='3'/%3E%3Ccircle class='p' cx='290' cy='130' r='3'/%3E%3Ccircle class='p' cx='290' cy='170' r='3'/%3E%3Cpath class='t' d='M30 200h90M120 200v70M120 270h100'/%3E%3Ccircle class='p' cx='30' cy='200' r='3'/%3E%3Ccircle class='p' cx='120' cy='200' r='3'/%3E%3Ccircle class='p' cx='120' cy='270' r='3'/%3E%3Ccircle class='p' cx='220' cy='270' r='3'/%3E%3Cpath class='t' d='M260 220h80M340 220v60M340 280h30'/%3E%3Ccircle class='p' cx='260' cy='220' r='3'/%3E%3Ccircle class='p' cx='340' cy='220' r='3'/%3E%3Ccircle class='p' cx='340' cy='280' r='3'/%3E%3Ccircle class='p' cx='370' cy='280' r='3'/%3E%3Cpath class='t' d='M60 320h70M130 320v50M130 370h90'/%3E%3Ccircle class='p' cx='60' cy='320' r='3'/%3E%3Ccircle class='p' cx='130' cy='320' r='3'/%3E%3Ccircle class='p' cx='130' cy='370' r='3'/%3E%3Ccircle class='p' cx='220' cy='370' r='3'/%3E%3Cpath class='t' d='M270 310h60M330 310v60'/%3E%3Ccircle class='p' cx='270' cy='310' r='3'/%3E%3Ccircle class='p' cx='330' cy='310' r='3'/%3E%3Ccircle class='p' cx='330' cy='370' r='3'/%3E%3C/svg%3E");
+            background-size: 400px 400px;
+            background-repeat: repeat;
         }
 
         /* Navigation */
@@ -58,12 +74,18 @@
             letter-spacing: 2px;
             text-shadow: 0 0 20px var(--red-glow);
             text-decoration: none;
+            cursor: pointer;
+        }
+
+        .logo:hover {
+            text-shadow: 0 0 30px var(--star-red);
         }
 
         .nav-links {
             display: flex;
             gap: 2.5rem;
             list-style: none;
+            align-items: center;
         }
 
         .nav-links a {
@@ -82,12 +104,93 @@
             color: var(--star-red);
         }
 
+        .nav-links a.book-now-btn {
+            border: 2px solid var(--star-red);
+            padding: 0.6rem 1.2rem;
+            background: transparent;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a.book-now-btn:hover {
+            background: var(--star-red);
+            color: var(--pure-white);
+            box-shadow: 0 0 20px var(--red-glow);
+        }
+
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+            z-index: 1001;
+        }
+
+        .hamburger span {
+            width: 28px;
+            height: 3px;
+            background: var(--star-red);
+            transition: all 0.3s ease;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 6px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 70px;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.98);
+            border-bottom: 2px solid var(--star-red);
+            padding: 2rem;
+            z-index: 999;
+        }
+
+        .mobile-menu.active {
+            display: block;
+        }
+
+        .mobile-menu a {
+            display: block;
+            color: var(--pure-white);
+            text-decoration: none;
+            padding: 1rem;
+            font-size: 1.2rem;
+            border-bottom: 1px solid rgba(255, 50, 0, 0.2);
+            transition: color 0.3s ease;
+        }
+
+        .mobile-menu a:hover,
+        .mobile-menu a.active {
+            color: var(--star-red);
+        }
+
+        .mobile-menu a.book-now-btn {
+            border: 2px solid var(--star-red);
+            text-align: center;
+            margin-top: 1rem;
+        }
+
         /* Page Header */
         .page-header {
             margin-top: 80px;
             padding: 6rem 2rem 4rem;
             text-align: center;
             background: linear-gradient(180deg, var(--dark-gray) 0%, var(--pure-black) 100%);
+            position: relative;
+            z-index: 1;
         }
 
         .page-header h1 {
@@ -108,105 +211,152 @@
             max-width: 1400px;
             margin: 0 auto;
             padding: 4rem 2rem;
+            position: relative;
+            z-index: 1;
         }
 
         .contact-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 4rem;
-            margin-bottom: 4rem;
         }
 
         .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .info-card {
             background: var(--dark-gray);
-            padding: 3rem;
+            padding: 2rem;
             border-left: 4px solid var(--star-red);
+            transition: all 0.3s ease;
         }
 
-        .contact-info h2 {
+        .info-card:hover {
+            transform: translateX(10px);
+            box-shadow: 0 5px 20px var(--red-glow);
+        }
+
+        .info-card h3 {
             font-family: 'Orbitron', sans-serif;
-            font-size: 2rem;
-            margin-bottom: 2rem;
             color: var(--star-red);
-            text-transform: uppercase;
-        }
-
-        .info-item {
-            margin-bottom: 2.5rem;
-        }
-
-        .info-item h3 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.2rem;
-            margin-bottom: 0.8rem;
-            color: var(--star-red);
+            margin-bottom: 1rem;
             display: flex;
             align-items: center;
             gap: 0.5rem;
         }
 
-        .info-item p {
-            color: #ccc;
-            line-height: 1.8;
-            font-size: 1.1rem;
+        .info-card h3 svg {
+            width: 24px;
+            height: 24px;
+            fill: var(--star-red);
         }
 
-        .info-item a {
+        .info-card p {
+            color: #ccc;
+            line-height: 1.8;
+        }
+
+        .info-card a {
             color: var(--pure-white);
             text-decoration: none;
             transition: color 0.3s ease;
         }
 
-        .info-item a:hover {
+        .info-card a:hover {
             color: var(--star-red);
         }
 
         .hours-table {
-            margin-top: 1rem;
+            display: grid;
+            gap: 0.5rem;
         }
 
         .hours-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            padding: 0.8rem 0;
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .hours-row:last-child {
-            border-bottom: none;
-        }
-
-        .day {
-            font-weight: 600;
-        }
-
-        .time {
-            text-align: right;
+        .hours-row span:first-child {
             color: #999;
         }
 
-        .time.open {
+        .hours-row span:last-child {
+            color: var(--pure-white);
+            font-weight: 500;
+        }
+
+        .hours-row.closed span:last-child {
             color: var(--star-red);
         }
 
-        /* Quick Message */
-        .quick-message {
+        /* Map Container */
+        .map-container {
             background: var(--dark-gray);
-            padding: 3rem;
-            border-left: 4px solid var(--star-red);
+            height: 100%;
+            min-height: 400px;
+            border: 2px solid var(--star-red);
+            position: relative;
+            overflow: hidden;
         }
 
-        .quick-message h2 {
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            filter: grayscale(100%) contrast(1.1);
+        }
+
+        .map-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, var(--pure-black));
+            padding: 2rem;
+        }
+
+        .map-overlay a {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background: var(--star-red);
+            color: var(--pure-white);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .map-overlay a:hover {
+            background: transparent;
+            box-shadow: inset 0 0 0 2px var(--star-red);
+        }
+
+        /* Contact Form Section */
+        .contact-form-section {
+            background: var(--dark-gray);
+            padding: 4rem 2rem;
+            margin-top: 4rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact-form-section h2 {
             font-family: 'Orbitron', sans-serif;
-            font-size: 2rem;
-            margin-bottom: 2rem;
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
             color: var(--star-red);
-            text-transform: uppercase;
         }
 
-        .message-form {
-            display: flex;
-            flex-direction: column;
+        .contact-form {
+            max-width: 800px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
             gap: 1.5rem;
         }
 
@@ -216,8 +366,12 @@
             gap: 0.5rem;
         }
 
+        .form-group.full-width {
+            grid-column: span 2;
+        }
+
         .form-group label {
-            font-weight: 600;
+            font-weight: 500;
             color: #ccc;
         }
 
@@ -225,139 +379,38 @@
         .form-group textarea {
             padding: 1rem;
             background: var(--pure-black);
-            border: 2px solid rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 50, 0, 0.3);
             color: var(--pure-white);
-            font-family: 'Work Sans', sans-serif;
+            font-family: inherit;
             font-size: 1rem;
-            transition: border-color 0.3s ease;
+            transition: all 0.3s ease;
         }
 
         .form-group input:focus,
         .form-group textarea:focus {
             outline: none;
             border-color: var(--star-red);
+            box-shadow: 0 0 15px var(--red-glow);
         }
 
         .form-group textarea {
-            resize: vertical;
             min-height: 150px;
-        }
-
-        .submit-btn {
-            padding: 1.2rem 2.5rem;
-            background: var(--star-red);
-            color: var(--pure-white);
-            border: 2px solid var(--star-red);
-            font-size: 1.1rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .submit-btn:hover {
-            background: transparent;
-            color: var(--star-red);
-            box-shadow: 0 0 20px var(--red-glow);
-        }
-
-        /* Map Section */
-        .map-section {
-            margin-top: 4rem;
-        }
-
-        .map-section h2 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 2.5rem;
-            margin-bottom: 2rem;
-            color: var(--star-red);
-            text-transform: uppercase;
-            text-align: center;
-        }
-
-        .map-container {
-            width: 100%;
-            height: 500px;
-            background: var(--dark-gray);
-            border: 2px solid var(--star-red);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .map-placeholder {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 1rem;
-        }
-
-        .map-placeholder svg {
-            width: 80px;
-            height: 80px;
-            fill: var(--star-red);
-        }
-
-        .map-placeholder p {
-            font-size: 1.2rem;
-            color: #999;
-        }
-
-        .directions-link {
-            display: inline-block;
-            margin-top: 1rem;
-            padding: 1rem 2rem;
-            background: var(--star-red);
-            color: var(--pure-white);
-            text-decoration: none;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: all 0.3s ease;
-        }
-
-        .directions-link:hover {
-            background: transparent;
-            border: 2px solid var(--star-red);
-            color: var(--star-red);
-        }
-
-        /* CTA Section */
-        .contact-cta {
-            text-align: center;
-            padding: 6rem 2rem;
-            background: var(--dark-gray);
-            margin-top: 4rem;
-        }
-
-        .contact-cta h2 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 3rem;
-            margin-bottom: 1.5rem;
-            text-transform: uppercase;
-        }
-
-        .contact-cta p {
-            font-size: 1.2rem;
-            color: #999;
-            margin-bottom: 2.5rem;
+            resize: vertical;
         }
 
         .btn {
+            display: inline-block;
             padding: 1.2rem 2.5rem;
             font-size: 1.1rem;
             font-weight: 600;
             text-decoration: none;
-            transition: all 0.3s ease;
             text-transform: uppercase;
             letter-spacing: 1px;
             border: 2px solid var(--star-red);
             background: var(--star-red);
             color: var(--pure-white);
-            display: inline-block;
+            cursor: pointer;
+            transition: all 0.3s ease;
         }
 
         .btn:hover {
@@ -371,6 +424,8 @@
             background: var(--pure-black);
             border-top: 2px solid var(--star-red);
             padding: 3rem 2rem 1.5rem;
+            position: relative;
+            z-index: 1;
         }
 
         .footer-content {
@@ -416,16 +471,30 @@
             .contact-grid {
                 grid-template-columns: 1fr;
             }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hamburger {
+                display: flex;
+            }
         }
 
         @media (max-width: 600px) {
-            .nav-links {
-                display: none;
+            .contact-form {
+                grid-template-columns: 1fr;
+            }
+
+            .form-group.full-width {
+                grid-column: span 1;
             }
         }
     </style>
 </head>
 <body>
+    <div class="circuit-background"></div>
+
     <nav>
         <div class="nav-container">
             <a href="home.html" class="logo">STAR TECH</a>
@@ -434,121 +503,122 @@
                 <li><a href="services.html">Services</a></li>
                 <li><a href="prices.html">Prices</a></li>
                 <li><a href="contact.html" class="active">Contact</a></li>
-                <li><a href="book.html">Book Now</a></li>
+                <li><a href="book.html" class="book-now-btn">Book Now</a></li>
             </ul>
+            <div class="hamburger" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
         </div>
     </nav>
 
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="home.html">Home</a>
+        <a href="services.html">Services</a>
+        <a href="prices.html">Prices</a>
+        <a href="contact.html" class="active">Contact</a>
+        <a href="book.html" class="book-now-btn">Book Now</a>
+    </div>
+
     <div class="page-header">
         <h1>Contact Us</h1>
-        <p>We're here to help with all your tech repair needs</p>
+        <p>Get in touch with our expert team</p>
     </div>
 
     <div class="contact-container">
         <div class="contact-grid">
             <div class="contact-info">
-                <h2>Get in Touch</h2>
-                
-                <div class="info-item">
-                    <h3>📍 Location</h3>
-                    <p>
-                        33 Crimson Bvd<br>
-                        Forrestfield WA 6058<br>
-                        Australia
-                    </p>
+                <div class="info-card">
+                    <h3>
+                        <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                        Location
+                    </h3>
+                    <p>33 Crimson Boulevard<br>Forrestfield WA 6058<br>Australia</p>
                 </div>
 
-                <div class="info-item">
-                    <h3>📞 Phone</h3>
+                <div class="info-card">
+                    <h3>
+                        <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                        Phone
+                    </h3>
                     <p><a href="tel:+61420994662">+61 420 994 662</a></p>
                 </div>
 
-                <div class="info-item">
-                    <h3>✉️ Email</h3>
+                <div class="info-card">
+                    <h3>
+                        <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                        Email
+                    </h3>
                     <p><a href="mailto:sales@startechphonerepairs.com.au">sales@startechphonerepairs.com.au</a></p>
                 </div>
 
-                <div class="info-item">
-                    <h3>🕐 Opening Hours</h3>
+                <div class="info-card">
+                    <h3>
+                        <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+                        Business Hours
+                    </h3>
                     <div class="hours-table">
-                        <div class="hours-row">
-                            <span class="day">Monday</span>
-                            <span class="time">Closed</span>
+                        <div class="hours-row closed">
+                            <span>Monday</span>
+                            <span>Closed</span>
                         </div>
                         <div class="hours-row">
-                            <span class="day">Tuesday</span>
-                            <span class="time open">6:00 AM - 7:00 PM</span>
+                            <span>Tuesday - Friday</span>
+                            <span>6:00 AM - 7:00 PM</span>
                         </div>
                         <div class="hours-row">
-                            <span class="day">Wednesday</span>
-                            <span class="time open">6:00 AM - 7:00 PM</span>
+                            <span>Saturday</span>
+                            <span>6:00 AM - 5:00 PM</span>
                         </div>
                         <div class="hours-row">
-                            <span class="day">Thursday</span>
-                            <span class="time open">6:00 AM - 7:00 PM</span>
-                        </div>
-                        <div class="hours-row">
-                            <span class="day">Friday</span>
-                            <span class="time open">6:00 AM - 7:00 PM</span>
-                        </div>
-                        <div class="hours-row">
-                            <span class="day">Saturday</span>
-                            <span class="time open">6:00 AM - 5:00 PM</span>
-                        </div>
-                        <div class="hours-row">
-                            <span class="day">Sunday</span>
-                            <span class="time open">6:00 AM - 12:00 PM</span>
+                            <span>Sunday</span>
+                            <span>6:00 AM - 12:00 PM</span>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="quick-message">
-                <h2>Send Us a Message</h2>
-                <form class="message-form" onsubmit="handleSubmit(event)">
-                    <div class="form-group">
-                        <label for="name">Name</label>
-                        <input type="text" id="name" name="name" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="phone">Phone</label>
-                        <input type="tel" id="phone" name="phone" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="message">Message</label>
-                        <textarea id="message" name="message" required></textarea>
-                    </div>
-
-                    <button type="submit" class="submit-btn">Send Message</button>
-                </form>
-            </div>
-        </div>
-
-        <div class="map-section">
-            <h2>Find Us</h2>
             <div class="map-container">
-                <div class="map-placeholder">
-                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
-                    </svg>
-                    <p>33 Crimson Bvd, Forrestfield WA 6058</p>
-                    <a href="https://www.google.com/maps/search/?api=1&query=33+Crimson+Bvd+Forrestfield+WA+6058+Australia" target="_blank" class="directions-link">Get Directions</a>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3386.4832854789287!2d115.98741897649398!3d-31.99147722108566!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2a32bb6add9595fd%3A0xb7029ae6b7d427d7!2s33%20Crimson%20Blvd%2C%20Forrestfield%20WA%206058!5e0!3m2!1sen!2sau!4v1704067200000!5m2!1sen!2sau" allowfullscreen="" loading="lazy"></iframe>
+                <div class="map-overlay">
+                    <a href="https://maps.google.com/?q=33+Crimson+Boulevard,+Forrestfield+WA+6058" target="_blank">Get Directions →</a>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="contact-cta">
-        <h2>Prefer to Book Online?</h2>
-        <p>Schedule your repair appointment in just a few clicks</p>
-        <a href="book.html" class="btn">Book Appointment</a>
+    <div class="contact-form-section">
+        <h2>Send Us a Message</h2>
+        <form class="contact-form" action="mailto:sales@startechphonerepairs.com.au" method="post" enctype="text/plain">
+            <div class="form-group">
+                <label for="firstName">First Name</label>
+                <input type="text" id="firstName" name="firstName" required>
+            </div>
+            <div class="form-group">
+                <label for="lastName">Last Name</label>
+                <input type="text" id="lastName" name="lastName" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone</label>
+                <input type="tel" id="phone" name="phone">
+            </div>
+            <div class="form-group full-width">
+                <label for="subject">Subject</label>
+                <input type="text" id="subject" name="subject" required>
+            </div>
+            <div class="form-group full-width">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" required></textarea>
+            </div>
+            <div class="form-group full-width" style="text-align: center;">
+                <button type="submit" class="btn">Send Message</button>
+            </div>
+        </form>
     </div>
 
     <footer>
@@ -557,7 +627,6 @@
                 <h4>Star Tech Phone Repairs</h4>
                 <p>Perth's premier tech repair specialists. Quality, speed, and trust in every repair.</p>
             </div>
-            
             <div class="footer-section">
                 <h4>Quick Links</h4>
                 <a href="services.html">Services</a>
@@ -565,14 +634,12 @@
                 <a href="book.html">Book Appointment</a>
                 <a href="contact.html">Contact Us</a>
             </div>
-            
             <div class="footer-section">
                 <h4>Contact</h4>
-                <p>33 Crimson Bvd<br>Forrestfield WA 6058<br>Australia</p>
+                <p>33 Crimson Bvd<br>Forrestfield WA 6058</p>
                 <p>Phone: +61 420 994 662</p>
                 <p>Email: sales@startechphonerepairs.com.au</p>
             </div>
-            
             <div class="footer-section">
                 <h4>Hours</h4>
                 <p>Monday: Closed</p>
@@ -587,27 +654,9 @@
     </footer>
 
     <script>
-        function handleSubmit(event) {
-            event.preventDefault();
-            
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const phone = document.getElementById('phone').value;
-            const message = document.getElementById('message').value;
-            
-            // Create mailto link
-            const subject = encodeURIComponent('Contact Form Submission from ' + name);
-            const body = encodeURIComponent(
-                'Name: ' + name + '\n' +
-                'Email: ' + email + '\n' +
-                'Phone: ' + phone + '\n\n' +
-                'Message:\n' + message
-            );
-            
-            window.location.href = 'mailto:sales@startechphonerepairs.com.au?subject=' + subject + '&body=' + body;
-            
-            // Reset form
-            event.target.reset();
+        function toggleMenu() {
+            document.querySelector('.hamburger').classList.toggle('active');
+            document.getElementById('mobileMenu').classList.toggle('active');
         }
     </script>
 </body>
