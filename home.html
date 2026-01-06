@@ -6,7 +6,7 @@
     <title>Star Tech Phone Repairs | Perth's Premier Tech Repair Service</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         :root {
@@ -49,11 +49,11 @@
         body.light-mode .theme-toggle .sun-icon { display: block; }
         body.light-mode .theme-toggle .moon-icon { display: none; }
 
-        /* Navigation - Apple style */
+        /* Navigation */
         nav { position: fixed; top: 0; width: 100%; background: var(--nav-bg); backdrop-filter: saturate(180%) blur(20px); -webkit-backdrop-filter: saturate(180%) blur(20px); z-index: 1000; border-bottom: 1px solid rgba(255,255,255,0.1); transition: background 0.3s ease; }
         body.light-mode nav { border-bottom: 1px solid rgba(0,0,0,0.1); }
         .nav-container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; height: 48px; display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-family: 'Orbitron', sans-serif; font-size: 1.3rem; font-weight: 900; color: var(--star-red); text-transform: uppercase; letter-spacing: 1px; text-decoration: none; }
+        .logo { font-family: 'Inter', sans-serif; font-size: 1.3rem; font-weight: 800; color: var(--star-red); text-transform: uppercase; letter-spacing: 1px; text-decoration: none; }
         .nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
         .nav-links a { color: var(--text-primary); text-decoration: none; font-size: 0.85rem; font-weight: 400; transition: color 0.3s ease; opacity: 0.8; }
         .nav-links a:hover { opacity: 1; }
@@ -75,11 +75,17 @@
         .mobile-menu a:hover, .mobile-menu a.active { color: var(--star-red); }
         .mobile-menu a.book-now-btn { background: var(--star-red); color: #FFFFFF; text-align: center; margin-top: 1rem; border-radius: 980px; border: none; }
 
-        /* Hero Section - Apple style */
-        .hero { margin-top: 48px; min-height: calc(100vh - 48px); position: relative; display: flex; align-items: center; justify-content: center; background: var(--bg-primary); overflow: hidden; }
-        .hero-content { position: relative; z-index: 2; text-align: center; max-width: 800px; padding: 2rem; }
-        .hero h1 { font-family: 'Inter', sans-serif; font-size: clamp(2.5rem, 8vw, 5rem); font-weight: 700; line-height: 1.05; margin-bottom: 1rem; letter-spacing: -0.03em; }
-        .hero h1 .star { font-family: 'Orbitron', sans-serif; color: var(--star-red); }
+        /* Hero Section with Circuit Board Background */
+        .hero { margin-top: 48px; min-height: calc(100vh - 48px); position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+        .hero-bg { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 50%, var(--bg-primary) 100%); z-index: 1; }
+        .hero-bg::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle at 30% 70%, rgba(255, 50, 0, 0.08) 0%, transparent 50%), radial-gradient(circle at 70% 30%, rgba(255, 50, 0, 0.06) 0%, transparent 40%); animation: pulse 8s ease-in-out infinite alternate; }
+        @keyframes pulse { 0% { opacity: 0.5; transform: scale(1); } 100% { opacity: 1; transform: scale(1.1); } }
+        /* Circuit Board Traces Pattern */
+        .hero-circuit { position: absolute; top: 0; left: 0; right: 0; bottom: 0; z-index: 2; opacity: 0.08; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400' viewBox='0 0 400 400'%3E%3Cstyle%3E.t%7Bfill:none;stroke:%23FF3200;stroke-width:1.5%7D.p%7Bfill:%23FF3200%7D%3C/style%3E%3Cpath class='t' d='M50 50h100M150 50v60M150 110h80M230 110v50'/%3E%3Ccircle class='p' cx='50' cy='50' r='3'/%3E%3Ccircle class='p' cx='150' cy='50' r='3'/%3E%3Ccircle class='p' cx='150' cy='110' r='3'/%3E%3Ccircle class='p' cx='230' cy='110' r='3'/%3E%3Ccircle class='p' cx='230' cy='160' r='3'/%3E%3Cpath class='t' d='M280 30h70M350 30v100M350 130h-60M290 130v40'/%3E%3Ccircle class='p' cx='280' cy='30' r='3'/%3E%3Ccircle class='p' cx='350' cy='30' r='3'/%3E%3Ccircle class='p' cx='350' cy='130' r='3'/%3E%3Ccircle class='p' cx='290' cy='130' r='3'/%3E%3Ccircle class='p' cx='290' cy='170' r='3'/%3E%3Cpath class='t' d='M30 200h90M120 200v70M120 270h100'/%3E%3Ccircle class='p' cx='30' cy='200' r='3'/%3E%3Ccircle class='p' cx='120' cy='200' r='3'/%3E%3Ccircle class='p' cx='120' cy='270' r='3'/%3E%3Ccircle class='p' cx='220' cy='270' r='3'/%3E%3Cpath class='t' d='M260 220h80M340 220v60M340 280h30'/%3E%3Ccircle class='p' cx='260' cy='220' r='3'/%3E%3Ccircle class='p' cx='340' cy='220' r='3'/%3E%3Ccircle class='p' cx='340' cy='280' r='3'/%3E%3Ccircle class='p' cx='370' cy='280' r='3'/%3E%3Cpath class='t' d='M60 320h70M130 320v50M130 370h90'/%3E%3Ccircle class='p' cx='60' cy='320' r='3'/%3E%3Ccircle class='p' cx='130' cy='320' r='3'/%3E%3Ccircle class='p' cx='130' cy='370' r='3'/%3E%3Ccircle class='p' cx='220' cy='370' r='3'/%3E%3Cpath class='t' d='M270 310h60M330 310v60'/%3E%3Ccircle class='p' cx='270' cy='310' r='3'/%3E%3Ccircle class='p' cx='330' cy='310' r='3'/%3E%3Ccircle class='p' cx='330' cy='370' r='3'/%3E%3Cpath class='t' d='M180 140l40 40M220 180v40'/%3E%3Ccircle class='p' cx='180' cy='140' r='2'/%3E%3Ccircle class='p' cx='220' cy='180' r='2'/%3E%3Ccircle class='p' cx='220' cy='220' r='2'/%3E%3Crect class='p' x='147' y='47' width='6' height='6' rx='1'/%3E%3Crect class='p' x='347' y='127' width='6' height='6' rx='1'/%3E%3Crect class='p' x='117' y='267' width='6' height='6' rx='1'/%3E%3Crect class='p' x='327' y='307' width='6' height='6' rx='1'/%3E%3C/svg%3E"); background-size: 400px 400px; background-repeat: repeat; }
+        body.light-mode .hero-circuit { opacity: 0.06; }
+        .hero-content { position: relative; z-index: 3; text-align: center; max-width: 800px; padding: 2rem; }
+        .hero h1 { font-family: 'Inter', sans-serif; font-size: clamp(2.5rem, 8vw, 4.5rem); font-weight: 800; line-height: 1.05; margin-bottom: 1rem; letter-spacing: -0.03em; }
+        .hero h1 .highlight { color: var(--star-red); }
         .hero p { font-size: clamp(1.1rem, 2.5vw, 1.4rem); margin-bottom: 2rem; color: var(--text-secondary); font-weight: 400; line-height: 1.5; }
         .cta-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
         .btn { padding: 12px 24px; font-size: 1rem; font-weight: 500; text-decoration: none; transition: all 0.3s ease; border-radius: 980px; display: inline-block; border: none; cursor: pointer; }
@@ -109,26 +115,26 @@
         .why-list li { padding: 1.25rem 0; border-bottom: 1px solid var(--border-color); font-size: 1rem; display: flex; align-items: center; gap: 1rem; color: var(--text-primary); }
         .why-list li svg { width: 20px; height: 20px; fill: var(--star-red); flex-shrink: 0; }
 
-        /* Reviews Visual */
-        .why-visual { background: var(--card-bg); min-height: 500px; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; overflow: hidden; padding: 3rem 2rem; border-radius: 20px; transition: background 0.3s ease; }
+        /* Reviews Box - Improved Readability */
+        .why-visual { background: var(--bg-secondary); min-height: 500px; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; overflow: hidden; padding: 3rem 2rem; border-radius: 20px; transition: background 0.3s ease; border: 1px solid var(--border-color); }
+        body.light-mode .why-visual { background: #FFFFFF; border: 1px solid rgba(0,0,0,0.1); box-shadow: 0 4px 24px rgba(0,0,0,0.08); }
         .reviews-header { text-align: center; margin-bottom: 2rem; z-index: 2; position: relative; }
         .google-badge { display: flex; align-items: center; justify-content: center; gap: 0.75rem; margin-bottom: 1rem; }
         .google-icon { width: 40px; height: 40px; }
-        .google-reviews-text { font-size: 1.5rem; font-weight: 600; color: var(--card-text); }
-        .overall-rating { display: flex; align-items: center; justify-content: center; gap: 0.6rem; background: rgba(0, 0, 0, 0.2); padding: 0.6rem 1.25rem; border-radius: 980px; }
-        body.light-mode .overall-rating { background: rgba(255, 255, 255, 0.25); }
+        .google-reviews-text { font-size: 1.5rem; font-weight: 600; color: var(--text-primary); }
+        .overall-rating { display: flex; align-items: center; justify-content: center; gap: 0.6rem; background: var(--star-red); padding: 0.6rem 1.25rem; border-radius: 980px; }
         .stars { color: #FBBC04; font-size: 1.25rem; }
-        .rating-number { color: var(--card-text); font-weight: 600; font-size: 1.1rem; }
+        .rating-number { color: #FFFFFF; font-weight: 600; font-size: 1.1rem; }
         .slideshow-container { position: relative; max-width: 600px; margin: 0 auto; z-index: 2; padding: 1.5rem 2rem; }
         .review-slide { display: none; text-align: center; animation: fadeIn 0.5s ease; }
         .review-slide.active { display: block; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        .review-stars { color: #FBBC04; font-size: 1.25rem; margin-bottom: 1rem; }
-        .review-text { font-size: 1.05rem; line-height: 1.7; color: var(--card-text); margin-bottom: 1rem; font-style: italic; }
-        .reviewer-name { font-weight: 600; color: var(--card-text); font-size: 0.9rem; opacity: 0.8; }
+        .review-stars { color: #FBBC04; font-size: 1.5rem; margin-bottom: 1rem; }
+        .review-text { font-size: 1.1rem; line-height: 1.8; color: var(--text-primary); margin-bottom: 1.25rem; font-style: italic; }
+        .reviewer-name { font-weight: 600; color: var(--star-red); font-size: 1rem; }
         .slideshow-dots { text-align: center; margin-top: 1.5rem; z-index: 2; position: relative; }
-        .dot { height: 8px; width: 8px; margin: 0 4px; background-color: rgba(255, 255, 255, 0.3); border-radius: 50%; display: inline-block; cursor: pointer; transition: all 0.3s ease; }
-        .dot.active, .dot:hover { background-color: var(--card-text); }
+        .dot { height: 10px; width: 10px; margin: 0 5px; background-color: var(--border-color); border-radius: 50%; display: inline-block; cursor: pointer; transition: all 0.3s ease; }
+        .dot.active, .dot:hover { background-color: var(--star-red); }
 
         /* CTA Section */
         .cta-section { padding: 6rem 2rem; background: var(--card-bg); text-align: center; position: relative; z-index: 1; transition: background 0.3s ease; }
@@ -136,8 +142,8 @@
         .cta-section p { font-size: 1.1rem; margin-bottom: 2rem; color: var(--card-desc); max-width: 500px; margin-left: auto; margin-right: auto; }
         .cta-section .btn-primary { background: #FFFFFF; color: var(--star-red); }
         .cta-section .btn-primary:hover { background: rgba(255,255,255,0.9); }
-        body:not(.light-mode) .cta-section .btn-primary { background: var(--star-red); color: #FFFFFF; }
-        body:not(.light-mode) .cta-section .btn-primary:hover { background: var(--star-red-hover); }
+        body:not(.light-mode) .cta-section .btn-primary { background: var(--star-red); color: #FFFFFF; border: 2px solid #FFFFFF; }
+        body:not(.light-mode) .cta-section .btn-primary:hover { background: #FFFFFF; color: var(--star-red); }
 
         /* Footer */
         footer { background: var(--bg-secondary); padding: 3rem 2rem 1.5rem; position: relative; z-index: 1; transition: background 0.3s ease; border-top: 1px solid var(--border-color); }
@@ -190,8 +196,10 @@
     </div>
 
     <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-circuit"></div>
         <div class="hero-content">
-            <h1><span class="star">Star Tech</span> Phone Repairs</h1>
+            <h1><span class="highlight">Star Tech</span> Phone Repairs</h1>
             <p>Perth's most trusted tech repair specialists. Fast repairs, quality parts, affordable prices.</p>
             <div class="cta-buttons">
                 <a href="book.html" class="btn btn-primary">Book a Repair</a>
@@ -329,7 +337,7 @@
                 <h4>Contact</h4>
                 <p>33 Crimson Bvd<br>Forrestfield WA 6058</p>
                 <p>+61 420 994 662</p>
-                <p>sales@startechphonerepairs.com.au</p>
+                <p><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="54273538312714272035262031373c243c3b3a31263124353d26277a373b397a3521">[email&#160;protected]</a></p>
             </div>
             <div class="footer-section">
                 <h4>Hours</h4>
@@ -344,7 +352,7 @@
         </div>
     </footer>
 
-    <script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
         function toggleTheme() {
             document.body.classList.toggle('light-mode');
             localStorage.setItem('startech-theme', document.body.classList.contains('light-mode') ? 'light' : 'dark');
@@ -366,10 +374,4 @@
             if (n > slides.length) slideIndex = 1;
             if (n < 1) slideIndex = slides.length;
             for (let i = 0; i < slides.length; i++) slides[i].classList.remove("active");
-            for (let i = 0; i < dots.length; i++) dots[i].classList.remove("active");
-            if (slides[slideIndex - 1]) slides[slideIndex - 1].classList.add("active");
-            if (dots[slideIndex - 1]) dots[slideIndex - 1].classList.add("active");
-        }
-    </script>
-</body>
-</html>
+            for (let i = 0; i < dots.length; i++) dots
