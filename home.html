@@ -70,6 +70,8 @@
         @media (min-width: 768px) { .hero-content { max-width: none; } }
         .hero h1 { font-family: 'Inter', sans-serif; font-size: clamp(2rem, 6vw, 3.2rem); font-weight: 700; line-height: 1.2; margin-bottom: 1rem; letter-spacing: 0.05em; color: #FFFFFF; text-transform: uppercase; text-align: center; }
         @media (min-width: 768px) { .hero h1 { white-space: nowrap; text-align: center; } }
+        .desktop-break { display: none; }
+        @media (min-width: 768px) { .desktop-break { display: block; } }
         .hero h1 .bold { font-weight: 700; color: var(--star-blue); }
         .hero h1 .thin { font-weight: 300; color: #FFFFFF; }
         .hero p { font-size: clamp(1.1rem, 2.5vw, 1.4rem); margin-bottom: 2rem; color: var(--text-secondary); font-weight: 400; line-height: 1.5; }
@@ -187,7 +189,7 @@
         <div class="hero-circuit"></div>
         <div class="hero-content">
             <h1><span class="bold">Star Tech</span> <span class="thin">Phone Repairs</span></h1>
-            <p>Perth's most trusted tech repair specialists. Fast repairs, quality parts, affordable prices.</p>
+            <p>Perth's most trusted tech repair specialists. Fast repairs, quality parts,<br class="desktop-break"> affordable prices.</p>
             <div class="cta-buttons">
                 <a href="book.html" class="btn btn-primary">Book a Repair</a>
                 <a href="services.html" class="btn btn-secondary">Learn more</a>
