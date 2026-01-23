@@ -16,7 +16,7 @@
         .messenger-btn svg { width: 20px; height: 20px; fill: #FFFFFF; }
         nav { position: fixed; top: 0; width: 100%; background: var(--nav-bg); backdrop-filter: saturate(180%) blur(20px); z-index: 1000; border-bottom: 1px solid rgba(255,255,255,0.1); }
         .nav-container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; height: 48px; display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-family: 'Orbitron', sans-serif; font-size: 1.3rem; font-weight: 900; color: var(--star-blue); text-decoration: none; }
+        .logo { text-decoration: none; display: flex; align-items: center; } .logo img { height: 32px; width: auto; }
         .nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
         .nav-links a { color: var(--text-primary); text-decoration: none; font-size: 0.85rem; opacity: 0.8; transition: opacity 0.3s; }
         .nav-links a:hover, .nav-links a.active { opacity: 1; }
@@ -60,7 +60,7 @@
     </style>
 </head>
 <body>
-    <nav><div class="nav-container"><a href="home.html" class="logo">Star Tech</a><ul class="nav-links"><li><a href="home.html">Home</a></li><li><a href="services.html" class="active">Services</a></li><li><a href="prices.html">Prices</a></li><li><a href="needhelp.html">Need Help?</a></li><li><a href="contact.html">Contact</a></li><li><a href="book.html" class="book-now-btn">Book Now</a></li></ul><div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div></div></nav>
+    <nav><div class="nav-container"><a href="home.html" class="logo"><img src="logo.svg" alt="Star Tech" height="32"></a><ul class="nav-links"><li><a href="home.html">Home</a></li><li><a href="services.html" class="active">Services</a></li><li><a href="prices.html">Prices</a></li><li><a href="needhelp.html">Need Help?</a></li><li><a href="contact.html">Contact</a></li><li><a href="book.html" class="book-now-btn">Book Now</a></li></ul><div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div></div></nav>
     <div class="mobile-menu" id="mobileMenu"><a href="home.html">Home</a><a href="services.html" class="active">Services</a><a href="prices.html">Prices</a><a href="needhelp.html">Need Help?</a><a href="contact.html">Contact</a><a href="book.html" class="book-now-btn">Book Now</a></div>
     <div class="page-header"><h1>Our Services</h1><p>Expert repairs for all your devices</p></div>
     <div class="services-container">
