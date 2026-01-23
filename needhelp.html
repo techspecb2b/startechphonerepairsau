@@ -35,7 +35,7 @@
 
         nav { position: fixed; top: 0; width: 100%; background: var(--nav-bg); backdrop-filter: saturate(180%) blur(20px); -webkit-backdrop-filter: saturate(180%) blur(20px); z-index: 1000; border-bottom: 1px solid rgba(255,255,255,0.1); }
         .nav-container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; height: 48px; display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-family: 'Orbitron', sans-serif; font-size: 1.3rem; font-weight: 900; color: var(--star-blue); text-decoration: none; }
+        .logo { text-decoration: none; display: flex; align-items: center; } .logo img { height: 32px; width: auto; }
         .nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
         .nav-links a { color: var(--text-primary); text-decoration: none; font-size: 0.85rem; font-weight: 400; opacity: 0.8; transition: opacity 0.3s; }
         .nav-links a:hover, .nav-links a.active { opacity: 1; }
@@ -90,7 +90,7 @@
 
     <nav>
         <div class="nav-container">
-            <a href="home.html" class="logo">Star Tech</a>
+            <a href="home.html" class="logo"><img src="logo.svg" alt="Star Tech" height="32"></a>
             <ul class="nav-links">
                 <li><a href="home.html">Home</a></li>
                 <li><a href="services.html">Services</a></li>
