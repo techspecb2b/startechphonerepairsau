@@ -19,8 +19,8 @@
         
         /* Navigation */
         nav { position: fixed; top: 0; width: 100%; background: var(--nav-bg); backdrop-filter: saturate(180%) blur(20px); z-index: 1000; border-bottom: 1px solid rgba(255,255,255,0.1); }
-        .nav-container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; height: 60px; display: flex; justify-content: space-between; align-items: center; }
-        .logo { text-decoration: none; display: flex; align-items: center; } .logo img { height: 40px; width: auto; max-width: 180px; object-fit: contain; }
+        .nav-container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; height: 48px; display: flex; justify-content: space-between; align-items: center; }
+        .logo { text-decoration: none; display: flex; align-items: center; } .logo img { height: 28px; width: auto; max-width: 150px; object-fit: contain; } @media (min-width: 768px) { .logo img { height: 40px; max-width: none; } }
         .nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
         .nav-links a { color: var(--text-primary); text-decoration: none; font-size: 0.85rem; opacity: 0.8; }
         .nav-links a:hover, .nav-links a.active { opacity: 1; }
@@ -30,13 +30,13 @@
         .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
         .hamburger.active span:nth-child(2) { opacity: 0; }
         .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
-        .mobile-menu { display: none; position: fixed; top: 60px; left: 0; right: 0; background: var(--nav-bg); backdrop-filter: blur(20px); padding: 1.5rem 2rem; z-index: 999; }
+        .mobile-menu { display: none; position: fixed; top: 48px; left: 0; right: 0; background: var(--nav-bg); backdrop-filter: blur(20px); padding: 1.5rem 2rem; z-index: 999; }
         .mobile-menu.active { display: block; }
         .mobile-menu a { display: block; color: var(--text-primary); padding: 0.8rem 0; border-bottom: 1px solid var(--border-color); text-decoration: none; }
         .mobile-menu a.book-now-btn { background: var(--star-blue); color: #FFF; text-align: center; margin-top: 1rem; border-radius: 980px; }
         
         /* Contact Layout - Info Left, Map Right */
-        .contact-section { margin-top: 60px; min-height: calc(100vh - 48px); display: grid; grid-template-columns: 1fr 1.5fr; }
+        .contact-section { margin-top: 48px; min-height: calc(100vh - 48px); display: grid; grid-template-columns: 1fr 1.5fr; }
         
         /* Left Side - Contact Info */
         .contact-info { padding: 4rem 3rem; background: var(--bg-secondary); }
