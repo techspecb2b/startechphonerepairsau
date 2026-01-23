@@ -35,9 +35,11 @@
 
         /* Navigation */
         nav { position: fixed; top: 0; width: 100%; background: var(--nav-bg); backdrop-filter: saturate(180%) blur(20px); -webkit-backdrop-filter: saturate(180%) blur(20px); z-index: 1000; border-bottom: 1px solid rgba(255,255,255,0.1); transition: background 0.3s ease; }
-        .nav-container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; height: 60px; display: flex; justify-content: space-between; align-items: center; }
+        .nav-container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; height: 48px; display: flex; justify-content: space-between; align-items: center; }
+        @media (min-width: 768px) { .nav-container { height: 60px; } }
         .logo { text-decoration: none; display: flex; align-items: center; }
-        .logo img { height: 40px; width: auto; max-width: 180px; object-fit: contain; }
+        .logo img { height: 28px; width: auto; max-width: 150px; object-fit: contain; }
+        @media (min-width: 768px) { .logo img { height: 40px; max-width: none; } }
         .nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
         .nav-links a { color: var(--text-primary); text-decoration: none; font-size: 0.85rem; font-weight: 400; transition: color 0.3s ease; opacity: 0.8; }
         .nav-links a:hover { opacity: 1; }
@@ -53,14 +55,15 @@
         .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
 
         /* Mobile Menu */
-        .mobile-menu { display: none; position: fixed; top: 60px; left: 0; right: 0; background: var(--nav-bg); backdrop-filter: saturate(180%) blur(20px); padding: 1.5rem 2rem; z-index: 999; }
+        .mobile-menu { display: none; position: fixed; top: 48px; left: 0; right: 0; background: var(--nav-bg); backdrop-filter: saturate(180%) blur(20px); padding: 1.5rem 2rem; z-index: 999; }
         .mobile-menu.active { display: block; }
         .mobile-menu a { display: block; color: var(--text-primary); text-decoration: none; padding: 0.8rem 0; font-size: 1rem; border-bottom: 1px solid var(--border-color); }
         .mobile-menu a:hover, .mobile-menu a.active { color: var(--star-blue); }
         .mobile-menu a.book-now-btn { background: var(--star-blue); color: #FFFFFF; text-align: center; margin-top: 1rem; border-radius: 980px; border: none; }
 
         /* Hero Section with Circuit Board Background */
-        .hero { margin-top: 60px; min-height: calc(100vh - 60px); position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+        .hero { margin-top: 48px; min-height: calc(100vh - 48px); position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+        @media (min-width: 768px) { .hero { margin-top: 60px; min-height: calc(100vh - 60px); } }
         .hero-bg { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 50%, var(--bg-primary) 100%); z-index: 1; }
         .hero-bg::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle at 30% 70%, rgba(0, 132, 255, 0.12) 0%, transparent 50%), radial-gradient(circle at 70% 30%, rgba(0, 132, 255, 0.1) 0%, transparent 40%); animation: pulse 6s ease-in-out infinite alternate; }
         @keyframes pulse { 0% { opacity: 0.4; transform: scale(1); } 100% { opacity: 1; transform: scale(1.15); } }
